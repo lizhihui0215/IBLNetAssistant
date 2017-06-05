@@ -1,5 +1,5 @@
 //
-//  AppDelegate.swift
+//  IBLAppDelegate.swift
 //  IBLNetAssistant
 //
 //  Created by 李智慧 on 31/05/2017.
@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import PCCWFoundationSwift
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class IBLAppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    override init() {
+        super.init()
+        PCCWFoundationSwift.setup()
+    }
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
