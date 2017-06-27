@@ -123,8 +123,6 @@
 				26F9497D1EDE935900E81192 /* IBLAppDelegate.swift */,
 				5B875E3C28E3CED33D47350F /* Views */,
 				5B87584CE509A4EF17CAB55C /* ViewModels */,
-				5B875EDFA08C104023C61F7F /* Domain */,
-				5B8754AD7F1838183D922B7E /* Data */,
 				5B8755E8C304024B57A24CA7 /* Network */,
 				26F949811EDE935900E81192 /* Main.storyboard */,
 				26F949841EDE935900E81192 /* Assets.xcassets */,
@@ -157,13 +155,6 @@
 			children = (
 			);
 			path = Segues;
-			sourceTree = "<group>";
-		};
-		5B8754AD7F1838183D922B7E /* Data */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Data;
 			sourceTree = "<group>";
 		};
 		5B8755B550A91E2A51A0D8B3 /* Login */ = {
@@ -206,13 +197,6 @@
 				5B8751EB0DCEB03347D492C2 /* Segues */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		5B875EDFA08C104023C61F7F /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Domain;
 			sourceTree = "<group>";
 		};
 		9F732EC2129856AFCD467EE4 /* Pods */ = {
