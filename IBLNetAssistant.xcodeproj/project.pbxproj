@@ -300,17 +300,20 @@
 					26F949791EDE935900E81192 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 5R5G2D4E69;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					26F9498D1EDE935900E81192 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 5R5G2D4E69;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 26F949791EDE935900E81192;
 					};
 					26F949981EDE935900E81192 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 5R5G2D4E69;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 26F949791EDE935900E81192;
 					};
@@ -668,9 +671,10 @@
 				DEVELOPMENT_TEAM = 5R5G2D4E69;
 				INFOPLIST_FILE = IBLNetAssistant/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ibilling.IBLNetAssistant.IBLNetAssistant;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibilling.IBLNetAssistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -682,9 +686,10 @@
 				DEVELOPMENT_TEAM = 5R5G2D4E69;
 				INFOPLIST_FILE = IBLNetAssistant/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ibilling.IBLNetAssistant.IBLNetAssistant;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibilling.IBLNetAssistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -699,7 +704,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibilling.IBLNetAssistant.IBLNetAssistantTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IBLNetAssistant.app/IBLNetAssistant";
 			};
 			name = Debug;
@@ -715,7 +721,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibilling.IBLNetAssistant.IBLNetAssistantTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IBLNetAssistant.app/IBLNetAssistant";
 			};
 			name = Release;
@@ -730,7 +737,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibilling.IBLNetAssistant.IBLNetAssistantUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = IBLNetAssistant;
 			};
 			name = Debug;
@@ -745,7 +753,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibilling.IBLNetAssistant.IBLNetAssistantUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = IBLNetAssistant;
 			};
 			name = Release;
