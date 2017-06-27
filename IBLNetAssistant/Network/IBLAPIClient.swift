@@ -11,30 +11,30 @@ import PCCWFoundationSwift
 import Moya
 
 enum IBLAPIClient: PFSTargetType {
-
+    case login
+    
+    var sampleData: Data {
+        return "".data(using: String.Encoding.utf8)!
+    }
+    
     var parameters: [String: Any]? {
-        return []
+        return [:]
     }
     var parameterEncoding: ParameterEncoding {
-        return nil
+        return JSONEncoding.default
     }
-    var sampleData: Data {
-        return nil
-    }
+    
     var task: Task {
-        return nil
+        return .request
     }
+    
     var validate: Bool {
         return false
     }
-
-
+    
     var path: String {
         return ""
     }
-
-    
-    case login
     
     var baseURL: URL {
         return URL(string: "")!
@@ -43,6 +43,4 @@ enum IBLAPIClient: PFSTargetType {
     var method: Moya.Method {
         return .post
     }
-    
-
 }

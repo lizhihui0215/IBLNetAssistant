@@ -13,7 +13,6 @@ class IBLLoginViewController: PFSViewController, IBLLoginAction {
     
     var viewModel: IBLLoginViewModel<IBLLoginViewController>?
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
