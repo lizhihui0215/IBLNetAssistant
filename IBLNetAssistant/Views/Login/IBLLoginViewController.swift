@@ -22,7 +22,7 @@ class IBLLoginViewController: PFSViewController, IBLLoginAction {
 
         // Do any additional setup after loading the view.
         self.viewModel = IBLLoginViewModel(action: self)
-        
+                
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
