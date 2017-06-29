@@ -4,6 +4,7 @@ PODS:
   - IQKeyboardManagerSwift (4.0.10)
   - KeychainAccess (3.0.2)
   - Kingfisher (3.10.1)
+  - KissXML (5.2.0)
   - MJRefresh (3.1.12)
   - Moya (8.0.5):
     - Moya/Core (= 8.0.5)
@@ -30,6 +31,7 @@ PODS:
     - IQKeyboardManagerSwift
     - KeychainAccess
     - Kingfisher
+    - KissXML
     - MJRefresh
     - Moya-ObjectMapper/RxSwift
     - NVActivityIndicatorView
@@ -69,13 +71,14 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 75ba21a23794a1e6b6fe6d9a267ea17f80e06771
   KeychainAccess: a986406022dfc7c634c691ad3bec670cc6a32002
   Kingfisher: 33a1b82140fcb14a9fc13f78dfde2a03ff8de8cb
+  KissXML: 1c1eeeb6b94e4522cd2f2373e5d0d03c9227738f
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   Moya: c37eec09a098ba9991b5a963b291fc5704bdb9ef
   Moya-ObjectMapper: 1b05f10bb69fb6c8750d497d2974c1c63c08c3a9
   NVActivityIndicatorView: 9f52a7f84bf5c6a798722c450fe3c198e01c56ed
   ObjectMapper: 65abcfd9a61cf7396cbd14a4fb22fddfcc46577e
   ObjectMapper+Realm: 98992926f775a4fdf1c025541b97c78119f15b8a
-  PCCWFoundationSwift: '0388e37793995ae3d7c7ca0f6ef0e9b371d3080c'
+  PCCWFoundationSwift: 2b40563b7386cd0591349ccbe35ff0f40564c134
   Realm: 929243ad2b618b3232e70658bedc61110e7563f1
   RealmSwift: 5b7079b891f2833d1849294161ba3e092bbda3f6
   Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
@@ -88,6 +91,6 @@ SPEC CHECKSUMS:
   TZImagePickerController: '086034156913375cb19c8e4103562f15322c3b36'
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
 
-PODFILE CHECKSUM: 35cc5d8ea90e248249fdd2d0788e0ce2605d60fe
+PODFILE CHECKSUM: 7b885421af6988ea396fda420b3b84f66a3c4800
 
 COCOAPODS: 1.2.1

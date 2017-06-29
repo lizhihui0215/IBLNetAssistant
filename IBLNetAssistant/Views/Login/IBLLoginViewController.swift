@@ -13,12 +13,20 @@ class IBLLoginViewController: PFSViewController, IBLLoginAction {
     
     var viewModel: IBLLoginViewModel<IBLLoginViewController>?
     
+    @IBOutlet weak var schoolTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var usernameTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.viewModel = IBLLoginViewModel(action: self)
         
+    }
+    
+    @IBAction func loginButtonPressed(_ sender: UIButton) {
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,7 +35,7 @@ class IBLLoginViewController: PFSViewController, IBLLoginAction {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -35,6 +43,6 @@ class IBLLoginViewController: PFSViewController, IBLLoginAction {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }
