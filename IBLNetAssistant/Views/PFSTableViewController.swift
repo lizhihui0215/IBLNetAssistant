@@ -1,32 +1,23 @@
 //
-//  IBLLoginViewController.swift
+//  PFSTableViewController.swift
 //  IBLNetAssistant
 //
-//  Created by 李智慧 on 05/06/2017.
+//  Created by 李智慧 on 02/07/2017.
 //  Copyright © 2017 李智慧. All rights reserved.
 //
 
 import UIKit
 import PCCWFoundationSwift
 
-class IBLLoginViewController: PFSViewController, IBLLoginAction {
+class PFSTableViewController: PFSViewController {
     
-    var viewModel: IBLLoginViewModel<IBLLoginViewController>?
     
-    @IBOutlet weak var schoolTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var usernameTextField: UITextField!
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.viewModel = IBLLoginViewModel(action: self)
-                
-    }
-    
-    @IBAction func loginButtonPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "toMain", sender: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,7 +26,7 @@ class IBLLoginViewController: PFSViewController, IBLLoginAction {
     }
     
 
-    
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -43,6 +34,6 @@ class IBLLoginViewController: PFSViewController, IBLLoginAction {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    
+    */
 
 }
