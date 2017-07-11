@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		239D0E76615B9A6EA9BEEDDC /* Pods_IBLNetAssistant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798540E67217C4FB7768D696 /* Pods_IBLNetAssistant.framework */; };
+		26258CE31F1514CA00FA318F /* IBLSchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26258CE21F1514CA00FA318F /* IBLSchoolViewController.swift */; };
 		263019F91EE53AA80002061E /* IBLLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263019F81EE53AA80002061E /* IBLLoginViewController.swift */; };
 		263019FB1EE53ADB0002061E /* IBLLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263019FA1EE53ADB0002061E /* IBLLoginViewModel.swift */; };
 		263019FF1EE5474F0002061E /* IBLAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263019FE1EE5474F0002061E /* IBLAPIClient.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		1BBF0AF86C69FD1FB6AEE6D0 /* Pods-IBLNetAssistantUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IBLNetAssistantUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IBLNetAssistantUITests/Pods-IBLNetAssistantUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		26258CE21F1514CA00FA318F /* IBLSchoolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLSchoolViewController.swift; sourceTree = "<group>"; };
 		263019F81EE53AA80002061E /* IBLLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLLoginViewController.swift; sourceTree = "<group>"; };
 		263019FA1EE53ADB0002061E /* IBLLoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLLoginViewModel.swift; sourceTree = "<group>"; };
 		263019FE1EE5474F0002061E /* IBLAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLAPIClient.swift; sourceTree = "<group>"; };
@@ -164,6 +166,14 @@
 			path = Segues;
 			sourceTree = "<group>";
 		};
+		5B87534E00F174C14A87FE63 /* School */ = {
+			isa = PBXGroup;
+			children = (
+				26258CE21F1514CA00FA318F /* IBLSchoolViewController.swift */,
+			);
+			path = School;
+			sourceTree = "<group>";
+		};
 		5B8755B550A91E2A51A0D8B3 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +222,7 @@
 				5B875C1803DE3EF034D74170 /* Login */,
 				5B8751EB0DCEB03347D492C2 /* Segues */,
 				5B87563ACC3B50C129AEB30B /* Main */,
+				5B87534E00F174C14A87FE63 /* School */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -533,6 +544,7 @@
 				263477F51F091B6E0074D89C /* PFSTableViewController.swift in Sources */,
 				263477F31F091B1E0074D89C /* IBLMainViewController.swift in Sources */,
 				263019FB1EE53ADB0002061E /* IBLLoginViewModel.swift in Sources */,
+				26258CE31F1514CA00FA318F /* IBLSchoolViewController.swift in Sources */,
 				5B875197097BB06BEB97D8EE /* IBLRootViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
