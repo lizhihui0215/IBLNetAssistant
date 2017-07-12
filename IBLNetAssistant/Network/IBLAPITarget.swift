@@ -11,8 +11,8 @@ import PCCWFoundationSwift
 import Moya
 import CryptoSwift
 
-enum IBLAPIClient: PFSTargetType {
-    case school
+enum IBLAPITarget: PFSTargetType {
+    case school(String, String)
     case login
     
     func sign(parameters: [String: Any]) -> [String: Any] {
@@ -22,12 +22,12 @@ enum IBLAPIClient: PFSTargetType {
         
         parameters["mCode"] = device.uuid
         
-        parameters["authId"] = "a05e74898131bd1c"
+        parameters["authId"] = "a7a19b705ce5c483"
         
         var formattedParamters = [String]();
         
         for (key, value) in parameters {
-            let formatted = "\(key)=\(value)"
+            let formatted = "\(key)=\(value)&"
             
             formattedParamters.append(formatted)
         }
@@ -36,7 +36,7 @@ enum IBLAPIClient: PFSTargetType {
         
         var result = formattedParamters.joined(separator: "")
         
-        result = "\(result)key=48e5be901c6692bf46fd2bba3b04d56b"
+        result = "\(result)key=c3c2ba77b7bb1c811998f818c578061f"
         
         let sign = result.md5()
         
@@ -51,7 +51,16 @@ enum IBLAPIClient: PFSTargetType {
     }
     
     var parameters: [String: Any]? {
-        return [:]
+        
+        var parameters = [String: Any]()
+        switch self {
+        case let .school(longit,lati):
+            parameters = ["longit" : longit, "lati" : lati]
+            parameters = sign(parameters: parameters)
+        default:break
+        }
+
+        return parameters
     }
     var parameterEncoding: ParameterEncoding {
         return JSONEncoding.default
@@ -68,7 +77,7 @@ enum IBLAPIClient: PFSTargetType {
     var path: String {
         var path = ""
         switch self {
-        case .school:
+        case .school(_,_):
             path = "userservice/getschoollist.do"
         default:break
         }

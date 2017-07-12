@@ -8,15 +8,22 @@
 
 import UIKit
 import PCCWFoundationSwift
+import RxSwift
 
-class IBLSchoolViewController: PFSViewController {
+
+class IBLSchoolViewController: PFSViewController, IBLSchoolAction {
 
     @IBOutlet weak var schoolTextField: UITextField!
     
+    var viewModel: IBLSchoolViewModel<IBLSchoolViewController>?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.viewModel = IBLSchoolViewModel(action: self, domain: IBLSchoolDomain())
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,13 +32,18 @@ class IBLSchoolViewController: PFSViewController {
     }
     
     @IBAction func schoolTapped(_ sender: UITapGestureRecognizer) {
-        
+        self.viewModel?.fetchSchools().drive(onNext: {
+            
+            
+            print($0)
+        }).disposed(by: disposeBag)
     }
     
     @IBAction func nextStapTapped(_ sender: UIButton) {
+        
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -39,6 +51,5 @@ class IBLSchoolViewController: PFSViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
 
 }

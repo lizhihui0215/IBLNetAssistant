@@ -11,7 +11,7 @@ import PCCWFoundationSwift
 
 class IBLLoginViewController: PFSViewController, IBLLoginAction {
     
-    var viewModel: IBLLoginViewModel<IBLLoginViewController>?
+    var viewModel: IBLLoginViewModel<IBLLoginViewController, IBLLoginDomain>?
     
     @IBOutlet weak var schoolTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -21,7 +21,7 @@ class IBLLoginViewController: PFSViewController, IBLLoginAction {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.viewModel = IBLLoginViewModel(action: self)
+        self.viewModel = IBLLoginViewModel(action: self, domain: IBLLoginDomain())
                 
     }
     

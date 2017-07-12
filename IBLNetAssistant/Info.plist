@@ -41,5 +41,16 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>请点击“允许”以允许访问</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>允许使用地图</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>请点击“允许”以允许访问</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

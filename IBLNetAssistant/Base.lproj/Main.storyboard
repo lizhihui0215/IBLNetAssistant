@@ -103,20 +103,20 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="2C9-He-T83">
-                                <rect key="frame" x="82" y="360" width="156" height="18"/>
+                                <rect key="frame" x="82.5" y="360" width="155" height="18"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsg-dy-MdL">
                                         <rect key="frame" x="0.0" y="0.0" width="17" height="18"/>
                                         <state key="normal" backgroundImage="form-自动登录"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自动登陆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dND-go-0Md">
-                                        <rect key="frame" x="27" y="0.0" width="54" height="18"/>
+                                        <rect key="frame" x="27" y="0.0" width="53.5" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ARO-7s-SaU">
-                                        <rect key="frame" x="91" y="0.0" width="1" height="18"/>
+                                        <rect key="frame" x="90.5" y="0.0" width="1" height="18"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="1" id="Ii3-cu-UBE"/>
@@ -124,7 +124,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="找回密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6C-s3-bIb">
-                                        <rect key="frame" x="102" y="0.0" width="54" height="18"/>
+                                        <rect key="frame" x="101.5" y="0.0" width="53.5" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -309,11 +309,11 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="0pd-fz-YeO" appends="YES" id="7Ks-Ny-HEO"/>
-                                        </connections>
                                     </textField>
                                 </subviews>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="0pd-fz-YeO" appends="YES" id="hLa-WU-FIu"/>
+                                </connections>
                             </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-applogo" translatesAutoresizingMaskIntoConstraints="NO" id="GXh-4L-2Xd">
                                 <rect key="frame" x="100" y="122" width="121" height="39"/>
@@ -394,6 +394,7 @@
                     </view>
                     <connections>
                         <outlet property="schoolTextField" destination="rcA-bW-Hgu" id="rZb-GJ-NaT"/>
+                        <segue destination="NvP-hS-7Vt" kind="custom" customClass="PFSExchageRootSegue" customModule="PCCWFoundationSwift" id="85y-id-thp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o0s-Z6-70Y" userLabel="First Responder" sceneMemberID="firstResponder"/>

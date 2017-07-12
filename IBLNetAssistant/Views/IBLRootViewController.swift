@@ -32,7 +32,7 @@ class IBLRootViewController: PFSViewController {
         if segue.identifier == "toLogin" {
             let loginViewController = segue.destination as! IBLLoginViewController
             
-            loginViewController.viewModel = IBLLoginViewModel(action: loginViewController)
+            loginViewController.viewModel = IBLLoginViewModel(action: loginViewController, domain: IBLLoginDomain())
         }
     }
 }

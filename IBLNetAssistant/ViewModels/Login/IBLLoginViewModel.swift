@@ -12,7 +12,7 @@ protocol IBLLoginAction: PFSViewAction {
 }
 
 
-class IBLLoginViewModel<T: IBLLoginAction>: PFSViewModel<T>  {
+class IBLLoginViewModel<T: IBLLoginAction, D: IBLLoginDomain>: PFSViewModel<T, D>  {
     
     
 }
