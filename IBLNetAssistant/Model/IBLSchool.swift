@@ -19,7 +19,6 @@ class IBLSchool: PFSModel {
     dynamic var sname : String?
     dynamic var mode : String?
     dynamic var serverInner : String?
-    dynamic var wifi: String?
     dynamic var serverOut : String?
     dynamic var selected : String?
     
@@ -33,7 +32,6 @@ class IBLSchool: PFSModel {
         sname <- map["sname"]
         mode <- map["mode"]
         serverInner <- map["server_inner"]
-        wifi <- map["wifi"]
         serverOut <- map["server_out"]
         selected <- map["selected"]
     }

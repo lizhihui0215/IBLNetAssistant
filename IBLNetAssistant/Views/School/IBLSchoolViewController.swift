@@ -22,8 +22,6 @@ class IBLSchoolViewController: PFSViewController, IBLSchoolAction {
 
         // Do any additional setup after loading the view.
         self.viewModel = IBLSchoolViewModel(action: self, domain: IBLSchoolDomain())
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,10 +30,12 @@ class IBLSchoolViewController: PFSViewController, IBLSchoolAction {
     }
     
     @IBAction func schoolTapped(_ sender: UITapGestureRecognizer) {
-        self.viewModel?.fetchSchools().drive(onNext: {
+        self.viewModel?.fetchSchools().drive(onNext: {[weak self] result in
+            self?.presentPicker(items: result, completeHandler: { item in
+                self?.viewModel?.selectedSchool = item.school
+                self?.schoolTextField.text = item.title
+            })
             
-            
-            print($0)
         }).disposed(by: disposeBag)
     }
     

@@ -31,6 +31,9 @@ class IBLSchoolSelection: PFSPickerViewItem {
 }
 
 class IBLSchoolViewModel<T: IBLSchoolAction>: PFSViewModel<T, IBLSchoolDomain> {
+    
+    var selectedSchool: IBLSchool? = nil
+    
 
     func fetchSchools() -> Driver<[IBLSchoolSelection]> {
         let schools: Driver<Result<[IBLSchool], Moya.Error>> = self.domain.fetchSchools()

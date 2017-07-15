@@ -144,12 +144,12 @@
 				5B8755E8C304024B57A24CA7 /* Network */,
 				5B875DC59459B46E66B09C73 /* Domain */,
 				5B875C3F32164542E7965C85 /* Data */,
+				5B8758B41A3F85B27F279299 /* Model */,
 				26F949811EDE935900E81192 /* Main.storyboard */,
 				263477F81F092C0E0074D89C /* Backup.storyboard */,
 				26F949841EDE935900E81192 /* Assets.xcassets */,
 				26F949861EDE935900E81192 /* LaunchScreen.storyboard */,
 				26F949891EDE935900E81192 /* Info.plist */,
-				5B8758B41A3F85B27F279299 /* Model */,
 			);
 			path = IBLNetAssistant;
 			sourceTree = "<group>";

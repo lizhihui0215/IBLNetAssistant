@@ -18,7 +18,9 @@ enum IBLAPITarget: PFSTargetType {
     func sign(parameters: [String: Any]) -> [String: Any] {
         var parameters = parameters;
         
-        parameters["sessionId"] = Date().timeIntervalSince1970
+        let pointer = UnsafeMutablePointer<time_t>.allocate(capacity: MemoryLayout<time_t>.size)
+        
+        parameters["sessionId"] = time(pointer)
         
         parameters["mCode"] = device.uuid
         
@@ -38,7 +40,7 @@ enum IBLAPITarget: PFSTargetType {
         
         result = "\(result)key=c3c2ba77b7bb1c811998f818c578061f"
         
-        let sign = result.md5()
+        let sign = result.md5().uppercased()
         
         parameters["sign"] = sign
         
