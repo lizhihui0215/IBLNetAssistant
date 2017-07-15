@@ -393,8 +393,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="schoolTapGesture" destination="0pd-fz-YeO" id="5w5-kF-OgN"/>
                         <outlet property="schoolTextField" destination="rcA-bW-Hgu" id="rZb-GJ-NaT"/>
-                        <segue destination="NvP-hS-7Vt" kind="custom" customClass="PFSExchageRootSegue" customModule="PCCWFoundationSwift" id="85y-id-thp"/>
+                        <segue destination="NvP-hS-7Vt" kind="custom" identifier="toLogin" customClass="PFSExchageRootSegue" customModule="PCCWFoundationSwift" id="85y-id-thp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o0s-Z6-70Y" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -12,6 +12,7 @@ import RxSwift
 
 
 class IBLSchoolViewController: PFSViewController, IBLSchoolAction {
+    @IBOutlet var schoolTapGesture: UITapGestureRecognizer!
 
     @IBOutlet weak var schoolTextField: UITextField!
     
@@ -30,17 +31,21 @@ class IBLSchoolViewController: PFSViewController, IBLSchoolAction {
     }
     
     @IBAction func schoolTapped(_ sender: UITapGestureRecognizer) {
+//        self.view.isUserInteractionEnabled = false
         self.viewModel?.fetchSchools().drive(onNext: {[weak self] result in
             self?.presentPicker(items: result, completeHandler: { item in
                 self?.viewModel?.selectedSchool = item.school
                 self?.schoolTextField.text = item.title
             })
             
+            }, onCompleted: {
+                self.view.isUserInteractionEnabled = true;
+                print("completed")
         }).disposed(by: disposeBag)
     }
     
     @IBAction func nextStapTapped(_ sender: UIButton) {
-        
+        self.performSegue(withIdentifier: "toLogin", sender: nil)
     }
 
     
