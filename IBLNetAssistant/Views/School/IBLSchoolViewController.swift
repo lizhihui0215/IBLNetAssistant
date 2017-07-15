@@ -20,7 +20,8 @@ class IBLSchoolViewController: PFSViewController, IBLSchoolAction {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        IBLAPITarget.setBaseURL(URL: "http://www.i-billing.com.cn:8081/ibillingplatform")
         // Do any additional setup after loading the view.
         self.viewModel = IBLSchoolViewModel(action: self, domain: IBLSchoolDomain())
     }
@@ -31,16 +32,14 @@ class IBLSchoolViewController: PFSViewController, IBLSchoolAction {
     }
     
     @IBAction func schoolTapped(_ sender: UITapGestureRecognizer) {
-//        self.view.isUserInteractionEnabled = false
+        self.view.isUserInteractionEnabled = false
         self.viewModel?.fetchSchools().drive(onNext: {[weak self] result in
             self?.presentPicker(items: result, completeHandler: { item in
-                self?.viewModel?.selectedSchool = item.school
+                self?.viewModel?.setSelectedSchool(school: item.school)
                 self?.schoolTextField.text = item.title
             })
-            
             }, onCompleted: {
                 self.view.isUserInteractionEnabled = true;
-                print("completed")
         }).disposed(by: disposeBag)
     }
     
@@ -55,6 +54,13 @@ class IBLSchoolViewController: PFSViewController, IBLSchoolAction {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "toLogin" {
+            let loginViewController = segue.destination as! IBLLoginViewController
+            
+            loginViewController.viewModel = IBLLoginViewModel(action: loginViewController,
+                                                              domain: IBLLoginDomain(),
+                                                              school: (self.viewModel?.selectedSchool)!)
+        }
     }
 
 }

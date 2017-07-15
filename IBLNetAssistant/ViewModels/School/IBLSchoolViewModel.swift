@@ -34,6 +34,9 @@ class IBLSchoolViewModel<T: IBLSchoolAction>: PFSViewModel<T, IBLSchoolDomain> {
     
     var selectedSchool: IBLSchool? = nil
     
+    func setSelectedSchool(school: IBLSchool?) {
+        self.selectedSchool = school
+    }
 
     func fetchSchools() -> Driver<[IBLSchoolSelection]> {
         let schools: Driver<Result<[IBLSchool], Moya.Error>> = self.domain.fetchSchools().do(onNext: { print("next \($0)")

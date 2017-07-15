@@ -15,12 +15,12 @@ import PCCWFoundationSwift
 
 class IBLSchool: PFSModel {
     
-    dynamic var sid : String?
+    dynamic var sid : Int64 = 0
     dynamic var sname : String?
     dynamic var mode : String?
     dynamic var serverInner : String?
     dynamic var serverOut : String?
-    dynamic var selected : String?
+    dynamic var selected : Bool = false
     
     required convenience init?(map: Map) {
         self.init()

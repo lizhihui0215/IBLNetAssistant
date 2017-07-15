@@ -15,6 +15,7 @@
 		263477F31F091B1E0074D89C /* IBLMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263477F21F091B1E0074D89C /* IBLMainViewController.swift */; };
 		263477F51F091B6E0074D89C /* PFSTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263477F41F091B6E0074D89C /* PFSTableViewController.swift */; };
 		263477FA1F092C0E0074D89C /* Backup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 263477F81F092C0E0074D89C /* Backup.storyboard */; };
+		26E567A51F1A3DE200A5CD31 /* IBLUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E567A41F1A3DE200A5CD31 /* IBLUser.swift */; };
 		26F9497E1EDE935900E81192 /* IBLAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F9497D1EDE935900E81192 /* IBLAppDelegate.swift */; };
 		26F949831EDE935900E81192 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26F949811EDE935900E81192 /* Main.storyboard */; };
 		26F949851EDE935900E81192 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26F949841EDE935900E81192 /* Assets.xcassets */; };
@@ -57,6 +58,7 @@
 		263477F21F091B1E0074D89C /* IBLMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLMainViewController.swift; sourceTree = "<group>"; };
 		263477F41F091B6E0074D89C /* PFSTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFSTableViewController.swift; sourceTree = "<group>"; };
 		263477F91F092C0E0074D89C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Backup.storyboard; sourceTree = "<group>"; };
+		26E567A41F1A3DE200A5CD31 /* IBLUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLUser.swift; sourceTree = "<group>"; };
 		26F9497A1EDE935900E81192 /* IBLNetAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IBLNetAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26F9497D1EDE935900E81192 /* IBLAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBLAppDelegate.swift; sourceTree = "<group>"; };
 		26F949821EDE935900E81192 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				26FE237C1F16295F007A53DF /* IBLSchool.swift */,
+				26E567A41F1A3DE200A5CD31 /* IBLUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -593,6 +596,7 @@
 				263477F51F091B6E0074D89C /* PFSTableViewController.swift in Sources */,
 				263477F31F091B1E0074D89C /* IBLMainViewController.swift in Sources */,
 				26FE23811F16366E007A53DF /* IBLDataRepository.swift in Sources */,
+				26E567A51F1A3DE200A5CD31 /* IBLUser.swift in Sources */,
 				26FE237F1F162F10007A53DF /* IBLLoginDomain.swift in Sources */,
 				26FE23791F1627BE007A53DF /* IBLSchoolViewModel.swift in Sources */,
 				263019FB1EE53ADB0002061E /* IBLLoginViewModel.swift in Sources */,

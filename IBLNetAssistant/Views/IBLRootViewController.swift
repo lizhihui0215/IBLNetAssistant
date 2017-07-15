@@ -29,11 +29,11 @@ class IBLRootViewController: PFSViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if segue.identifier == "toLogin" {
-            let loginViewController = segue.destination as! IBLLoginViewController
-            
-            loginViewController.viewModel = IBLLoginViewModel(action: loginViewController, domain: IBLLoginDomain())
-        }
+//        if segue.identifier == "toLogin" {
+//            let loginViewController = segue.destination as! IBLLoginViewController
+//            
+//            loginViewController.viewModel = IBLLoginViewModel(action: loginViewController, domain: IBLLoginDomain(), school: <#IBLSchool#>)
+//        }
     }
 }
 

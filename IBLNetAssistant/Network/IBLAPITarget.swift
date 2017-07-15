@@ -11,9 +11,17 @@ import PCCWFoundationSwift
 import Moya
 import CryptoSwift
 
+private var APIBaseURL = ""
+
 enum IBLAPITarget: PFSTargetType {
+
     case school(String, String)
-    case login
+    case auth(String, String)
+    case register(String, IBLSchool)
+    
+    static public func setBaseURL(URL: String) {
+        APIBaseURL = URL
+    }
     
     func sign(parameters: [String: Any]) -> [String: Any] {
         var parameters = parameters;
@@ -25,6 +33,10 @@ enum IBLAPITarget: PFSTargetType {
         parameters["mCode"] = device.uuid
         
         parameters["authId"] = "a7a19b705ce5c483"
+        
+        parameters["phoneModel"] = "0"
+        
+        parameters["osVersion"] = device.appVersion
         
         var formattedParamters = [String]();
         
@@ -59,9 +71,15 @@ enum IBLAPITarget: PFSTargetType {
         case let .school(longit,lati):
             parameters = ["longit" : longit, "lati" : lati]
             parameters = sign(parameters: parameters)
+        case let .auth(username, password):
+            parameters = ["account" : username, "password" : password]
+            parameters = sign(parameters: parameters)
+        case let .register(account,school):
+            parameters = ["account" : account, "sid" : school.sid , "sname" : school.sname ?? ""]
+            parameters = sign(parameters: parameters)
         default:break
         }
-
+        
         return parameters
     }
     var parameterEncoding: ParameterEncoding {
@@ -81,6 +99,10 @@ enum IBLAPITarget: PFSTargetType {
         switch self {
         case .school(_,_):
             path = "userservice/getschoollist.do"
+        case .auth(_,_):
+            path = "userservice/auth.do"
+        case .register(_,_):
+            path = "nodeibilling/httpservices/user/appRegister.do"
         default:break
         }
         
@@ -88,10 +110,12 @@ enum IBLAPITarget: PFSTargetType {
     }
     
     var baseURL: URL {
-        return URL(string: "http://www.i-billing.com.cn:8081/ibillingplatform")!
+        return URL(string: APIBaseURL)!
     }
     
     var method: Moya.Method {
         return .post
     }
+
+
 }
