@@ -33,6 +33,12 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain>  {
         if isSelfService{
             IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverOut!)")
         }
+        
+        let validateAccount = account.notNul(message: "用户名不能为空！")
+        
+        let validatePassword = password.notNul(message: "密码不能为空！")
+        
+        let validateResult = PFSValidate.of(validateAccount, validatePassword)
 
         let register: Driver<Result<String, MoyaError>> = self.domain.register(account: account, school: self.school)
         
@@ -40,7 +46,11 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain>  {
         var sigin: Driver<Bool> = Driver.just(true)
         
         if isSelfService {
-            sigin = register.flatMapLatest{
+            sigin = validateResult.flatMapLatest{
+                return (self.action?.alert(result: $0))!
+            }.flatMapLatest {_ in
+                return register
+            }.flatMapLatest{
                 return (self.action?.alert(result: $0))!
             }.flatMapLatest{_ in
                 return self.siginSelfService(account: account, password: password)

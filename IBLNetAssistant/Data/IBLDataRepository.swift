@@ -23,7 +23,7 @@ class IBLDataRepository: PFSDataRepository {
 
     func fetchSchools() -> Observable<Result<[IBLSchool], MoyaError>> {
         let result: Observable<PFSResponseMappableArray<IBLSchool>> = PFSNetworkService<IBLAPITarget>.shared.request(.school("116.317489", "39.998813"))
-        
+
         return self.handlerError(response: result)
     }
 

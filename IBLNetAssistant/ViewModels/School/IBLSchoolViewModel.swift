@@ -39,14 +39,7 @@ class IBLSchoolViewModel<T: IBLSchoolAction>: PFSViewModel<T, IBLSchoolDomain> {
     }
 
     func fetchSchools() -> Driver<[IBLSchoolSelection]> {
-        let schools: Driver<Result<[IBLSchool], Moya.Error>> = self.domain.fetchSchools().do(onNext: { print("next \($0)")
-        }, onCompleted: { 
-            print("completed")
-        }, onSubscribe: { 
-            print("onSubscribe")
-        }) { 
-            print("onSubscribe")
-        }
+        let schools: Driver<Result<[IBLSchool], Moya.Error>> = self.domain.fetchSchools()
         
         let c = schools.flatMapLatest {
             return (self.action?.alert(result: $0))!

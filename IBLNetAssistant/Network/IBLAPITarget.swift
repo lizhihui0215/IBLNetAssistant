@@ -19,7 +19,7 @@ enum IBLAPITarget: PFSTargetType {
     case auth(String, String)
     case register(String, IBLSchool)
     
-    static public func setBaseURL(URL: String) {
+    public static func setBaseURL(URL: String) {
         APIBaseURL = URL
     }
     
@@ -100,7 +100,7 @@ enum IBLAPITarget: PFSTargetType {
         case .school(_,_):
             path = "userservice/getschoollist.do"
         case .auth(_,_):
-            path = "userservice/auth.do"
+            path = "ibillingportal/userservice/auth.do"
         case .register(_,_):
             path = "nodeibilling/httpservices/user/appRegister.do"
         default:break
