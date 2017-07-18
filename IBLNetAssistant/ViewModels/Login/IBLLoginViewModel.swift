@@ -103,7 +103,6 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain>  {
                 
                 guard let _ =  try? PFSRealm.shared.update(obj: cachedUser, {
                     $0.isAutoLogin = self.isAutoLogin.value
-                    $0.account = account
                     $0.password = password
                     $0.selectedSchool = self.school
                     $0.isLogin = true
