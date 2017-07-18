@@ -39,8 +39,10 @@ class IBLLoginViewController: PFSViewController, IBLLoginAction {
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         self.viewModel!.sigin(account: self.accountTextField.text!,
-                                                       password: passwordTextField.text!).drive(onNext: {[weak self] _ in
-                                                        self?.performSegue(withIdentifier: "toMain", sender: nil)
+                                                       password: passwordTextField.text!).drive(onNext: {[weak self] success in
+                                                        if (success) {
+                                                            self?.performSegue(withIdentifier: "toMain", sender: nil)
+                                                        }
                                                        }).disposed(by: disposeBag)
 
     }
