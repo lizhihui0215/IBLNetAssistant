@@ -14,12 +14,15 @@ import Moya
 
 open class PFSRealm {
 
-    private let realm: Realm
+    private var realm: Realm {
+        get {
+            return try! Realm()
+        }
+    }
     
     public static let shared = PFSRealm()
     
     init() {
-        self.realm = try! Realm()
     }
     
     public func save<T: Object>(obj: T) -> Result<T, MoyaError> {
@@ -32,9 +35,9 @@ open class PFSRealm {
         return Result(value: obj)
     }
     
-    public func update<T: Object>(obj: T) -> Result<T, MoyaError> {
+    public func update<T: Object>(obj: T, _ handler: @escaping (T) -> Void) -> Result<T, MoyaError> {
         do {
-            try realm.write { realm.add(obj, update: true) }
+            try realm.write { handler(obj) }
         } catch let error {
             return Result(error: MoyaError.underlying(error))
         }

@@ -34,7 +34,7 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain>  {
 
     func sigin(account: String, password: String) -> Driver<Bool> {
 
-        let isSelfService = self.school.mode == "0"
+        let isProtalSigin = self.school.mode != "0"
         
         let validateAccount = account.notNul(message: "用户名不能为空！")
         
@@ -48,7 +48,7 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain>  {
         
         if !networkReachabilityManager.isReachable {
             return (self.action?.alert(message: "无网络链接！",success: false))!
-        }else if networkReachabilityManager.isReachableOnEthernetOrWiFi && isSelfService {
+        }else if networkReachabilityManager.isReachableOnEthernetOrWiFi && isProtalSigin {
             sigin = self.portalSigin(account: account, password: password)
         }else {
             sigin = self.selfSigin(account: account, password: password)
@@ -80,7 +80,7 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain>  {
             }.flatMapLatest{
                 return (self.action?.alert(result: $0))!
             }.flatMapLatest{
-                guard let accessToken =  try? $0.dematerialize()?.accessToken else {
+                guard let result =  try? $0.dematerialize(), let accessToken = result?.accessToken else {
                     return Driver.just(false)
                 }
                 
@@ -101,14 +101,15 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain>  {
                     return Driver.just(true)
                 }
                 
-                cachedUser.isAutoLogin = self.isAutoLogin.value
-                cachedUser.account = account
-                cachedUser.password = password
-                cachedUser.selectedSchool = self.school
-                cachedUser.isLogin = true
-                cachedUser.accessToken = accessToken
-                
-                guard let _ =  try? PFSRealm.shared.update(obj: cachedUser).dematerialize() else {
+                guard let _ =  try? PFSRealm.shared.update(obj: cachedUser, {
+                    $0.isAutoLogin = self.isAutoLogin.value
+                    $0.account = account
+                    $0.password = password
+                    $0.selectedSchool = self.school
+                    $0.isLogin = true
+                    $0.accessToken = accessToken
+
+                }).dematerialize() else {
                     return Driver.just(false)
                 }
                 
@@ -120,19 +121,19 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain>  {
         let lastUser: Driver<Result<IBLUser?, MoyaError>> = self.domain.cachedUser();
 
         return lastUser.flatMapLatest {
-            guard let user = try? $0.dematerialize() else {
+            guard let result = try? $0.dematerialize(), let user = result else {
                 return Driver.just(false)
             }
             
-            self.isAutoLogin.value = user!.isAutoLogin
-            self.school = user!.selectedSchool!
-            self.account.value = user!.account
+            self.isAutoLogin.value = user.isAutoLogin
+            self.school = user.selectedSchool!
+            self.account.value = user.account
             
-            if user!.selectedSchool!.mode == "0" {
-                return Driver.just(user!.isAutoLogin)
+            if user.selectedSchool!.mode == "0" {
+                return Driver.just(user.isAutoLogin)
             }
             
-            return Driver.just(user!.isAutoLogin)
+            return Driver.just(user.isAutoLogin)
         }
     }
 
