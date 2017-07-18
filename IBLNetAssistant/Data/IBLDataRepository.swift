@@ -42,4 +42,24 @@ class IBLDataRepository: PFSDataRepository {
         return self.handlerError(response: result)
     }
 
+    func cachedSchool() -> Observable<Result<IBLSchool, MoyaError>> {
+        return Observable.just(Result{
+            guard let cachedSchool: IBLSchool = PFSRealm.shared.object() else {
+                throw error(message: "无缓存学校！")
+            }
+
+            return cachedSchool
+        })
+    }
+
+    func cachedUser() -> Observable<Result<IBLUser?, MoyaError>> {
+        return Observable.just(Result{
+            guard let cachedUser: IBLUser = PFSRealm.shared.object() else {
+                throw error(message: "无登陆用户！")
+            }
+
+            return cachedUser
+        })
+    }
+
 }

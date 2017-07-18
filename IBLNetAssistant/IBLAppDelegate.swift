@@ -24,6 +24,8 @@ class IBLAppDelegate: UIResponder, UIApplicationDelegate {
         PFSNetworkService<IBLAPITarget>.config(message: "respMsg",
                                                code: "resultCode",
                                                result: "result")
+        
+        print(PFSFileManager.shared.document)
 
         return true
     }

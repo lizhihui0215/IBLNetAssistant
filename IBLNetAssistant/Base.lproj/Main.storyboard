@@ -33,6 +33,7 @@
                     </view>
                     <connections>
                         <segue destination="Zq8-ai-9FG" kind="custom" identifier="toSchool" customClass="PFSExchageRootSegue" customModule="PCCWFoundationSwift" id="BoM-uc-oO1"/>
+                        <segue destination="NvP-hS-7Vt" kind="custom" identifier="toLogin" customClass="PFSExchageRootSegue" customModule="PCCWFoundationSwift" id="uWX-EA-zFs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -57,7 +58,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7Ss-If-T4z">
                                 <rect key="frame" x="15" y="188" width="290" height="92"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="xx" textAlignment="center" minimumFontSize="17" background="form-帐号" translatesAutoresizingMaskIntoConstraints="NO" id="3D4-j3-Irq">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入用户名" textAlignment="center" minimumFontSize="17" background="form-帐号" translatesAutoresizingMaskIntoConstraints="NO" id="3D4-j3-Irq">
                                         <rect key="frame" x="0.0" y="0.0" width="290" height="46"/>
                                         <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
                                         <constraints>
@@ -68,7 +69,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="xx" textAlignment="center" minimumFontSize="17" background="form-密码" translatesAutoresizingMaskIntoConstraints="NO" id="DxX-YT-uuU">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="center" minimumFontSize="17" background="form-密码" translatesAutoresizingMaskIntoConstraints="NO" id="DxX-YT-uuU">
                                         <rect key="frame" x="0.0" y="46" width="290" height="46"/>
                                         <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
                                         <constraints>
@@ -103,35 +104,30 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="2C9-He-T83">
-                                <rect key="frame" x="82.5" y="360" width="155" height="18"/>
+                                <rect key="frame" x="92.5" y="360" width="136" height="18"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsg-dy-MdL">
-                                        <rect key="frame" x="0.0" y="0.0" width="17" height="18"/>
-                                        <state key="normal" backgroundImage="form-自动登录"/>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自动登陆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dND-go-0Md">
-                                        <rect key="frame" x="27" y="0.0" width="53.5" height="18"/>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsg-dy-MdL" customClass="PFSCheckbox" customModule="IBLNetAssistant" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="71" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <state key="normal" title="自动登录" image="form-自动登录（未选中）"/>
+                                        <state key="selected" title="自动登录" image="form-自动登录"/>
+                                    </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ARO-7s-SaU">
-                                        <rect key="frame" x="90.5" y="0.0" width="1" height="18"/>
+                                        <rect key="frame" x="76" y="0.0" width="1" height="18"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="1" id="Ii3-cu-UBE"/>
                                             <constraint firstAttribute="height" constant="18" id="Q8s-5m-RYN"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="找回密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6C-s3-bIb">
-                                        <rect key="frame" x="101.5" y="0.0" width="53.5" height="18"/>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sF5-tW-7QI">
+                                        <rect key="frame" x="82" y="0.0" width="54" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <state key="normal" title="忘记密码"/>
+                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="dND-go-0Md" firstAttribute="leading" secondItem="dsg-dy-MdL" secondAttribute="trailing" constant="10" id="jMl-uL-Td6"/>
+                                    <constraint firstItem="ARO-7s-SaU" firstAttribute="leading" secondItem="dsg-dy-MdL" secondAttribute="trailing" constant="5" id="UvE-M1-3VE"/>
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rc6-ub-YY4">
@@ -193,8 +189,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="accountTextField" destination="3D4-j3-Irq" id="N8y-lH-2J9"/>
+                        <outlet property="aotoCheckbox" destination="dsg-dy-MdL" id="kZr-ap-Gaa"/>
                         <outlet property="passwordTextField" destination="DxX-YT-uuU" id="qmt-P6-ZlA"/>
-                        <outlet property="usernameTextField" destination="3D4-j3-Irq" id="lHI-ev-v5E"/>
                         <segue destination="PX5-Zh-p91" kind="custom" identifier="toMain" customClass="PFSExchageRootSegue" customModule="PCCWFoundationSwift" id="KhB-OV-xaL"/>
                     </connections>
                 </viewController>
@@ -298,7 +295,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MLq-gr-Oyc">
                                 <rect key="frame" x="15" y="211" width="290" height="46"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="xx" textAlignment="center" minimumFontSize="17" background="form-选择学校" translatesAutoresizingMaskIntoConstraints="NO" id="rcA-bW-Hgu">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择校园" textAlignment="center" minimumFontSize="17" background="form-选择学校" translatesAutoresizingMaskIntoConstraints="NO" id="rcA-bW-Hgu">
                                         <rect key="frame" x="0.0" y="0.0" width="290" height="46"/>
                                         <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
                                         <gestureRecognizers/>
@@ -412,8 +409,12 @@
         <image name="form-密码" width="290" height="46"/>
         <image name="form-帐号" width="290" height="46"/>
         <image name="form-自动登录" width="17" height="18"/>
+        <image name="form-自动登录（未选中）" width="17" height="17"/>
         <image name="form-选择学校" width="290" height="46"/>
         <image name="icon-applogo" width="121" height="39"/>
         <image name="login-bg" width="375" height="667"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="uWX-EA-zFs"/>
+    </inferredMetricsTieBreakers>
 </document>

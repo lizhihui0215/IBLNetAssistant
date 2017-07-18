@@ -15,6 +15,7 @@ private var APIBaseURL = ""
 
 enum IBLAPITarget: PFSTargetType {
 
+
     case school(String, String)
     case auth(String, String)
     case register(String, IBLSchool)
@@ -59,6 +60,11 @@ enum IBLAPITarget: PFSTargetType {
         
         return parameters
     }
+    
+    var headers: [String : String] {
+        return ["user-agent" : "IBILLING_IOS_NETHELPER_APP"]
+    }
+
     
     var sampleData: Data {
         return "".data(using: String.Encoding.utf8)!

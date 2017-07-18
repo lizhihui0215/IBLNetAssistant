@@ -15,7 +15,12 @@
 		263477F31F091B1E0074D89C /* IBLMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263477F21F091B1E0074D89C /* IBLMainViewController.swift */; };
 		263477F51F091B6E0074D89C /* PFSTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263477F41F091B6E0074D89C /* PFSTableViewController.swift */; };
 		263477FA1F092C0E0074D89C /* Backup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 263477F81F092C0E0074D89C /* Backup.storyboard */; };
+		26D8ACF81F1B6CEB00C2AC8F /* IBLRootDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D8ACF71F1B6CEB00C2AC8F /* IBLRootDomain.swift */; };
+		26D8ACFB1F1B994600C2AC8F /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D8ACFA1F1B994600C2AC8F /* Operators.swift */; };
 		26E567A51F1A3DE200A5CD31 /* IBLUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E567A41F1A3DE200A5CD31 /* IBLUser.swift */; };
+		26E567A71F1B4AAA00A5CD31 /* PFSCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E567A61F1B4AAA00A5CD31 /* PFSCheckbox.swift */; };
+		26E567A91F1B5A8400A5CD31 /* PFSRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E567A81F1B5A8300A5CD31 /* PFSRealm.swift */; };
+		26E567AB1F1B645300A5CD31 /* PFSFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E567AA1F1B645200A5CD31 /* PFSFileManager.swift */; };
 		26F9497E1EDE935900E81192 /* IBLAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F9497D1EDE935900E81192 /* IBLAppDelegate.swift */; };
 		26F949831EDE935900E81192 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26F949811EDE935900E81192 /* Main.storyboard */; };
 		26F949851EDE935900E81192 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26F949841EDE935900E81192 /* Assets.xcassets */; };
@@ -30,6 +35,7 @@
 		317D97B6446A61DB453C02D5 /* Pods_IBLNetAssistantUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ADC68C4929D33C87D4B522F /* Pods_IBLNetAssistantUITests.framework */; };
 		57F34FFBECD24AF5F71B2A5F /* Pods_IBLNetAssistantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9864696CFA534DF12EA057A /* Pods_IBLNetAssistantTests.framework */; };
 		5B875197097BB06BEB97D8EE /* IBLRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8757051C5D0378807398BB /* IBLRootViewController.swift */; };
+		5B8754E8747EE9AB0B7850E5 /* IBLRootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B87559639F93442EF92BD86 /* IBLRootViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +64,12 @@
 		263477F21F091B1E0074D89C /* IBLMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLMainViewController.swift; sourceTree = "<group>"; };
 		263477F41F091B6E0074D89C /* PFSTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFSTableViewController.swift; sourceTree = "<group>"; };
 		263477F91F092C0E0074D89C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Backup.storyboard; sourceTree = "<group>"; };
+		26D8ACF71F1B6CEB00C2AC8F /* IBLRootDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLRootDomain.swift; sourceTree = "<group>"; };
+		26D8ACFA1F1B994600C2AC8F /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		26E567A41F1A3DE200A5CD31 /* IBLUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLUser.swift; sourceTree = "<group>"; };
+		26E567A61F1B4AAA00A5CD31 /* PFSCheckbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFSCheckbox.swift; sourceTree = "<group>"; };
+		26E567A81F1B5A8300A5CD31 /* PFSRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFSRealm.swift; sourceTree = "<group>"; };
+		26E567AA1F1B645200A5CD31 /* PFSFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFSFileManager.swift; sourceTree = "<group>"; };
 		26F9497A1EDE935900E81192 /* IBLNetAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IBLNetAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26F9497D1EDE935900E81192 /* IBLAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBLAppDelegate.swift; sourceTree = "<group>"; };
 		26F949821EDE935900E81192 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -76,6 +87,7 @@
 		26FE237C1F16295F007A53DF /* IBLSchool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLSchool.swift; sourceTree = "<group>"; };
 		26FE237E1F162F10007A53DF /* IBLLoginDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLLoginDomain.swift; sourceTree = "<group>"; };
 		26FE23801F16366E007A53DF /* IBLDataRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLDataRepository.swift; sourceTree = "<group>"; };
+		5B87559639F93442EF92BD86 /* IBLRootViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLRootViewModel.swift; sourceTree = "<group>"; };
 		5B8757051C5D0378807398BB /* IBLRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLRootViewController.swift; sourceTree = "<group>"; };
 		68EC41247E9B863FF4A44F22 /* Pods-IBLNetAssistantUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IBLNetAssistantUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-IBLNetAssistantUITests/Pods-IBLNetAssistantUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6F6FB8DBDF202031B96D08BB /* Pods-IBLNetAssistant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IBLNetAssistant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IBLNetAssistant/Pods-IBLNetAssistant.debug.xcconfig"; sourceTree = "<group>"; };
@@ -218,6 +230,7 @@
 			children = (
 				5B8755B550A91E2A51A0D8B3 /* Login */,
 				5B87596A30D6F4E78E9D330A /* School */,
+				5B87559639F93442EF92BD86 /* IBLRootViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -260,6 +273,7 @@
 			children = (
 				26FE237A1F16289B007A53DF /* IBLSchoolDomain.swift */,
 				26FE237E1F162F10007A53DF /* IBLLoginDomain.swift */,
+				26D8ACF71F1B6CEB00C2AC8F /* IBLRootDomain.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -267,8 +281,12 @@
 		5B875E3C28E3CED33D47350F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				26D8ACFA1F1B994600C2AC8F /* Operators.swift */,
 				5B8757051C5D0378807398BB /* IBLRootViewController.swift */,
 				263477F41F091B6E0074D89C /* PFSTableViewController.swift */,
+				26E567A81F1B5A8300A5CD31 /* PFSRealm.swift */,
+				26E567AA1F1B645200A5CD31 /* PFSFileManager.swift */,
+				26E567A61F1B4AAA00A5CD31 /* PFSCheckbox.swift */,
 				5B875C1803DE3EF034D74170 /* Login */,
 				5B8751EB0DCEB03347D492C2 /* Segues */,
 				5B87563ACC3B50C129AEB30B /* Main */,
@@ -589,11 +607,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				263019FF1EE5474F0002061E /* IBLAPITarget.swift in Sources */,
+				26D8ACFB1F1B994600C2AC8F /* Operators.swift in Sources */,
+				26E567AB1F1B645300A5CD31 /* PFSFileManager.swift in Sources */,
 				26FE237B1F16289B007A53DF /* IBLSchoolDomain.swift in Sources */,
 				26FE237D1F16295F007A53DF /* IBLSchool.swift in Sources */,
+				26E567A91F1B5A8400A5CD31 /* PFSRealm.swift in Sources */,
 				263019F91EE53AA80002061E /* IBLLoginViewController.swift in Sources */,
 				26F9497E1EDE935900E81192 /* IBLAppDelegate.swift in Sources */,
 				263477F51F091B6E0074D89C /* PFSTableViewController.swift in Sources */,
+				26D8ACF81F1B6CEB00C2AC8F /* IBLRootDomain.swift in Sources */,
 				263477F31F091B1E0074D89C /* IBLMainViewController.swift in Sources */,
 				26FE23811F16366E007A53DF /* IBLDataRepository.swift in Sources */,
 				26E567A51F1A3DE200A5CD31 /* IBLUser.swift in Sources */,
@@ -601,7 +623,9 @@
 				26FE23791F1627BE007A53DF /* IBLSchoolViewModel.swift in Sources */,
 				263019FB1EE53ADB0002061E /* IBLLoginViewModel.swift in Sources */,
 				26258CE31F1514CA00FA318F /* IBLSchoolViewController.swift in Sources */,
+				26E567A71F1B4AAA00A5CD31 /* PFSCheckbox.swift in Sources */,
 				5B875197097BB06BEB97D8EE /* IBLRootViewController.swift in Sources */,
+				5B8754E8747EE9AB0B7850E5 /* IBLRootViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

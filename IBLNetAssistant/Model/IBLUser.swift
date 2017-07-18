@@ -15,13 +15,32 @@ import PCCWFoundationSwift
 class IBLUser: PFSModel {
     dynamic var accessToken : String?
     
+    dynamic var isAutoLogin: Bool = false
+    
+    dynamic var account: String = ""
+    
+    dynamic var password: String = ""
+    
+    dynamic var selectedSchool: IBLSchool?
+    
+    dynamic var isLogin: Bool = false
+    
     required convenience init?(map: Map) {
         self.init()
     }
     
+    override static func primaryKey() -> String? {
+        return "account"
+    }
+
+    
     override func mapping(map: Map) {
         super.mapping(map: map)
         accessToken <- map["accessToken"]
-
+        account <- map["account"]
+        password <- map["password"]
+        isAutoLogin <- map["isAutoLogin"]
+        selectedSchool <- map["selectedSchool"]
+        isLogin <- map["isLogin"]
     }
 }

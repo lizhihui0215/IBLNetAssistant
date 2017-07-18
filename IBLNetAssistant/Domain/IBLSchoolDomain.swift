@@ -27,4 +27,8 @@ class IBLSchoolDomain: PFSDomain {
         
         return toDriver(ob: result)
     }
+
+    func cache(school: IBLSchool) -> Driver<Result<IBLSchool, MoyaError>> {
+        return Driver.just(PFSRealm.shared.save(obj: school))
+    }
 }

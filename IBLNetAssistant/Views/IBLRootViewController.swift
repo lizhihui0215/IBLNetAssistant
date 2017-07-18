@@ -8,13 +8,27 @@
 
 import UIKit
 import PCCWFoundationSwift
+import Moya
+import RxCocoa
+import Result
 
-class IBLRootViewController: PFSViewController {
-    
+class IBLRootViewController: PFSViewController, IBLRootAction {
+
+    lazy var viewModel: IBLRootViewModel = IBLRootViewModel(action: self, domain: IBLRootDomain())
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.performSegue(withIdentifier: "toSchool", sender: nil)
+
+        let cahcedSchool: Driver<Result<IBLSchool, MoyaError>> = self.viewModel.cachedSchool()
+        
+        cahcedSchool.drive(onNext: {
+            guard let _ = try? $0.dematerialize() else {
+                self.performSegue(withIdentifier: "toSchool", sender: nil)
+                return
+            }
+            self.performSegue(withIdentifier: "toLogin", sender: nil)
+        }).disposed(by: disposeBag)
     }
     
     override func didReceiveMemoryWarning() {
@@ -29,11 +43,13 @@ class IBLRootViewController: PFSViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-//        if segue.identifier == "toLogin" {
-//            let loginViewController = segue.destination as! IBLLoginViewController
-//            
-//            loginViewController.viewModel = IBLLoginViewModel(action: loginViewController, domain: IBLLoginDomain(), school: <#IBLSchool#>)
-//        }
+        if segue.identifier == "toLogin" {
+            let loginViewController = segue.destination as! IBLLoginViewController
+            
+            loginViewController.viewModel = IBLLoginViewModel(action: loginViewController,
+                                                              domain: IBLLoginDomain(),
+                                                              school: self.viewModel.school!)
+        }
     }
 }
 

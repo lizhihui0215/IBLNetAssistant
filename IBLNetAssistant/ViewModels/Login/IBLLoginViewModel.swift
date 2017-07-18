@@ -11,18 +11,24 @@ import RxCocoa
 import RxSwift
 import Result
 import Moya
+import class Alamofire.NetworkReachabilityManager
 
 protocol IBLLoginAction: PFSViewAction {
     
 }
 
-
 class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain>  {
 
     var school: IBLSchool
 
+    var account: Variable<String?>
+
+    var isAutoLogin = Variable(false)
+    
+
     init(action: IBLLoginViewController, domain: IBLLoginDomain, school: IBLSchool) {
         self.school = school
+        self.account = Variable("")
         super.init(action: action, domain: domain)
     }
 
@@ -30,43 +36,104 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain>  {
 
         let isSelfService = self.school.mode == "0"
         
-        if isSelfService{
-            IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverOut!)")
-        }
-        
         let validateAccount = account.notNul(message: "用户名不能为空！")
         
         let validatePassword = password.notNul(message: "密码不能为空！")
         
         let validateResult = PFSValidate.of(validateAccount, validatePassword)
 
-        let register: Driver<Result<String, MoyaError>> = self.domain.register(account: account, school: self.school)
-        
-        
         var sigin: Driver<Bool> = Driver.just(true)
         
-        if isSelfService {
-            sigin = validateResult.flatMapLatest{
-                return (self.action?.alert(result: $0))!
-            }.flatMapLatest {_ in
-                return register
-            }.flatMapLatest{
-                return (self.action?.alert(result: $0))!
-            }.flatMapLatest{_ in
-                return self.siginSelfService(account: account, password: password)
-            }.flatMapLatest{
-                return (self.action?.alert(result: $0))!
-            }.flatMapLatest{_ in
-                Driver.just(true)
-            }
-        }
+        let networkReachabilityManager = NetworkReachabilityManager()!
         
-        return sigin
+        if !networkReachabilityManager.isReachable {
+            return (self.action?.alert(message: "无网络链接！",success: false))!
+        }else if networkReachabilityManager.isReachableOnEthernetOrWiFi && isSelfService {
+            sigin = self.portalSigin(account: account, password: password)
+        }else {
+            sigin = self.selfSigin(account: account, password: password)
+        }
+
+        return  validateResult.flatMapLatest{
+                        return (self.action?.alert(result: $0))!
+                    }.flatMapLatest { _ in
+                        return sigin
+                    }
+    }
+    
+    private func portalSigin(account: String, password: String) -> Driver<Bool>  {
+        IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverInner!)")
+
+        
+        return Driver.just(true)
     }
 
-    private func siginSelfService(account: String, password: String) -> Driver<Result<IBLUser?, MoyaError>> {
+    private func selfSigin(account: String, password: String) -> Driver<Bool> {
+        IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverOut!)")
+
+        let register: Driver<Result<String, MoyaError>> = self.domain.register(account: account, school: self.school)
         
-        let t: Driver<Result<IBLUser?, MoyaError>> = self.domain.auth(account: account, password: password)
-        return t
+            return register.flatMapLatest{
+                return (self.action?.alert(result: $0))!
+            }.flatMapLatest{_ in
+                return self.domain.auth(account: account, password: password)
+            }.flatMapLatest{
+                return (self.action?.alert(result: $0))!
+            }.flatMapLatest{
+                guard let accessToken =  try? $0.dematerialize()?.accessToken else {
+                    return Driver.just(false)
+                }
+                
+                guard let cachedUser: IBLUser = PFSRealm.shared.object(account) else {
+                    let user: IBLUser = IBLUser()
+                    
+                    user.isAutoLogin = self.isAutoLogin.value
+                    user.account = account
+                    user.password = password
+                    user.selectedSchool = self.school
+                    user.accessToken = accessToken
+                    user.isLogin = true
+                    
+                    guard let _ =  try? PFSRealm.shared.save(obj: user).dematerialize() else {
+                        return Driver.just(false)
+                    }
+                    
+                    return Driver.just(true)
+                }
+                
+                cachedUser.isAutoLogin = self.isAutoLogin.value
+                cachedUser.account = account
+                cachedUser.password = password
+                cachedUser.selectedSchool = self.school
+                cachedUser.isLogin = true
+                cachedUser.accessToken = accessToken
+                
+                guard let _ =  try? PFSRealm.shared.update(obj: cachedUser).dematerialize() else {
+                    return Driver.just(false)
+                }
+                
+                return Driver.just(true)
+        }
     }
+
+    func cachedUser() -> Driver<Bool> {
+        let lastUser: Driver<Result<IBLUser?, MoyaError>> = self.domain.cachedUser();
+
+        return lastUser.flatMapLatest {
+            guard let user = try? $0.dematerialize() else {
+                return Driver.just(false)
+            }
+            
+            self.isAutoLogin.value = user!.isAutoLogin
+            self.school = user!.selectedSchool!
+            self.account.value = user!.account
+            
+            if user!.selectedSchool!.mode == "0" {
+                return Driver.just(user!.isAutoLogin)
+            }
+            
+            return Driver.just(user!.isAutoLogin)
+        }
+    }
+
 }

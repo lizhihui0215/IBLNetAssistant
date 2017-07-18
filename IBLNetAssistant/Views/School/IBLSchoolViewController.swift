@@ -9,6 +9,7 @@
 import UIKit
 import PCCWFoundationSwift
 import RxSwift
+import RxCocoa
 
 
 class IBLSchoolViewController: PFSViewController, IBLSchoolAction {
@@ -44,6 +45,13 @@ class IBLSchoolViewController: PFSViewController, IBLSchoolAction {
     }
     
     @IBAction func nextStapTapped(_ sender: UIButton) {
+        guard self.viewModel?.selectedSchool != nil else {
+            self.alert(message: "请选择校园!").drive().disposed(by: disposeBag)
+            return;
+        }
+        
+        let _: Driver<Bool> =  self.viewModel!.cacheSchool();
+        
         self.performSegue(withIdentifier: "toLogin", sender: nil)
     }
 
@@ -62,5 +70,4 @@ class IBLSchoolViewController: PFSViewController, IBLSchoolAction {
                                                               school: (self.viewModel?.selectedSchool)!)
         }
     }
-
 }

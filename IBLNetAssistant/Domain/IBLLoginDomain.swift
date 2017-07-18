@@ -8,6 +8,7 @@
 
 import UIKit
 import PCCWFoundationSwift
+import RxSwift
 import RxCocoa
 import Moya
 import Result
@@ -29,6 +30,12 @@ class IBLLoginDomain: PFSDomain {
         let result = IBLDataRepository.shared.register(account: account, school: school)
 
         return self.toDriver(ob: result)
+    }
+
+    func cachedUser() -> Driver<Result<IBLUser?, MoyaError>> {
+        let cachedUser: Observable<Result<IBLUser?, MoyaError>> = IBLDataRepository.shared.cachedUser()
+
+        return self.toDriver(ob: cachedUser)
     }
 
 

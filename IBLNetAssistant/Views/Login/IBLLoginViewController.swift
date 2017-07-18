@@ -8,32 +8,41 @@
 
 import UIKit
 import RxCocoa
+import RxSwift
 import PCCWFoundationSwift
 
 class IBLLoginViewController: PFSViewController, IBLLoginAction {
     
     var viewModel: IBLLoginViewModel?
     
-    @IBOutlet weak var schoolTextField: UITextField!
+    @IBOutlet weak var aotoCheckbox: PFSCheckbox!
+    
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var accountTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-                
+        (self.aotoCheckbox.rx.isSelected <-> (self.viewModel?.isAutoLogin)!).disposed(by: disposeBag)
+        
+        (self.accountTextField.rx.text <-> (self.viewModel?.account)!).disposed(by: disposeBag)
+        
+        self.viewModel!.cachedUser().drive(onNext: {[weak self] isLogin in
+            if (isLogin) {
+                self?.performSegue(withIdentifier: "toMain", sender: nil)
+            }
+        }) .disposed(by: disposeBag)
+        
+        
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
-        self.viewModel!.sigin(account: self.usernameTextField.text!,
-                                                       password: passwordTextField.text!).drive(onNext: {
-                                                        print($0)
-                                                       }, onCompleted: {
-                                                        print("completed")
+        self.viewModel!.sigin(account: self.accountTextField.text!,
+                                                       password: passwordTextField.text!).drive(onNext: {[weak self] _ in
+                                                        self?.performSegue(withIdentifier: "toMain", sender: nil)
                                                        }).disposed(by: disposeBag)
 
-//        performSegue(withIdentifier: "toMain", sender: nil)
     }
 
     override func didReceiveMemoryWarning() {

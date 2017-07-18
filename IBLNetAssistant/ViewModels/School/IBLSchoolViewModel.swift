@@ -62,5 +62,20 @@ class IBLSchoolViewModel<T: IBLSchoolAction>: PFSViewModel<T, IBLSchoolDomain> {
         return x
     }
     
+    func cacheSchool() -> Driver<Bool> {
+        
+        let cacheSelectedSchool = self.domain.cache(school: self.selectedSchool!)
+        
+        return cacheSelectedSchool.flatMapLatest { [weak self] result in
+            return (self?.action?.alert(result: result))!
+        }.flatMapLatest {
+            guard let _ = try? $0.dematerialize() else {
+                return Driver.just(false)
+            }
+
+            return Driver.just(true)
+        }
+    }
+
 
 }
