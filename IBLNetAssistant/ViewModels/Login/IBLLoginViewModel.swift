@@ -98,6 +98,18 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain>  {
                         return Driver.just(false)
                     }
                     
+                    IBLDataRepository.shared.put(key: "test", value: "ccccccc")
+                    
+                    var c: String? = IBLDataRepository.shared.get(key: "test")
+                    
+                    IBLDataRepository.shared.save(key: "qqq", value: "dsadadada")
+                    
+                    var cc: String? = IBLDataRepository.shared.get(key: "qqq")
+
+                    self.domain.login(user: user)
+                    
+                    var userccc = self.domain.login()
+                    
                     return Driver.just(true)
                 }
                 

@@ -12,7 +12,7 @@ import RealmSwift
 import ObjectMapper_Realm
 import PCCWFoundationSwift
 
-class IBLUser: PFSModel {
+public class IBLUser: PFSModel {
     dynamic var accessToken : String?
     
     dynamic var isAutoLogin: Bool = false
@@ -25,16 +25,16 @@ class IBLUser: PFSModel {
     
     dynamic var isLogin: Bool = false
     
-    required convenience init?(map: Map) {
+    required convenience public init?(map: Map) {
         self.init()
     }
     
-    override static func primaryKey() -> String? {
+    override public static func primaryKey() -> String? {
         return "account"
     }
 
     
-    override func mapping(map: Map) {
+    override public func mapping(map: Map) {
         super.mapping(map: map)
         accessToken <- map["accessToken"]
         account <- map["account"]

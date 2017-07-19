@@ -38,5 +38,4 @@ class IBLLoginDomain: PFSDomain {
         return self.toDriver(ob: cachedUser)
     }
 
-
 }

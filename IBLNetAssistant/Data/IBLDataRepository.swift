@@ -16,7 +16,6 @@ class IBLDataRepository: PFSDataRepository {
 
     static let shared = IBLDataRepository()
 
-
     override init() {
         super.init()
     }
@@ -61,5 +60,4 @@ class IBLDataRepository: PFSDataRepository {
             return cachedUser
         })
     }
-
 }
