@@ -12,7 +12,7 @@ import RealmSwift
 import ObjectMapper_Realm
 import PCCWFoundationSwift
 
-public class IBLUser: PFSModel {
+public class IBLUser: PFSModel , NSCoding {
     dynamic var accessToken : String?
     
     dynamic var isAutoLogin: Bool = false

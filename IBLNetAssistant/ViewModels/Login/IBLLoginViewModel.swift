@@ -84,7 +84,7 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain>  {
                     return Driver.just(false)
                 }
                 
-                guard let cachedUser: IBLUser = PFSRealm.shared.object(account) else {
+                guard let login: IBLUser = PFSRealm.shared.object(account) else {
                     let user: IBLUser = IBLUser()
                     
                     user.isAutoLogin = self.isAutoLogin.value
@@ -97,23 +97,28 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain>  {
                     guard let _ =  try? PFSRealm.shared.save(obj: user).dematerialize() else {
                         return Driver.just(false)
                     }
+                                        
+                    self.domain.login(user: user)
                     
                     IBLDataRepository.shared.put(key: "test", value: "ccccccc")
                     
-                    var c: String? = IBLDataRepository.shared.get(key: "test")
+                    let c: String? = IBLDataRepository.shared.get(key: "test")
+                    
+                    print(c ?? "")
                     
                     IBLDataRepository.shared.save(key: "qqq", value: "dsadadada")
                     
-                    var cc: String? = IBLDataRepository.shared.get(key: "qqq")
-
-                    self.domain.login(user: user)
+                    let cc: String? = IBLDataRepository.shared.fetch(key: "qqq")
+                    print(cc ?? "")
                     
                     var userccc = self.domain.login()
+                    print(userccc ?? "")
+
                     
                     return Driver.just(true)
                 }
                 
-                guard let _ =  try? PFSRealm.shared.update(obj: cachedUser, {
+                guard let _ =  try? PFSRealm.shared.update(obj: login, {
                     $0.isAutoLogin = self.isAutoLogin.value
                     $0.password = password
                     $0.selectedSchool = self.school
@@ -124,6 +129,22 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain>  {
                     return Driver.just(false)
                 }
                 
+                IBLDataRepository.shared.put(key: "test", value: "ccccccc")
+                
+                let c: String? = IBLDataRepository.shared.get(key: "test")
+                
+                print(c ?? "")
+                
+                IBLDataRepository.shared.save(key: "qqq", value: "dsadadada")
+                
+                let cc: String? = IBLDataRepository.shared.fetch(key: "qqq")
+                print(cc ?? "")
+
+                self.domain.login(user: login)
+                
+                var userccc = self.domain.login()
+                print(userccc ?? "")
+
                 return Driver.just(true)
         }
     }
