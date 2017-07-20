@@ -84,7 +84,7 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain>  {
                     return Driver.just(false)
                 }
                 
-                guard let login: IBLUser = PFSRealm.shared.object(account) else {
+                guard let login: IBLUser = PFSRealm.shared.object("account = \(account)") else {
                     let user: IBLUser = IBLUser()
                     
                     user.isAutoLogin = self.isAutoLogin.value
@@ -100,21 +100,6 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain>  {
                                         
                     self.domain.login(user: user)
                     
-                    IBLDataRepository.shared.put(key: "test", value: "ccccccc")
-                    
-                    let c: String? = IBLDataRepository.shared.get(key: "test")
-                    
-                    print(c ?? "")
-                    
-                    IBLDataRepository.shared.save(key: "qqq", value: "dsadadada")
-                    
-                    let cc: String? = IBLDataRepository.shared.fetch(key: "qqq")
-                    print(cc ?? "")
-                    
-                    var userccc = self.domain.login()
-                    print(userccc ?? "")
-
-                    
                     return Driver.just(true)
                 }
                 
@@ -129,22 +114,9 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain>  {
                     return Driver.just(false)
                 }
                 
-                IBLDataRepository.shared.put(key: "test", value: "ccccccc")
                 
-                let c: String? = IBLDataRepository.shared.get(key: "test")
-                
-                print(c ?? "")
-                
-                IBLDataRepository.shared.save(key: "qqq", value: "dsadadada")
-                
-                let cc: String? = IBLDataRepository.shared.fetch(key: "qqq")
-                print(cc ?? "")
-
                 self.domain.login(user: login)
                 
-                var userccc = self.domain.login()
-                print(userccc ?? "")
-
                 return Driver.just(true)
         }
     }

@@ -35,5 +35,5 @@ class IBLSchool: PFSModel {
         serverOut <- map["server_out"]
         selected <- map["selected"]
     }
-
+    
 }
