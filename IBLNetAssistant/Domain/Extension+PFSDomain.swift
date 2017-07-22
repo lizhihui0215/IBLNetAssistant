@@ -14,11 +14,19 @@ extension PFSDomain {
     
     
     public func login(user: IBLUser) {
-        return IBLDataRepository.shared.put(key: "user", value: user)
+        IBLDataRepository.shared.put(key: "user", value: user)
     }
     
     public func login() -> IBLUser? {
         return IBLDataRepository.shared.get(key: "user")
+    }
+    
+    func account(_ account: String) {
+        IBLDataRepository.shared.save(key: "account", value: account)
+    }
+    
+    func account() -> String? {
+        return IBLDataRepository.shared.fetch(key: "account")
     }
     
 }

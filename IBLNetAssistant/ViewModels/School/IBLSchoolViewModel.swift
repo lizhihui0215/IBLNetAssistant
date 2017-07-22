@@ -45,7 +45,6 @@ class IBLSchoolViewModel<T: IBLSchoolAction>: PFSViewModel<T, IBLSchoolDomain> {
             return (self.action?.alert(result: $0))!
         }
         
-        
         let x: Driver<[IBLSchoolSelection]> = c.map {
             
             var result = [IBLSchoolSelection]()
@@ -56,9 +55,7 @@ class IBLSchoolViewModel<T: IBLSchoolAction>: PFSViewModel<T, IBLSchoolDomain> {
             }
             return result
         }
-        
-        
-        
+
         return x
     }
     

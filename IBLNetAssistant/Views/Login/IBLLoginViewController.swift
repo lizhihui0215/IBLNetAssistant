@@ -28,12 +28,11 @@ class IBLLoginViewController: PFSViewController, IBLLoginAction {
         
         (self.accountTextField.rx.text <-> (self.viewModel?.account)!).disposed(by: disposeBag)
         
-        self.viewModel!.cachedUser().drive(onNext: {[weak self] isLogin in
+        self.viewModel!.login().drive(onNext: {[weak self] isLogin in
             if (isLogin) {
                 self?.performSegue(withIdentifier: "toMain", sender: nil)
             }
         }) .disposed(by: disposeBag)
-        
         
     }
     

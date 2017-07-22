@@ -32,6 +32,7 @@
 		57F34FFBECD24AF5F71B2A5F /* Pods_IBLNetAssistantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9864696CFA534DF12EA057A /* Pods_IBLNetAssistantTests.framework */; };
 		5B875197097BB06BEB97D8EE /* IBLRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8757051C5D0378807398BB /* IBLRootViewController.swift */; };
 		5B8754E8747EE9AB0B7850E5 /* IBLRootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B87559639F93442EF92BD86 /* IBLRootViewModel.swift */; };
+		5B8758CB64DC71045EB1A22C /* PortalAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B875FFC4489445C0E288BF2 /* PortalAuth.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		26FE23801F16366E007A53DF /* IBLDataRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLDataRepository.swift; sourceTree = "<group>"; };
 		5B87559639F93442EF92BD86 /* IBLRootViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLRootViewModel.swift; sourceTree = "<group>"; };
 		5B8757051C5D0378807398BB /* IBLRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLRootViewController.swift; sourceTree = "<group>"; };
+		5B875FFC4489445C0E288BF2 /* PortalAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortalAuth.swift; sourceTree = "<group>"; };
 		68EC41247E9B863FF4A44F22 /* Pods-IBLNetAssistantUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IBLNetAssistantUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-IBLNetAssistantUITests/Pods-IBLNetAssistantUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6F6FB8DBDF202031B96D08BB /* Pods-IBLNetAssistant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IBLNetAssistant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IBLNetAssistant/Pods-IBLNetAssistant.debug.xcconfig"; sourceTree = "<group>"; };
 		798540E67217C4FB7768D696 /* Pods_IBLNetAssistant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IBLNetAssistant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -232,6 +234,7 @@
 			children = (
 				26FE237C1F16295F007A53DF /* IBLSchool.swift */,
 				26E567A41F1A3DE200A5CD31 /* IBLUser.swift */,
+				5B875FFC4489445C0E288BF2 /* PortalAuth.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 				2606F2FF1F1FB216002477E2 /* Extension+PFSDomain.swift in Sources */,
 				5B875197097BB06BEB97D8EE /* IBLRootViewController.swift in Sources */,
 				5B8754E8747EE9AB0B7850E5 /* IBLRootViewModel.swift in Sources */,
+				5B8758CB64DC71045EB1A22C /* PortalAuth.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

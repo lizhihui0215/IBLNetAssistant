@@ -1,4 +1,4 @@
-v//
+//
 //  IBLUser.swift
 //  IBLNetAssistant
 //
@@ -26,7 +26,7 @@ public class IBLUser: PFSModel {
     dynamic var isLogin: Bool = false
     
     required convenience public init?(map: Map) {
-        self.init(map: map)
+        self.init()
     }
     
     override public func mapping(map: Map) {

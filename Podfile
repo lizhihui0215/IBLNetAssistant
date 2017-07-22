@@ -8,8 +8,6 @@ target 'IBLNetAssistant' do
 
   # Pods for IBLNetAssistant
   pod 'PCCWFoundationSwift'
-  
-  pod 'CryptoSwift'
 
   target 'IBLNetAssistantTests' do
     inherit! :search_paths

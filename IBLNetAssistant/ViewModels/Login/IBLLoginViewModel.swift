@@ -64,7 +64,17 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain>  {
     private func portalSigin(account: String, password: String) -> Driver<Bool>  {
         IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverInner!)")
 
-        
+        let register = self.domain.register(account: account, school: self.school).flatMapLatest { result  in
+            (self.action?.alert(result: result))!
+        }.flatMapLatest { result -> Driver<Result<PortalAuth, MoyaError>> in
+            return self.domain.auth(portal: "http://www.baidu.com")
+        }.flatMapLatest {
+            (self.action?.alert(result: $0))!
+        }.flatMapLatest { result -> SharedSequence<DriverSharingStrategy, R> in
+
+        }
+
+
         return Driver.just(true)
     }
 
@@ -73,58 +83,58 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain>  {
 
         let register: Driver<Result<String, MoyaError>> = self.domain.register(account: account, school: self.school)
         
-            return register.flatMapLatest{
-                return (self.action?.alert(result: $0))!
-            }.flatMapLatest{_ in
-                return self.domain.auth(account: account, password: password)
-            }.flatMapLatest{
-                return (self.action?.alert(result: $0))!
-            }.flatMapLatest{
-                guard let result =  try? $0.dematerialize(), let accessToken = result?.accessToken else {
-                    return Driver.just(false)
-                }
-                
-                guard let login: IBLUser = PFSRealm.shared.object("account = \(account)") else {
-                    let user: IBLUser = IBLUser()
-                    
-                    user.isAutoLogin = self.isAutoLogin.value
-                    user.account = account
-                    user.password = password
-                    user.selectedSchool = self.school
-                    user.accessToken = accessToken
-                    user.isLogin = true
-                    
-                    guard let _ =  try? PFSRealm.shared.save(obj: user).dematerialize() else {
-                        return Driver.just(false)
-                    }
-                                        
-                    self.domain.login(user: user)
-                    
-                    return Driver.just(true)
-                }
-                
-                guard let _ =  try? PFSRealm.shared.update(obj: login, {
-                    $0.isAutoLogin = self.isAutoLogin.value
-                    $0.password = password
-                    $0.selectedSchool = self.school
-                    $0.isLogin = true
-                    $0.accessToken = accessToken
+        return register.flatMapLatest{
+            return (self.action?.alert(result: $0))!
+        }.flatMapLatest{_ in
+            return self.domain.auth(account: account, password: password)
+        }.flatMapLatest{
+            return (self.action?.alert(result: $0))!
+        }.flatMapLatest{
+            guard let result =  try? $0.dematerialize(), let accessToken = result?.accessToken else {
+                return Driver.just(false)
+            }
 
-                }).dematerialize() else {
+            self.domain.account(account)
+
+            guard let login: IBLUser = PFSRealm.shared.object("account == '\(account)'") else {
+                let user: IBLUser = IBLUser()
+
+                user.isAutoLogin = self.isAutoLogin.value
+                user.account = account
+                user.password = password
+                user.selectedSchool = self.school
+                user.accessToken = accessToken
+                user.isLogin = true
+
+                guard let _ =  try? PFSRealm.shared.save(obj: user).dematerialize() else {
                     return Driver.just(false)
                 }
-                
-                
-                self.domain.login(user: login)
-                
+
+                self.domain.login(user: user)
+
                 return Driver.just(true)
+            }
+
+            guard let _ =  try? PFSRealm.shared.update(obj: login, {
+                $0.isAutoLogin = self.isAutoLogin.value
+                $0.password = password
+                $0.selectedSchool = self.school
+                $0.isLogin = true
+                $0.accessToken = accessToken
+            }).dematerialize() else {
+                return Driver.just(false)
+            }
+
+            self.domain.login(user: login)
+
+            return Driver.just(true)
         }
     }
 
-    func cachedUser() -> Driver<Bool> {
-        let lastUser: Driver<Result<IBLUser?, MoyaError>> = self.domain.cachedUser();
+    func login() -> Driver<Bool> {
+        let user: Driver<Result<IBLUser?, MoyaError>> = self.domain.user(account: self.domain.account());
 
-        return lastUser.flatMapLatest {
+        return user.flatMapLatest {
             guard let result = try? $0.dematerialize(), let user = result else {
                 return Driver.just(false)
             }
