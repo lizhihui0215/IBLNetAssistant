@@ -21,9 +21,11 @@ public class IBLUser: PFSModel {
     
     dynamic var password: String = ""
     
-    dynamic var selectedSchool: IBLSchool?
+    dynamic var selectedSchool: IBLSchool = IBLSchool()
     
     dynamic var isLogin: Bool = false
+
+    dynamic var redirectUrl = ""
     
     required convenience public init?(map: Map) {
         self.init()
@@ -37,6 +39,7 @@ public class IBLUser: PFSModel {
         isAutoLogin <- map["isAutoLogin"]
         selectedSchool <- map["selectedSchool"]
         isLogin <- map["isLogin"]
+        redirectUrl <- map["redirectUrl"]
     }
 
     

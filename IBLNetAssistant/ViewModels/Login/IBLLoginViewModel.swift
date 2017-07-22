@@ -14,17 +14,17 @@ import Moya
 import class Alamofire.NetworkReachabilityManager
 
 protocol IBLLoginAction: PFSViewAction {
-    
+
 }
 
-class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain>  {
+class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
 
     var school: IBLSchool
 
     var account: Variable<String?>
 
     var isAutoLogin = Variable(false)
-    
+
 
     init(action: IBLLoginViewController, domain: IBLLoginDomain, school: IBLSchool) {
         self.school = school
@@ -35,118 +35,128 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain>  {
     func sigin(account: String, password: String) -> Driver<Bool> {
 
         let isProtalSigin = self.school.mode != "0"
-        
+
         let validateAccount = account.notNul(message: "用户名不能为空！")
-        
+
         let validatePassword = password.notNul(message: "密码不能为空！")
-        
+
         let validateResult = PFSValidate.of(validateAccount, validatePassword)
 
         var sigin: Driver<Bool> = Driver.just(true)
-        
+
         let networkReachabilityManager = NetworkReachabilityManager()!
-        
+
         if !networkReachabilityManager.isReachable {
-            return (self.action?.alert(message: "无网络链接！",success: false))!
-        }else if networkReachabilityManager.isReachableOnEthernetOrWiFi && isProtalSigin {
+            return (self.action?.alert(message: "无网络链接！", success: false))!
+        } else if networkReachabilityManager.isReachableOnEthernetOrWiFi && isProtalSigin {
             sigin = self.portalSigin(account: account, password: password)
-        }else {
+        } else {
             sigin = self.selfSigin(account: account, password: password)
         }
 
-        return  validateResult.flatMapLatest{
-                        return (self.action?.alert(result: $0))!
-                    }.flatMapLatest { _ in
-                        return sigin
-                    }
+        return  validateResult.flatMapLatest {
+            return (self.action?.alert(result: $0))!
+        }.flatMapLatest { _ in
+            return sigin
+        }
     }
-    
-    private func portalSigin(account: String, password: String) -> Driver<Bool>  {
+
+    private func portalSigin(account: String, password: String) -> Driver<Bool> {
         IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverInner!)")
 
-        let register = self.domain.register(account: account, school: self.school).flatMapLatest { result  in
+        return self.domain.register(account: account, school: self.school).flatMapLatest { result in
             (self.action?.alert(result: result))!
         }.flatMapLatest { result -> Driver<Result<PortalAuth, MoyaError>> in
-            return self.domain.auth(portal: "http://www.baidu.com")
+            return self.domain.portal(url: "http://www.baidu.com")
         }.flatMapLatest {
             (self.action?.alert(result: $0))!
-        }.flatMapLatest { result -> SharedSequence<DriverSharingStrategy, R> in
+        }.flatMapLatest { result -> Driver<Result<IBLUser, MoyaError>> in
 
+            guard let value = try? result.dematerialize() else {
+                return self.domain.auth(account: account, password: password)
+            }
+
+            let portalAuth: Driver<Result<IBLUser, MoyaError>> = self.domain.portalAuth(account: account, password: password, auth: value.toJSON())
+
+            return portalAuth
+        }.flatMapLatest {
+            (self.action?.alert(result: $0))!
+        }.flatMapLatest {
+            return self.save(account: account, password: password, user: $0)
+        }
+    }
+
+    private func selfSigin(account: String, password: String) -> Driver<Bool> {
+        let register: Driver<Result<String, MoyaError>> = self.domain.register(account: account, school: self.school)
+
+        return register.flatMapLatest {
+            return (self.action?.alert(result: $0))!
+        }.flatMapLatest { _ in
+            return self.domain.auth(account: account, password: password)
+        }.flatMapLatest {
+            return (self.action?.alert(result: $0))!
+        }.flatMapLatest {
+            return self.save(account: account, password: password, user: $0)
+        }
+    }
+
+    func save(account: String, password: String, user: Result<IBLUser, MoyaError>) -> Driver<Bool> {
+        guard let result = try? user.dematerialize(), let accessToken = result.accessToken else {
+            return Driver.just(false)
         }
 
+        self.domain.account(account)
+
+        guard let login: IBLUser = PFSRealm.shared.object("account == '\(account)'") else {
+            let user: IBLUser = IBLUser()
+
+            user.isAutoLogin = self.isAutoLogin.value
+            user.account = account
+            user.password = password
+            user.selectedSchool = self.school
+            user.accessToken = accessToken
+            user.isLogin = true
+
+            guard let _ = try? PFSRealm.shared.save(obj: user).dematerialize() else {
+                return Driver.just(false)
+            }
+
+            self.domain.login(user: user)
+
+            return Driver.just(true)
+        }
+
+        guard let _ = try? PFSRealm.shared.update(obj: login, {
+            $0.isAutoLogin = self.isAutoLogin.value
+            $0.password = password
+            $0.selectedSchool = self.school
+            $0.isLogin = true
+            $0.accessToken = accessToken
+        }).dematerialize() else {
+            return Driver.just(false)
+        }
+
+        self.domain.login(user: login)
 
         return Driver.just(true)
     }
 
-    private func selfSigin(account: String, password: String) -> Driver<Bool> {
-        IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverOut!)")
-
-        let register: Driver<Result<String, MoyaError>> = self.domain.register(account: account, school: self.school)
-        
-        return register.flatMapLatest{
-            return (self.action?.alert(result: $0))!
-        }.flatMapLatest{_ in
-            return self.domain.auth(account: account, password: password)
-        }.flatMapLatest{
-            return (self.action?.alert(result: $0))!
-        }.flatMapLatest{
-            guard let result =  try? $0.dematerialize(), let accessToken = result?.accessToken else {
-                return Driver.just(false)
-            }
-
-            self.domain.account(account)
-
-            guard let login: IBLUser = PFSRealm.shared.object("account == '\(account)'") else {
-                let user: IBLUser = IBLUser()
-
-                user.isAutoLogin = self.isAutoLogin.value
-                user.account = account
-                user.password = password
-                user.selectedSchool = self.school
-                user.accessToken = accessToken
-                user.isLogin = true
-
-                guard let _ =  try? PFSRealm.shared.save(obj: user).dematerialize() else {
-                    return Driver.just(false)
-                }
-
-                self.domain.login(user: user)
-
-                return Driver.just(true)
-            }
-
-            guard let _ =  try? PFSRealm.shared.update(obj: login, {
-                $0.isAutoLogin = self.isAutoLogin.value
-                $0.password = password
-                $0.selectedSchool = self.school
-                $0.isLogin = true
-                $0.accessToken = accessToken
-            }).dematerialize() else {
-                return Driver.just(false)
-            }
-
-            self.domain.login(user: login)
-
-            return Driver.just(true)
-        }
-    }
-
     func login() -> Driver<Bool> {
-        let user: Driver<Result<IBLUser?, MoyaError>> = self.domain.user(account: self.domain.account());
+        let user: Driver<Result<IBLUser, MoyaError>> = self.domain.user(account: self.domain.account());
 
         return user.flatMapLatest {
-            guard let result = try? $0.dematerialize(), let user = result else {
+            guard let user = try? $0.dematerialize() else {
                 return Driver.just(false)
             }
-            
+
             self.isAutoLogin.value = user.isAutoLogin
-            self.school = user.selectedSchool!
+            self.school = user.selectedSchool
             self.account.value = user.account
-            
-            if user.selectedSchool!.mode == "0" {
+
+            if user.selectedSchool.mode == "0" {
                 return Driver.just(user.isAutoLogin)
             }
-            
+
             return Driver.just(user.isAutoLogin)
         }
     }

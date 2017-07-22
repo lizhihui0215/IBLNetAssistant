@@ -71,7 +71,6 @@ PODS:
   - WebViewJavascriptBridge (6.0.2)
 
 DEPENDENCIES:
-  - CryptoSwift
   - PCCWFoundationSwift
 
 SPEC CHECKSUMS:
@@ -103,6 +102,6 @@ SPEC CHECKSUMS:
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
   WebViewJavascriptBridge: 791ee0e26d1bf15efe5fb7fb9666a71a19b89d77
 
-PODFILE CHECKSUM: 5f1f7cde64a1bb37790bda39c71efa44922d6eb0
+PODFILE CHECKSUM: a4cb32e0ef5844bd7abf38b211ec509a2b3c0790
 
 COCOAPODS: 1.2.1

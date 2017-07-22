@@ -13,12 +13,20 @@ import CryptoSwift
 
 private var APIBaseURL = ""
 
+public func += <K, V> (left: inout [K:V], right: [K:V]) {
+    for (k, v) in right {
+        left[k] = v
+    }
+}
+
 enum IBLAPITarget: PFSTargetType {
 
 
     case school(String, String)
     case auth(String, String)
     case register(String, IBLSchool)
+    case portal(String)
+    case portalAuth(String, String, [String : Any])
     
     public static func setBaseURL(URL: String) {
         APIBaseURL = URL
@@ -83,6 +91,10 @@ enum IBLAPITarget: PFSTargetType {
         case let .register(account,school):
             parameters = ["account" : account, "sid" : school.sid , "sname" : school.sname ?? ""]
             parameters = sign(parameters: parameters)
+        case let .portalAuth(account, password, auth):
+            var param = ["account" : account, "password" : password] as [String : Any]
+            param += auth
+            parameters = sign(parameters: param)
         default:break
         }
         
@@ -116,7 +128,14 @@ enum IBLAPITarget: PFSTargetType {
     }
     
     var baseURL: URL {
-        return URL(string: APIBaseURL)!
+        switch self {
+        case let .portal(authURL):
+            return URL(string: authURL)!
+        case let .portalAuth(_,_, auth):
+            return URL(string: auth["authurl"] as! String)!
+        default:
+            return URL(string: APIBaseURL)!
+        }
     }
     
     var method: Moya.Method {

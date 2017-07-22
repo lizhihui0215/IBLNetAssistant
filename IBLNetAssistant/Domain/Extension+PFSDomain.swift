@@ -22,11 +22,11 @@ extension PFSDomain {
     }
     
     func account(_ account: String) {
-        IBLDataRepository.shared.save(key: "account", value: account)
+        IBLDataRepository.shared.cache(key: "account", value: account)
     }
     
     func account() -> String? {
-        return IBLDataRepository.shared.fetch(key: "account")
+        return IBLDataRepository.shared.cache(key: "account")
     }
     
 }

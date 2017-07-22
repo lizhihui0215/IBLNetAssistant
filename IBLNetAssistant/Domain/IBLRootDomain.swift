@@ -19,8 +19,8 @@ class IBLRootDomain: PFSDomain {
     }
 
     func cachedSchool() -> Driver<Result<IBLSchool, MoyaError>> {
-        let cachedSchool: Observable<Result<IBLSchool, MoyaError>> = IBLDataRepository.shared.cachedSchool()
+        let cachedSchool: Driver<Result<IBLSchool, MoyaError>> = IBLDataRepository.shared.cachedSchool()
 
-        return self.toDriver(ob: cachedSchool)
+        return cachedSchool
     }
 }
