@@ -11,7 +11,6 @@
 		2606F2FF1F1FB216002477E2 /* Extension+PFSDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2606F2FE1F1FB216002477E2 /* Extension+PFSDomain.swift */; };
 		2624C7811F279D3200EFFF1C /* IBLMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2624C7801F279D3200EFFF1C /* IBLMessageViewController.swift */; };
 		2624C7831F279D3C00EFFF1C /* IBLSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2624C7821F279D3C00EFFF1C /* IBLSettingViewController.swift */; };
-		2624C7851F279DC200EFFF1C /* PFSWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2624C7841F279DC200EFFF1C /* PFSWebViewController.swift */; };
 		2624C7871F27AABA00EFFF1C /* IBLWebDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2624C7861F27AABA00EFFF1C /* IBLWebDomain.swift */; };
 		2624C7891F27ADA400EFFF1C /* IBLMainDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2624C7881F27ADA400EFFF1C /* IBLMainDomain.swift */; };
 		26258CE31F1514CA00FA318F /* IBLSchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26258CE21F1514CA00FA318F /* IBLSchoolViewController.swift */; };
@@ -20,6 +19,8 @@
 		263019FF1EE5474F0002061E /* IBLAPITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263019FE1EE5474F0002061E /* IBLAPITarget.swift */; };
 		263477F31F091B1E0074D89C /* IBLTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263477F21F091B1E0074D89C /* IBLTabBarController.swift */; };
 		263477FA1F092C0E0074D89C /* Backup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 263477F81F092C0E0074D89C /* Backup.storyboard */; };
+		26BDD0C51F2A3DF200125CDA /* IBLSettingDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BDD0C41F2A3DF200125CDA /* IBLSettingDomain.swift */; };
+		26BDD0C71F2A3EC600125CDA /* IBLSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BDD0C61F2A3EC600125CDA /* IBLSettingViewModel.swift */; };
 		26D8ACF81F1B6CEB00C2AC8F /* IBLRootDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D8ACF71F1B6CEB00C2AC8F /* IBLRootDomain.swift */; };
 		26E567A51F1A3DE200A5CD31 /* IBLUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E567A41F1A3DE200A5CD31 /* IBLUser.swift */; };
 		26F9497E1EDE935900E81192 /* IBLAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F9497D1EDE935900E81192 /* IBLAppDelegate.swift */; };
@@ -38,6 +39,7 @@
 		5B875197097BB06BEB97D8EE /* IBLRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8757051C5D0378807398BB /* IBLRootViewController.swift */; };
 		5B8754E8747EE9AB0B7850E5 /* IBLRootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B87559639F93442EF92BD86 /* IBLRootViewModel.swift */; };
 		5B8758CB64DC71045EB1A22C /* PortalAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B875FFC4489445C0E288BF2 /* PortalAuth.swift */; };
+		5B875D30EC5F0EA6A2F35BA5 /* PFSWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B875BCC06E93D7161D7B5D4 /* PFSWebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +64,6 @@
 		2606F2FE1F1FB216002477E2 /* Extension+PFSDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+PFSDomain.swift"; sourceTree = "<group>"; };
 		2624C7801F279D3200EFFF1C /* IBLMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLMessageViewController.swift; sourceTree = "<group>"; };
 		2624C7821F279D3C00EFFF1C /* IBLSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLSettingViewController.swift; sourceTree = "<group>"; };
-		2624C7841F279DC200EFFF1C /* PFSWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFSWebViewController.swift; sourceTree = "<group>"; };
 		2624C7861F27AABA00EFFF1C /* IBLWebDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLWebDomain.swift; sourceTree = "<group>"; };
 		2624C7881F27ADA400EFFF1C /* IBLMainDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLMainDomain.swift; sourceTree = "<group>"; };
 		26258CE21F1514CA00FA318F /* IBLSchoolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLSchoolViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +72,8 @@
 		263019FE1EE5474F0002061E /* IBLAPITarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLAPITarget.swift; sourceTree = "<group>"; };
 		263477F21F091B1E0074D89C /* IBLTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLTabBarController.swift; sourceTree = "<group>"; };
 		263477F91F092C0E0074D89C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Backup.storyboard; sourceTree = "<group>"; };
+		26BDD0C41F2A3DF200125CDA /* IBLSettingDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLSettingDomain.swift; sourceTree = "<group>"; };
+		26BDD0C61F2A3EC600125CDA /* IBLSettingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLSettingViewModel.swift; sourceTree = "<group>"; };
 		26D8ACF71F1B6CEB00C2AC8F /* IBLRootDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLRootDomain.swift; sourceTree = "<group>"; };
 		26E567A41F1A3DE200A5CD31 /* IBLUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLUser.swift; sourceTree = "<group>"; };
 		26F9497A1EDE935900E81192 /* IBLNetAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IBLNetAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,6 +95,7 @@
 		26FE23801F16366E007A53DF /* IBLDataRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLDataRepository.swift; sourceTree = "<group>"; };
 		5B87559639F93442EF92BD86 /* IBLRootViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLRootViewModel.swift; sourceTree = "<group>"; };
 		5B8757051C5D0378807398BB /* IBLRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLRootViewController.swift; sourceTree = "<group>"; };
+		5B875BCC06E93D7161D7B5D4 /* PFSWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFSWebViewController.swift; sourceTree = "<group>"; };
 		5B875FFC4489445C0E288BF2 /* PortalAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortalAuth.swift; sourceTree = "<group>"; };
 		68EC41247E9B863FF4A44F22 /* Pods-IBLNetAssistantUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IBLNetAssistantUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-IBLNetAssistantUITests/Pods-IBLNetAssistantUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6F6FB8DBDF202031B96D08BB /* Pods-IBLNetAssistant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IBLNetAssistant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IBLNetAssistant/Pods-IBLNetAssistant.debug.xcconfig"; sourceTree = "<group>"; };
@@ -230,12 +234,21 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		5B8756F1E1B3CABACE4A1C91 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				5B875B43E9C868A9C0E63A1D /* Main */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 		5B87584CE509A4EF17CAB55C /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				5B87559639F93442EF92BD86 /* IBLRootViewModel.swift */,
 				5B8755B550A91E2A51A0D8B3 /* Login */,
 				5B87596A30D6F4E78E9D330A /* School */,
-				5B87559639F93442EF92BD86 /* IBLRootViewModel.swift */,
+				5B8756F1E1B3CABACE4A1C91 /* TabBar */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -256,6 +269,14 @@
 				26FE23781F1627BE007A53DF /* IBLSchoolViewModel.swift */,
 			);
 			path = School;
+			sourceTree = "<group>";
+		};
+		5B875B43E9C868A9C0E63A1D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				26BDD0C61F2A3EC600125CDA /* IBLSettingViewModel.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		5B875C1803DE3EF034D74170 /* Login */ = {
@@ -279,6 +300,7 @@
 			children = (
 				2624C7801F279D3200EFFF1C /* IBLMessageViewController.swift */,
 				2624C7821F279D3C00EFFF1C /* IBLSettingViewController.swift */,
+				5B875BCC06E93D7161D7B5D4 /* PFSWebViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -292,6 +314,7 @@
 				2624C7861F27AABA00EFFF1C /* IBLWebDomain.swift */,
 				2606F2FE1F1FB216002477E2 /* Extension+PFSDomain.swift */,
 				2624C7881F27ADA400EFFF1C /* IBLMainDomain.swift */,
+				26BDD0C41F2A3DF200125CDA /* IBLSettingDomain.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -300,7 +323,6 @@
 			isa = PBXGroup;
 			children = (
 				5B8757051C5D0378807398BB /* IBLRootViewController.swift */,
-				2624C7841F279DC200EFFF1C /* PFSWebViewController.swift */,
 				5B875C1803DE3EF034D74170 /* Login */,
 				5B8751EB0DCEB03347D492C2 /* Segues */,
 				5B87563ACC3B50C129AEB30B /* TabBar */,
@@ -625,10 +647,12 @@
 				26FE237B1F16289B007A53DF /* IBLSchoolDomain.swift in Sources */,
 				26FE237D1F16295F007A53DF /* IBLSchool.swift in Sources */,
 				263019F91EE53AA80002061E /* IBLLoginViewController.swift in Sources */,
+				26BDD0C71F2A3EC600125CDA /* IBLSettingViewModel.swift in Sources */,
 				26F9497E1EDE935900E81192 /* IBLAppDelegate.swift in Sources */,
 				26D8ACF81F1B6CEB00C2AC8F /* IBLRootDomain.swift in Sources */,
 				263477F31F091B1E0074D89C /* IBLTabBarController.swift in Sources */,
 				26FE23811F16366E007A53DF /* IBLDataRepository.swift in Sources */,
+				26BDD0C51F2A3DF200125CDA /* IBLSettingDomain.swift in Sources */,
 				26E567A51F1A3DE200A5CD31 /* IBLUser.swift in Sources */,
 				2624C7871F27AABA00EFFF1C /* IBLWebDomain.swift in Sources */,
 				26FE237F1F162F10007A53DF /* IBLLoginDomain.swift in Sources */,
@@ -641,7 +665,7 @@
 				5B875197097BB06BEB97D8EE /* IBLRootViewController.swift in Sources */,
 				5B8754E8747EE9AB0B7850E5 /* IBLRootViewModel.swift in Sources */,
 				5B8758CB64DC71045EB1A22C /* PortalAuth.swift in Sources */,
-				2624C7851F279DC200EFFF1C /* PFSWebViewController.swift in Sources */,
+				5B875D30EC5F0EA6A2F35BA5 /* PFSWebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

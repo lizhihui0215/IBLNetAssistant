@@ -9,12 +9,22 @@
 import UIKit
 import PCCWFoundationSwift
 
-class IBLSettingViewController: PFSViewController {
+class IBLSettingViewController: PFSViewController, IBLSettingAction {
+    
+    var viewModel: IBLSettingViewModel?
+    
+    @IBOutlet weak var loginSwitch: UISwitch!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+        self.viewModel = IBLSettingViewModel(action: self, domain: IBLSettingDomain())
+        
+        self.loginSwitch.rx.isOn <-> (self.viewModel?.isAutoLogin)!
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

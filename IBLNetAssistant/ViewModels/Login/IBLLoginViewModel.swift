@@ -79,8 +79,14 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
             value.account = account
             
             if let auth: PortalAuth = PFSRealm.shared.object("account == '\(account)'")  {
-                value.uuid = auth.uuid
-                self.auth = value
+                PFSRealm.shared.update(obj: auth, {
+                    $0.account = value.account
+                    $0.acIPKey = value.acIPKey
+                    $0.userIPKey = value.userIPKey
+                    $0.authurl = value.authurl
+                    $0.logouturl = value.logouturl
+                })
+                self.auth = auth
             }else {
                 self.auth = value
             }
@@ -130,7 +136,7 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
                 return Driver.just(false)
             }
 
-            self.domain.login(user: user)
+            PFSDomain.login(user: user)
 
             return Driver.just(true)
         }
@@ -147,7 +153,7 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
             return Driver.just(false)
         }
 
-        self.domain.login(user: login)
+        PFSDomain.login(user: login)
 
         return Driver.just(true)
     }
@@ -164,8 +170,12 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
             self.school = user.selectedSchool!
             self.account.value = user.account
             
-            self.domain.login(user: user)
+            PFSDomain.login(user: user)
 
+            if !user.isLogin {
+                return Driver.just(false)
+            }
+            
             if user.loginModel == "0" {
                 return Driver.just(user.isAutoLogin)
             }

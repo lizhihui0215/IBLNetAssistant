@@ -13,11 +13,11 @@ import PCCWFoundationSwift
 extension PFSDomain {
     
     
-    public func login(user: IBLUser) {
+    public static func login(user: IBLUser) {
         IBLDataRepository.shared.put(key: "user", value: user)
     }
     
-    public func login() -> IBLUser? {
+    public static func login() -> IBLUser? {
         return IBLDataRepository.shared.get(key: "user")
     }
     

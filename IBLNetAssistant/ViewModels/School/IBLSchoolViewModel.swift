@@ -26,8 +26,6 @@ class IBLSchoolSelection: PFSPickerViewItem {
     init(school: IBLSchool) {
         self.school = school
     }
-
-
 }
 
 class IBLSchoolViewModel<T: IBLSchoolAction>: PFSViewModel<T, IBLSchoolDomain> {

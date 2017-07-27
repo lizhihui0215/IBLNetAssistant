@@ -16,11 +16,10 @@ import RxSwift
 class IBLWebDomain: PFSDomain {
 
     func logout(account: String, auth: PortalAuth) -> Driver<Result<String, MoyaError>> {
-        return IBLDataRepository.shared.logout(account, auth: auth).do(onNext: {
-            guard (try? $0.dematerialize()) != nil else {
-                return
-            }
-            self.login()?.isLogin = true
+        return IBLDataRepository.shared.logout(account, auth: auth).do(onNext: { _ in
+            PFSRealm.shared.update(obj: PFSDomain.login()!, {
+                $0.isLogin = false
+            })
         })
     }
 }

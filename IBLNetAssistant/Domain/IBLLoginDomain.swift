@@ -17,7 +17,6 @@ class IBLLoginDomain: PFSDomain {
 
     override init() {
         super.init()
-    
     }
 
     func auth(account: String, password: String) -> Driver<Result<IBLUser, MoyaError>> {

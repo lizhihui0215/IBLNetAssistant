@@ -48,7 +48,7 @@ class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDelegat
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        guard let user = self.domain.login()  else {
+        guard let user = PFSDomain.login()  else {
             self.alert(message: "登陆用户为空！").drive().disposed(by: disposeBag)
             return
         }
@@ -111,9 +111,11 @@ class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDelegat
         
         if response.statusCode == 500 {
             self.logout()
+            decisionHandler(.cancel)
+            return
         }
         
-        decisionHandler(.cancel)
+        decisionHandler(.allow)
     }
     
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
@@ -144,9 +146,10 @@ class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDelegat
     
     func logout()  {
         if self.user!.loginModel != "0" {
-            self.domain.logout(account: self.user!.account, auth: self.user!.auth!).drive().disposed(by: disposeBag)
+            self.domain.logout(account: self.user!.account, auth: self.user!.auth!).drive(onNext: { _ in
+                self.performSegue(withIdentifier: "toLogin", sender: nil)
+            }).disposed(by: disposeBag)
         }
-        self.performSegue(withIdentifier: "toLogin", sender: nil)
     }
 
     // MARK: - Navigation
