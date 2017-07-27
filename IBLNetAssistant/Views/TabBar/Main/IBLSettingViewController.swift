@@ -1,23 +1,20 @@
 //
-//  IBLMainViewController.swift
+//  IBLSettingViewController.swift
 //  IBLNetAssistant
 //
-//  Created by 李智慧 on 02/07/2017.
+//  Created by 李智慧 on 25/07/2017.
 //  Copyright © 2017 李智慧. All rights reserved.
 //
 
 import UIKit
 import PCCWFoundationSwift
 
-class IBLMainViewController: UITabBarController {
+class IBLSettingViewController: PFSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        
-        
     }
 
     override func didReceiveMemoryWarning() {

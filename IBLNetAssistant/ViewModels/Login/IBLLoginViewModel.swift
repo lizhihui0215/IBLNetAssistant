@@ -22,6 +22,8 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
     var school: IBLSchool
 
     var account: Variable<String?>
+    
+    var auth: PortalAuth?
 
     var isAutoLogin = Variable(false)
 
@@ -62,22 +64,28 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
     }
 
     private func portalSigin(account: String, password: String) -> Driver<Bool> {
-        IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverInner!)")
-
         return self.domain.register(account: account, school: self.school).flatMapLatest { result in
             (self.action?.alert(result: result))!
         }.flatMapLatest { result -> Driver<Result<PortalAuth, MoyaError>> in
-            return self.domain.portal(url: "http://www.baidu.com")
+            return self.domain.portal(url: "http://115.28.0.62:8080/ibillingportal/ac.do")
         }.flatMapLatest {
             (self.action?.alert(result: $0))!
-        }.flatMapLatest { result -> Driver<Result<IBLUser, MoyaError>> in
+        }.flatMapLatest { result  in
 
             guard let value = try? result.dematerialize() else {
                 return self.domain.auth(account: account, password: password)
             }
-
-            let portalAuth: Driver<Result<IBLUser, MoyaError>> = self.domain.portalAuth(account: account, password: password, auth: value.toJSON())
-
+            
+            value.account = account
+            
+            if let auth: PortalAuth = PFSRealm.shared.object("account == '\(account)'")  {
+                value.uuid = auth.uuid
+                self.auth = value
+            }else {
+                self.auth = value
+            }
+            
+            let portalAuth: Driver<Result<IBLUser, MoyaError>> = self.domain.portalAuth(account: account, password: password, auth: value.toJSONRealm()!)            
             return portalAuth
         }.flatMapLatest {
             (self.action?.alert(result: $0))!
@@ -116,7 +124,8 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
             user.selectedSchool = self.school
             user.accessToken = accessToken
             user.isLogin = true
-
+            user.auth = self.auth
+            
             guard let _ = try? PFSRealm.shared.save(obj: user).dematerialize() else {
                 return Driver.just(false)
             }
@@ -132,6 +141,8 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
             $0.selectedSchool = self.school
             $0.isLogin = true
             $0.accessToken = accessToken
+            $0.auth = self.auth
+            $0.redirectUrl = result.redirectUrl
         }).dematerialize() else {
             return Driver.just(false)
         }
@@ -150,15 +161,16 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
             }
 
             self.isAutoLogin.value = user.isAutoLogin
-            self.school = user.selectedSchool
+            self.school = user.selectedSchool!
             self.account.value = user.account
+            
+            self.domain.login(user: user)
 
-            if user.selectedSchool.mode == "0" {
+            if user.loginModel == "0" {
                 return Driver.just(user.isAutoLogin)
             }
 
-            return Driver.just(user.isAutoLogin)
+            return self.portalSigin(account: user.account, password: user.password)
         }
     }
-
 }

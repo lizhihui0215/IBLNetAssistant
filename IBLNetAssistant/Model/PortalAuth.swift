@@ -12,6 +12,7 @@ class PortalAuth: PFSModel {
     dynamic var userIPKey : String?
     dynamic var authurl : String?
     dynamic var logouturl : String?
+    dynamic var account: String?
 
     required convenience init?(map: Map) {
         self.init()
@@ -23,5 +24,6 @@ class PortalAuth: PFSModel {
         userIPKey <- map["userIPKey"]
         authurl <- map["authurl"]
         logouturl <- map["logouturl"]
+        account <- map["account"]
     }
 }

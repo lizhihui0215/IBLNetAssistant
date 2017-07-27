@@ -106,7 +106,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="2C9-He-T83">
                                 <rect key="frame" x="92.5" y="360" width="136" height="18"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsg-dy-MdL" customClass="PFSCheckbox" customModule="IBLNetAssistant" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsg-dy-MdL" customClass="PFSCheckbox" customModule="PCCWFoundationSwift">
                                         <rect key="frame" x="0.0" y="0.0" width="71" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <state key="normal" title="自动登录" image="form-自动登录（未选中）"/>
@@ -202,18 +202,21 @@
         <!--主页-->
         <scene sceneID="ea2-Rf-DWg">
             <objects>
-                <viewController id="swM-cS-Ifi" sceneMemberID="viewController">
+                <viewController id="swM-cS-Ifi" customClass="PFSWebViewController" customModule="IBLNetAssistant" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Kvg-am-cOz"/>
                         <viewControllerLayoutGuide type="bottom" id="OiY-F5-1nf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="CCV-ob-dIm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="主页" id="8cy-AV-19k"/>
+                    <tabBarItem key="tabBarItem" title="主页" image="home-normal" selectedImage="home-active" id="8cy-AV-19k"/>
                     <navigationItem key="navigationItem" id="hWr-gE-qC5"/>
+                    <connections>
+                        <segue destination="NvP-hS-7Vt" kind="custom" identifier="toLogin" customClass="PFSExchageRootSegue" customModule="PCCWFoundationSwift" id="CiB-7j-8pI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XSy-6I-LRP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -228,11 +231,11 @@
                         <viewControllerLayoutGuide type="bottom" id="xky-2o-ota"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="PI8-2s-KbC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="消息" id="qOa-br-zZ6"/>
+                    <tabBarItem key="tabBarItem" title="消息" image="message-normal" selectedImage="message-active" id="qOa-br-zZ6"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bh1-9n-hxa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -247,11 +250,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Oiy-6j-3oe"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="veF-ZO-lSB">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="设置" id="0UX-K1-9zQ"/>
+                    <tabBarItem key="tabBarItem" title="设置" image="setting-normal" selectedImage="setting-active" id="0UX-K1-9zQ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N0d-eN-VTq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -260,12 +263,12 @@
         <!--Tab Bar Controller-->
         <scene sceneID="7J8-mp-aJA">
             <objects>
-                <tabBarController storyboardIdentifier="contentView" automaticallyAdjustsScrollViewInsets="NO" id="PX5-Zh-p91" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="contentView" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="PX5-Zh-p91" customClass="IBLTabBarController" customModule="IBLNetAssistant" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="rMn-ho-oUp">
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="rMn-ho-oUp">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.18731150031089783" green="0.64673465490341187" blue="0.89220011234283447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="swM-cS-Ifi" kind="relationship" relationship="viewControllers" id="mzX-H6-HRf"/>
@@ -411,10 +414,16 @@
         <image name="form-自动登录" width="17" height="18"/>
         <image name="form-自动登录（未选中）" width="17" height="17"/>
         <image name="form-选择学校" width="290" height="46"/>
+        <image name="home-active" width="25" height="25"/>
+        <image name="home-normal" width="25" height="25"/>
         <image name="icon-applogo" width="121" height="39"/>
         <image name="login-bg" width="375" height="667"/>
+        <image name="message-active" width="25" height="25"/>
+        <image name="message-normal" width="25" height="25"/>
+        <image name="setting-active" width="25" height="25"/>
+        <image name="setting-normal" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uWX-EA-zFs"/>
+        <segue reference="CiB-7j-8pI"/>
     </inferredMetricsTieBreakers>
 </document>

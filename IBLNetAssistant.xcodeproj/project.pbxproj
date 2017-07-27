@@ -9,11 +9,16 @@
 /* Begin PBXBuildFile section */
 		239D0E76615B9A6EA9BEEDDC /* Pods_IBLNetAssistant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798540E67217C4FB7768D696 /* Pods_IBLNetAssistant.framework */; };
 		2606F2FF1F1FB216002477E2 /* Extension+PFSDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2606F2FE1F1FB216002477E2 /* Extension+PFSDomain.swift */; };
+		2624C7811F279D3200EFFF1C /* IBLMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2624C7801F279D3200EFFF1C /* IBLMessageViewController.swift */; };
+		2624C7831F279D3C00EFFF1C /* IBLSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2624C7821F279D3C00EFFF1C /* IBLSettingViewController.swift */; };
+		2624C7851F279DC200EFFF1C /* PFSWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2624C7841F279DC200EFFF1C /* PFSWebViewController.swift */; };
+		2624C7871F27AABA00EFFF1C /* IBLWebDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2624C7861F27AABA00EFFF1C /* IBLWebDomain.swift */; };
+		2624C7891F27ADA400EFFF1C /* IBLMainDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2624C7881F27ADA400EFFF1C /* IBLMainDomain.swift */; };
 		26258CE31F1514CA00FA318F /* IBLSchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26258CE21F1514CA00FA318F /* IBLSchoolViewController.swift */; };
 		263019F91EE53AA80002061E /* IBLLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263019F81EE53AA80002061E /* IBLLoginViewController.swift */; };
 		263019FB1EE53ADB0002061E /* IBLLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263019FA1EE53ADB0002061E /* IBLLoginViewModel.swift */; };
 		263019FF1EE5474F0002061E /* IBLAPITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263019FE1EE5474F0002061E /* IBLAPITarget.swift */; };
-		263477F31F091B1E0074D89C /* IBLMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263477F21F091B1E0074D89C /* IBLMainViewController.swift */; };
+		263477F31F091B1E0074D89C /* IBLTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263477F21F091B1E0074D89C /* IBLTabBarController.swift */; };
 		263477FA1F092C0E0074D89C /* Backup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 263477F81F092C0E0074D89C /* Backup.storyboard */; };
 		26D8ACF81F1B6CEB00C2AC8F /* IBLRootDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D8ACF71F1B6CEB00C2AC8F /* IBLRootDomain.swift */; };
 		26E567A51F1A3DE200A5CD31 /* IBLUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E567A41F1A3DE200A5CD31 /* IBLUser.swift */; };
@@ -55,11 +60,16 @@
 /* Begin PBXFileReference section */
 		1BBF0AF86C69FD1FB6AEE6D0 /* Pods-IBLNetAssistantUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IBLNetAssistantUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IBLNetAssistantUITests/Pods-IBLNetAssistantUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		2606F2FE1F1FB216002477E2 /* Extension+PFSDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+PFSDomain.swift"; sourceTree = "<group>"; };
+		2624C7801F279D3200EFFF1C /* IBLMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLMessageViewController.swift; sourceTree = "<group>"; };
+		2624C7821F279D3C00EFFF1C /* IBLSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLSettingViewController.swift; sourceTree = "<group>"; };
+		2624C7841F279DC200EFFF1C /* PFSWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFSWebViewController.swift; sourceTree = "<group>"; };
+		2624C7861F27AABA00EFFF1C /* IBLWebDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLWebDomain.swift; sourceTree = "<group>"; };
+		2624C7881F27ADA400EFFF1C /* IBLMainDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLMainDomain.swift; sourceTree = "<group>"; };
 		26258CE21F1514CA00FA318F /* IBLSchoolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLSchoolViewController.swift; sourceTree = "<group>"; };
 		263019F81EE53AA80002061E /* IBLLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLLoginViewController.swift; sourceTree = "<group>"; };
 		263019FA1EE53ADB0002061E /* IBLLoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLLoginViewModel.swift; sourceTree = "<group>"; };
 		263019FE1EE5474F0002061E /* IBLAPITarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLAPITarget.swift; sourceTree = "<group>"; };
-		263477F21F091B1E0074D89C /* IBLMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLMainViewController.swift; sourceTree = "<group>"; };
+		263477F21F091B1E0074D89C /* IBLTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLTabBarController.swift; sourceTree = "<group>"; };
 		263477F91F092C0E0074D89C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Backup.storyboard; sourceTree = "<group>"; };
 		26D8ACF71F1B6CEB00C2AC8F /* IBLRootDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLRootDomain.swift; sourceTree = "<group>"; };
 		26E567A41F1A3DE200A5CD31 /* IBLUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLUser.swift; sourceTree = "<group>"; };
@@ -211,12 +221,13 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		5B87563ACC3B50C129AEB30B /* Main */ = {
+		5B87563ACC3B50C129AEB30B /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				263477F21F091B1E0074D89C /* IBLMainViewController.swift */,
+				263477F21F091B1E0074D89C /* IBLTabBarController.swift */,
+				5B875CB678E05F3D63D61B58 /* Main */,
 			);
-			path = Main;
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		5B87584CE509A4EF17CAB55C /* ViewModels */ = {
@@ -263,13 +274,24 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		5B875CB678E05F3D63D61B58 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2624C7801F279D3200EFFF1C /* IBLMessageViewController.swift */,
+				2624C7821F279D3C00EFFF1C /* IBLSettingViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		5B875DC59459B46E66B09C73 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
 				26FE237A1F16289B007A53DF /* IBLSchoolDomain.swift */,
 				26FE237E1F162F10007A53DF /* IBLLoginDomain.swift */,
 				26D8ACF71F1B6CEB00C2AC8F /* IBLRootDomain.swift */,
+				2624C7861F27AABA00EFFF1C /* IBLWebDomain.swift */,
 				2606F2FE1F1FB216002477E2 /* Extension+PFSDomain.swift */,
+				2624C7881F27ADA400EFFF1C /* IBLMainDomain.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -278,9 +300,10 @@
 			isa = PBXGroup;
 			children = (
 				5B8757051C5D0378807398BB /* IBLRootViewController.swift */,
+				2624C7841F279DC200EFFF1C /* PFSWebViewController.swift */,
 				5B875C1803DE3EF034D74170 /* Login */,
 				5B8751EB0DCEB03347D492C2 /* Segues */,
-				5B87563ACC3B50C129AEB30B /* Main */,
+				5B87563ACC3B50C129AEB30B /* TabBar */,
 				5B87534E00F174C14A87FE63 /* School */,
 			);
 			path = Views;
@@ -598,22 +621,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				263019FF1EE5474F0002061E /* IBLAPITarget.swift in Sources */,
+				2624C7831F279D3C00EFFF1C /* IBLSettingViewController.swift in Sources */,
 				26FE237B1F16289B007A53DF /* IBLSchoolDomain.swift in Sources */,
 				26FE237D1F16295F007A53DF /* IBLSchool.swift in Sources */,
 				263019F91EE53AA80002061E /* IBLLoginViewController.swift in Sources */,
 				26F9497E1EDE935900E81192 /* IBLAppDelegate.swift in Sources */,
 				26D8ACF81F1B6CEB00C2AC8F /* IBLRootDomain.swift in Sources */,
-				263477F31F091B1E0074D89C /* IBLMainViewController.swift in Sources */,
+				263477F31F091B1E0074D89C /* IBLTabBarController.swift in Sources */,
 				26FE23811F16366E007A53DF /* IBLDataRepository.swift in Sources */,
 				26E567A51F1A3DE200A5CD31 /* IBLUser.swift in Sources */,
+				2624C7871F27AABA00EFFF1C /* IBLWebDomain.swift in Sources */,
 				26FE237F1F162F10007A53DF /* IBLLoginDomain.swift in Sources */,
+				2624C7891F27ADA400EFFF1C /* IBLMainDomain.swift in Sources */,
 				26FE23791F1627BE007A53DF /* IBLSchoolViewModel.swift in Sources */,
 				263019FB1EE53ADB0002061E /* IBLLoginViewModel.swift in Sources */,
 				26258CE31F1514CA00FA318F /* IBLSchoolViewController.swift in Sources */,
 				2606F2FF1F1FB216002477E2 /* Extension+PFSDomain.swift in Sources */,
+				2624C7811F279D3200EFFF1C /* IBLMessageViewController.swift in Sources */,
 				5B875197097BB06BEB97D8EE /* IBLRootViewController.swift in Sources */,
 				5B8754E8747EE9AB0B7850E5 /* IBLRootViewModel.swift in Sources */,
 				5B8758CB64DC71045EB1A22C /* PortalAuth.swift in Sources */,
+				2624C7851F279DC200EFFF1C /* PFSWebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -27,6 +27,8 @@ enum IBLAPITarget: PFSTargetType {
     case register(String, IBLSchool)
     case portal(String)
     case portalAuth(String, String, [String : Any])
+    case web([String : Any])
+    case logout(String, [String : Any])
     
     public static func setBaseURL(URL: String) {
         APIBaseURL = URL
@@ -92,7 +94,13 @@ enum IBLAPITarget: PFSTargetType {
             parameters = ["account" : account, "sid" : school.sid , "sname" : school.sname ?? ""]
             parameters = sign(parameters: parameters)
         case let .portalAuth(account, password, auth):
-            var param = ["account" : account, "password" : password] as [String : Any]
+            var param = ["loginName" : account, "loginPwd" : password] as [String : Any]
+            param += auth
+            parameters = sign(parameters: param)
+        case let .web(param):
+            parameters = sign(parameters: param)
+        case let .logout(account, auth):
+            var param = ["loginName" : account] as [String : Any]
             param += auth
             parameters = sign(parameters: param)
         default:break
@@ -121,6 +129,8 @@ enum IBLAPITarget: PFSTargetType {
             path = "ibillingportal/userservice/auth.do"
         case .register(_,_):
             path = "nodeibilling/httpservices/user/appRegister.do"
+        case .web(_):
+            path = "ibillingportal/userservice/index.do"
         default:break
         }
         
@@ -133,13 +143,20 @@ enum IBLAPITarget: PFSTargetType {
             return URL(string: authURL)!
         case let .portalAuth(_,_, auth):
             return URL(string: auth["authurl"] as! String)!
+        case let .logout(_, auth):
+            return URL(string: auth["logouturl"] as! String)!
         default:
             return URL(string: APIBaseURL)!
         }
     }
     
     var method: Moya.Method {
-        return .post
+        switch self {
+        case .web(_):
+            return .get
+        default:
+            return .post
+        }
     }
 
 

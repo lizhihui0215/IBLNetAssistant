@@ -217,7 +217,7 @@
         <!--Main View Controller-->
         <scene sceneID="h8P-aI-5IF">
             <objects>
-                <viewController id="Pcp-iS-gLD" customClass="IBLMainViewController" customModule="IBLNetAssistant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Pcp-iS-gLD" customClass="IBLTabBarController" customModule="IBLNetAssistant" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tsN-uQ-3JM"/>
                         <viewControllerLayoutGuide type="bottom" id="wVF-62-QBS"/>

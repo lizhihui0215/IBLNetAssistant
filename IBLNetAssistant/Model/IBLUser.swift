@@ -21,11 +21,15 @@ public class IBLUser: PFSModel {
     
     dynamic var password: String = ""
     
-    dynamic var selectedSchool: IBLSchool = IBLSchool()
+    dynamic var selectedSchool: IBLSchool?
+    
+    dynamic var auth: PortalAuth?
     
     dynamic var isLogin: Bool = false
 
     dynamic var redirectUrl = ""
+    
+    dynamic var loginModel = ""
     
     required convenience public init?(map: Map) {
         self.init()
@@ -40,6 +44,8 @@ public class IBLUser: PFSModel {
         selectedSchool <- map["selectedSchool"]
         isLogin <- map["isLogin"]
         redirectUrl <- map["redirectUrl"]
+        auth <- map["auth"]
+        loginModel <- map["loginModel"]
     }
 
     

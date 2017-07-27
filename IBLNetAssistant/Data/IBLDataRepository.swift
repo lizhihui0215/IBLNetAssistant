@@ -15,6 +15,17 @@ import RxCocoa
 import ObjectMapper
 import class Alamofire.NetworkReachabilityManager
 
+extension BaseMappable {
+    func toJSONRealm() -> [String : Any]? {
+        var json: [String: Any]?
+        try? PFSRealm.realm.write {
+            json = self.toJSON()
+        }
+        
+        return json
+    }
+}
+
 class IBLDataRepository: PFSDataRepository {
 
     static let shared = IBLDataRepository()
@@ -56,7 +67,15 @@ class IBLDataRepository: PFSDataRepository {
     }
     
     func portal(url: String) -> Driver<Result<PortalAuth, MoyaError>> {
-        return self.request(.portal(url))
+        let result: Observable<PFSResponseMappableObject<PortalAuth>> = PFSNetworkService<IBLAPITarget>.shared.request(.portal(url))
+
+        return self.handlerError(response: result)
+    }
+
+    func logout(_ account: String, auth: PortalAuth) -> Driver<Result<String, MoyaError>> {
+        let result: Observable<PFSResponseNil> = PFSNetworkService<IBLAPITarget>.shared.request(.logout(account,auth.toJSONRealm()!))
+
+        return self.handlerError(response: result)
     }
 
     func cachedSchool() -> Driver<Result<IBLSchool, MoyaError>> {
@@ -212,8 +231,4 @@ class IBLDataRepository: PFSDataRepository {
             return user
         })
     }
-
-
-
-
 }

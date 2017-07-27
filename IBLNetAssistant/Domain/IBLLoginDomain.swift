@@ -21,8 +21,11 @@ class IBLLoginDomain: PFSDomain {
     }
 
     func auth(account: String, password: String) -> Driver<Result<IBLUser, MoyaError>> {
-        let result = IBLDataRepository.shared.auth(account: account, password: password)
-        
+        let result = IBLDataRepository.shared.auth(account: account, password: password).do(onNext: {
+            let user = try? $0.dematerialize()
+            user?.loginModel = "0"
+        })
+
         return result
     }
 
@@ -62,7 +65,11 @@ class IBLLoginDomain: PFSDomain {
     }
 
     func portalAuth(account: String, password: String, auth: [String: Any]) -> Driver<Result<IBLUser, MoyaError>> {
-        let result: Driver<Result<IBLUser, MoyaError>> = IBLDataRepository.shared.portalAuth(account: account, password: password, auth)
+        let result: Driver<Result<IBLUser, MoyaError>> = IBLDataRepository.shared.portalAuth(account: account, password: password, auth).do(onNext: {
+            let user = try? $0.dematerialize()
+            user?.loginModel = "1"
+        })
+
         return result
     }
 
