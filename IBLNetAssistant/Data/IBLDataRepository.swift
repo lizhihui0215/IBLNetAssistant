@@ -46,6 +46,9 @@ class IBLDataRepository: PFSDataRepository {
             }
             return _school
         }
+        set {
+            _school = newValue
+        }
     }
 
     override init() {

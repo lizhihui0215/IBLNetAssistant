@@ -130,6 +130,7 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
             user.selectedSchool = self.school
             user.accessToken = accessToken
             user.isLogin = true
+            user.loginModel = result.loginModel
             user.auth = self.auth
             
             guard let _ = try? PFSRealm.shared.save(obj: user).dematerialize() else {
@@ -147,6 +148,7 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
             $0.selectedSchool = self.school
             $0.isLogin = true
             $0.accessToken = accessToken
+            $0.loginModel = result.loginModel
             $0.auth = self.auth
             $0.redirectUrl = result.redirectUrl
         }).dematerialize() else {

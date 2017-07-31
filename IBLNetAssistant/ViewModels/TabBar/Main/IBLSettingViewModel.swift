@@ -9,6 +9,9 @@
 import PCCWFoundationSwift
 import RxSwift
 import RxCocoa
+import RxRealm
+import Result
+import Moya
 
 protocol IBLSettingAction: PFSViewAction {
     
@@ -18,12 +21,46 @@ class IBLSettingViewModel: PFSViewModel<IBLSettingViewController, IBLSettingDoma
     
     var user: IBLUser
     
+    var selectedSchool: IBLSchool
+    
+    var schoolName: Variable<String>
+    
     override init(action: IBLSettingViewController, domain: IBLSettingDomain) {
         self.user = PFSDomain.login()!
         self.isAutoLogin = Variable(self.user.isAutoLogin)
+        self.selectedSchool = self.user.selectedSchool!
+        self.schoolName = Variable(self.selectedSchool.sname!)
         super.init(action: action, domain: domain)
+        self.isAutoLogin.asObservable().subscribe(onNext: { isAutoLigin in
+            PFSRealm.shared.update(obj: self.user, { user in
+                user.isAutoLogin = isAutoLigin
+            })
+        }).disposed(by: disposeBag)
     }
-
     
+    func setSelectedSchool(school: IBLSchool) -> Driver<IBLSchool?> {
+        return ((self.action?.confirm(message:"切换校园之后，您的数据将丢失，请谨慎操作，确认切换吗？", content: school))?.do(onNext: { school in
+            self.domain.switchSchool(school: school!)
+        }))!
+    }
     
+    func fetchSchools() -> Driver<[IBLSchoolSelection]> {
+        let schools: Driver<Result<[IBLSchool], Moya.Error>> = self.domain.fetchSchools()
+        
+        let c = schools.flatMapLatest {
+            return (self.action?.alert(result: $0))!
+        }
+        
+        let x: Driver<[IBLSchoolSelection]> = c.map {
+            var result = [IBLSchoolSelection]()
+            switch $0 {
+            case .failure(_): break;
+            case let .success(schools):
+                result = schools.map{IBLSchoolSelection(school: $0)}
+            }
+            return result
+        }
+        
+        return x
+    }
 }

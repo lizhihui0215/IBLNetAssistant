@@ -26,6 +26,9 @@ class IBLAppDelegate: UIResponder, UIApplicationDelegate {
                                                result: "result")
         
         print(PFSFileManager.shared.document)
+        
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName : UIColor.white], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName : UIColor.white], for: .selected)
 
         return true
     }

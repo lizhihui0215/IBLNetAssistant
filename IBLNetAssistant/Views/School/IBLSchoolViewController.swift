@@ -22,7 +22,6 @@ class IBLSchoolViewController: PFSViewController, IBLSchoolAction {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        IBLAPITarget.setBaseURL(URL: "http://www.i-billing.com.cn:8081/ibillingplatform")
         // Do any additional setup after loading the view.
         self.viewModel = IBLSchoolViewModel(action: self, domain: IBLSchoolDomain())
     }

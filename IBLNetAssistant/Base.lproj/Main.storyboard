@@ -304,16 +304,36 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-切换校园" translatesAutoresizingMaskIntoConstraints="NO" id="vlD-0c-Msc">
+                                                <rect key="frame" x="301" y="9.5" width="9" height="21"/>
+                                            </imageView>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z5q-lM-Xo1">
+                                                <rect key="frame" x="146" y="11.5" width="150" height="17"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="4zn-gO-w1Z"/>
+                                                </constraints>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <gestureRecognizers/>
                                         <constraints>
+                                            <constraint firstItem="Z5q-lM-Xo1" firstAttribute="centerY" secondItem="2Et-BJ-mfr" secondAttribute="centerY" id="1k0-ai-vAC"/>
                                             <constraint firstAttribute="bottom" secondItem="9tL-Zh-miZ" secondAttribute="bottom" id="7yg-Su-W13"/>
+                                            <constraint firstItem="vlD-0c-Msc" firstAttribute="centerY" secondItem="2Et-BJ-mfr" secondAttribute="centerY" id="8df-bZ-u11"/>
                                             <constraint firstItem="609-nj-kRu" firstAttribute="centerY" secondItem="2Et-BJ-mfr" secondAttribute="centerY" id="9ok-YP-gTi"/>
+                                            <constraint firstAttribute="trailing" secondItem="vlD-0c-Msc" secondAttribute="trailing" constant="10" id="FP3-o4-FBH"/>
+                                            <constraint firstItem="vlD-0c-Msc" firstAttribute="leading" secondItem="Z5q-lM-Xo1" secondAttribute="trailing" constant="5" id="Iel-t7-rxe"/>
                                             <constraint firstItem="609-nj-kRu" firstAttribute="leading" secondItem="2Et-BJ-mfr" secondAttribute="leading" constant="10" id="YRJ-xI-1Xg"/>
                                             <constraint firstItem="9tL-Zh-miZ" firstAttribute="leading" secondItem="2Et-BJ-mfr" secondAttribute="leading" id="inE-M2-8Kb"/>
                                             <constraint firstAttribute="height" constant="40" id="uD6-H1-mLJ"/>
                                             <constraint firstAttribute="trailing" secondItem="9tL-Zh-miZ" secondAttribute="trailing" id="xeM-QI-LvG"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="72V-QK-nJe" appends="YES" id="Z5b-ab-52H"/>
+                                        </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vnR-Ec-Atc">
                                         <rect key="frame" x="0.0" y="80" width="320" height="40"/>
@@ -355,11 +375,18 @@
                     <tabBarItem key="tabBarItem" title="设置" image="setting-normal" selectedImage="setting-active" id="0UX-K1-9zQ"/>
                     <connections>
                         <outlet property="loginSwitch" destination="faF-8Z-iPc" id="tyJ-5f-40R"/>
+                        <outlet property="schoolTextField" destination="Z5q-lM-Xo1" id="I2i-eM-eOk"/>
+                        <segue destination="NvP-hS-7Vt" kind="custom" identifier="toLogin" customClass="PFSExchageRootSegue" customModule="PCCWFoundationSwift" id="LOE-Rn-00K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N0d-eN-VTq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="72V-QK-nJe">
+                    <connections>
+                        <action selector="selectedSchoolTapped:" destination="eo9-Jg-eLn" id="UWj-Es-Tz5"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3660" y="875"/>
+            <point key="canvasLocation" x="3660" y="874.64788732394368"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="7J8-mp-aJA">
@@ -369,6 +396,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="rMn-ho-oUp">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.18731150031089783" green="0.64673465490341187" blue="0.89220011234283447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
@@ -518,6 +546,7 @@
         <image name="home-active" width="25" height="25"/>
         <image name="home-normal" width="25" height="25"/>
         <image name="icon-applogo" width="121" height="39"/>
+        <image name="icon-切换校园" width="9" height="21"/>
         <image name="login-bg" width="375" height="667"/>
         <image name="message-active" width="25" height="25"/>
         <image name="message-normal" width="25" height="25"/>
@@ -525,6 +554,6 @@
         <image name="setting-normal" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CiB-7j-8pI"/>
+        <segue reference="LOE-Rn-00K"/>
     </inferredMetricsTieBreakers>
 </document>

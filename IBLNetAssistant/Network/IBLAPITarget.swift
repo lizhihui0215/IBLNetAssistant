@@ -145,6 +145,8 @@ enum IBLAPITarget: PFSTargetType {
             return URL(string: auth["authurl"] as! String)!
         case let .logout(_, auth):
             return URL(string: auth["logouturl"] as! String)!
+        case .school(_,_):
+            return URL(string: "http://www.i-billing.com.cn:8081/ibillingplatform")!
         default:
             return URL(string: APIBaseURL)!
         }
