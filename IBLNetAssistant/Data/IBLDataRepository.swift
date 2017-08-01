@@ -51,6 +51,10 @@ class IBLDataRepository: PFSDataRepository {
         }
     }
 
+    func sendSMS(account: String, phone: String) -> Driver<Result<String, MoyaError>> {
+        return self.request(.sms(account, phone))
+    }
+
     override init() {
         super.init()
     }

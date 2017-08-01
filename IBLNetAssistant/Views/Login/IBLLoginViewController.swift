@@ -33,7 +33,6 @@ class IBLLoginViewController: PFSViewController, IBLLoginAction {
                 self?.performSegue(withIdentifier: "toMain", sender: nil)
             }
         }) .disposed(by: disposeBag)
-        
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
@@ -45,7 +44,20 @@ class IBLLoginViewController: PFSViewController, IBLLoginAction {
                                                        }).disposed(by: disposeBag)
 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    @IBAction func registerButtonTapped(_ sender: UIButton) {
+        
+    }
 
+    @IBAction func forgetPasswordTapped(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "toForgetPassword", sender: nil)
+
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -59,6 +71,14 @@ class IBLLoginViewController: PFSViewController, IBLLoginAction {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "toForgetPassword" {
+            let forgetPasswordController = segue.destination as! IBLForgetPasswordViewController
+            
+            forgetPasswordController.viewModel = IBLForgetPasswordViewModel(action: forgetPasswordController,
+                                                                            domain: IBLForgetPasswordDomain(),
+                                                                            account: accountTextField.text ?? "")
+        }
     }
     
 

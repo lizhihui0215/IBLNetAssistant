@@ -29,6 +29,7 @@ enum IBLAPITarget: PFSTargetType {
     case portalAuth(String, String, [String : Any])
     case web([String : Any])
     case logout(String, [String : Any])
+    case sms(String, String)
     
     public static func setBaseURL(URL: String) {
         APIBaseURL = URL
@@ -103,6 +104,9 @@ enum IBLAPITarget: PFSTargetType {
             var param = ["loginName" : account] as [String : Any]
             param += auth
             parameters = sign(parameters: param)
+        case let .sms(account, phone):
+            let param = ["account" : account, "mobile" : phone]
+            parameters = sign(parameters: param)
         default:break
         }
         
@@ -131,6 +135,8 @@ enum IBLAPITarget: PFSTargetType {
             path = "nodeibilling/httpservices/user/appRegister.do"
         case .web(_):
             path = "ibillingportal/userservice/index.do"
+        case .sms:
+            path = "nodeibilling/httpservices/user/getSmsCode.do"
         default:break
         }
         

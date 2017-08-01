@@ -62,7 +62,7 @@ class IBLSchoolViewController: PFSViewController, IBLSchoolAction {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if segue.identifier == "toLogin" {
-            let loginViewController = segue.destination as! IBLLoginViewController
+            let loginViewController = (segue.destination as! UINavigationController).topViewController  as! IBLLoginViewController
             
             loginViewController.viewModel = IBLLoginViewModel(action: loginViewController,
                                                               domain: IBLLoginDomain(),
