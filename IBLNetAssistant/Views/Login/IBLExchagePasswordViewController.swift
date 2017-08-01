@@ -9,19 +9,76 @@
 import UIKit
 import PCCWFoundationSwift
 
-class IBLExchagePasswordViewController: PFSViewController {
+class IBLExchagePasswordViewController: PFSViewController, IBLExchangePasswordAction {
 
+    var viewModel: IBLExchangePasswordViewModel?
+    
+    @IBOutlet weak var secondLabel: UILabel!
+    
+    @IBOutlet weak var sendSMSButton: UIButton!
+    
+    @IBOutlet weak var secondHightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var smsCodeTextField: UITextField!
+    
+    @IBOutlet weak var passwordTextField: UITextField!
+
+    @IBOutlet weak var confirmTextField: UITextField!
+
+    @IBAction func submitButtonTapped(_ sender: UIButton) {
+        self.viewModel?.exchangePassword().drive(onNext: { success in
+            if success {
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+        }).disposed(by: disposeBag)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.startTimer()
+        
+        (self.smsCodeTextField.rx.textInput <-> (self.viewModel?.smsCode)!).disposed(by: disposeBag)
+        
+        (self.passwordTextField.rx.textInput <-> (self.viewModel?.password)!).disposed(by: disposeBag)
+        (self.confirmTextField.rx.textInput <-> (self.viewModel?.confirm)!).disposed(by: disposeBag)
+        
+        
     }
+    
+    func startTimer() {
+        self.sendSMSButton.isEnabled = false
+        var total = 60
+        self.secondHightConstraint.constant = 16;
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+            if (total <= 0) {
+                timer.invalidate()
+                self.secondHightConstraint.constant = 0;
+                self.sendSMSButton.isEnabled = true
+            }else {
+                total -= 1   
+                self.secondLabel.text = "\(total)秒后可重新发送"
+            }
+        }
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    
+    @IBAction func sendSMSButtonPressed(_ sender: UIButton) {
+        self.sendSMSButton.isEnabled = false
+        self.viewModel?.sendSMS().drive(onNext: {[weak self] success in
+            if (success) {
+                self?.startTimer()
+            }
+        }).disposed(by: disposeBag)
+    }
+
 
 
     // MARK: - Navigation

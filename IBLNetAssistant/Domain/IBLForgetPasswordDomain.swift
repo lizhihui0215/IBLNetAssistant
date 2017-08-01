@@ -7,7 +7,15 @@
 //
 
 import PCCWFoundationSwift
+import RxCocoa
+import RxSwift
+import Result
+import Moya
+import RealmSwift
 
 class IBLForgetPasswordDomain: PFSDomain {
 
+    func sendSMS(account: String, phone: String) -> Driver<Result<String, MoyaError>> {
+        return IBLDataRepository.shared.sendSMS(account: account, phone: phone)
+    }
 }

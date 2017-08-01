@@ -43,14 +43,24 @@ class IBLForgetPasswordViewController: PFSViewController, IBLForgetPasswordActio
         }).disposed(by: disposeBag)
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "toExchagePassword" {
+
+            let exchangePasswordController = segue.destination as! IBLExchagePasswordViewController
+
+            exchangePasswordController.viewModel = IBLExchangePasswordViewModel(action: exchangePasswordController,
+                    domain: IBLExchangePasswordDomain(),
+                    account: self.accountTextField.text!,
+                    phone: self.phoneTextField.text!)
+            
+        }
     }
-    */
+    
 
 }

@@ -334,12 +334,18 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RZh-cX-E8o">
-                                                <rect key="frame" x="185" y="0.0" width="67" height="28"/>
+                                                <rect key="frame" x="185" y="-4" width="67" height="28"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <state key="normal" title="发送验证码"/>
+                                                <connections>
+                                                    <action selector="sendSMSButtonPressed:" destination="FOb-cc-vci" eventType="touchUpInside" id="HPe-3N-44n"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60秒后可重新发送" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Oc-Rx-5d6">
                                                 <rect key="frame" x="185" y="24" width="109.5" height="16"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="16" id="LC6-dq-95Z"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="textColor" red="0.67823898792266846" green="0.68233907222747803" blue="0.68639743328094482" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -347,9 +353,9 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="3Oc-Rx-5d6" firstAttribute="top" secondItem="RZh-cX-E8o" secondAttribute="bottom" id="7Dh-t6-eUu"/>
                                             <constraint firstItem="cqL-tj-6H8" firstAttribute="top" secondItem="7k0-n1-kCs" secondAttribute="top" id="ILK-Re-DeM"/>
                                             <constraint firstItem="3Oc-Rx-5d6" firstAttribute="bottom" secondItem="cqL-tj-6H8" secondAttribute="bottom" id="Kqu-aG-7tP"/>
-                                            <constraint firstItem="RZh-cX-E8o" firstAttribute="top" secondItem="cqL-tj-6H8" secondAttribute="top" id="Mp5-3t-haZ"/>
                                             <constraint firstItem="3Oc-Rx-5d6" firstAttribute="leading" secondItem="cqL-tj-6H8" secondAttribute="trailing" constant="5" id="YZR-Dr-yyG"/>
                                             <constraint firstItem="RZh-cX-E8o" firstAttribute="leading" secondItem="cqL-tj-6H8" secondAttribute="trailing" constant="5" id="ctm-Dz-73J"/>
                                             <constraint firstItem="cqL-tj-6H8" firstAttribute="leading" secondItem="7k0-n1-kCs" secondAttribute="leading" id="fIh-Gg-ji8"/>
@@ -393,6 +399,9 @@
                                         <real key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="submitButtonTapped:" destination="FOb-cc-vci" eventType="touchUpInside" id="e3P-V9-pEr"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -406,6 +415,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="找回密码" id="oby-mH-AKu"/>
+                    <connections>
+                        <outlet property="confirmTextField" destination="y9f-CD-UMU" id="vvJ-ox-7hJ"/>
+                        <outlet property="passwordTextField" destination="X5G-HN-sgo" id="gcr-9b-MOK"/>
+                        <outlet property="secondHightConstraint" destination="LC6-dq-95Z" id="Nwm-hV-KZ8"/>
+                        <outlet property="secondLabel" destination="3Oc-Rx-5d6" id="4sI-s3-szw"/>
+                        <outlet property="sendSMSButton" destination="RZh-cX-E8o" id="XgE-p1-pmw"/>
+                        <outlet property="smsCodeTextField" destination="cqL-tj-6H8" id="KRp-bc-o1G"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WVi-f2-KIi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

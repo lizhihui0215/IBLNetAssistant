@@ -22,6 +22,8 @@
 		263019FF1EE5474F0002061E /* IBLAPITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263019FE1EE5474F0002061E /* IBLAPITarget.swift */; };
 		263477F31F091B1E0074D89C /* IBLTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263477F21F091B1E0074D89C /* IBLTabBarController.swift */; };
 		263477FA1F092C0E0074D89C /* Backup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 263477F81F092C0E0074D89C /* Backup.storyboard */; };
+		263F98441F30CFEA00906749 /* IBLExchangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263F98431F30CFEA00906749 /* IBLExchangePasswordViewModel.swift */; };
+		263F98461F30D02F00906749 /* IBLExchangePasswordDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263F98451F30D02F00906749 /* IBLExchangePasswordDomain.swift */; };
 		26BDD0C51F2A3DF200125CDA /* IBLSettingDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BDD0C41F2A3DF200125CDA /* IBLSettingDomain.swift */; };
 		26BDD0C71F2A3EC600125CDA /* IBLSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BDD0C61F2A3EC600125CDA /* IBLSettingViewModel.swift */; };
 		26D8ACF81F1B6CEB00C2AC8F /* IBLRootDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D8ACF71F1B6CEB00C2AC8F /* IBLRootDomain.swift */; };
@@ -79,6 +81,8 @@
 		263019FE1EE5474F0002061E /* IBLAPITarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLAPITarget.swift; sourceTree = "<group>"; };
 		263477F21F091B1E0074D89C /* IBLTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLTabBarController.swift; sourceTree = "<group>"; };
 		263477F91F092C0E0074D89C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Backup.storyboard; sourceTree = "<group>"; };
+		263F98431F30CFEA00906749 /* IBLExchangePasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLExchangePasswordViewModel.swift; sourceTree = "<group>"; };
+		263F98451F30D02F00906749 /* IBLExchangePasswordDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLExchangePasswordDomain.swift; sourceTree = "<group>"; };
 		26BDD0C41F2A3DF200125CDA /* IBLSettingDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLSettingDomain.swift; sourceTree = "<group>"; };
 		26BDD0C61F2A3EC600125CDA /* IBLSettingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLSettingViewModel.swift; sourceTree = "<group>"; };
 		26D8ACF71F1B6CEB00C2AC8F /* IBLRootDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLRootDomain.swift; sourceTree = "<group>"; };
@@ -222,6 +226,7 @@
 			children = (
 				263019FA1EE53ADB0002061E /* IBLLoginViewModel.swift */,
 				5B875EBC34AD49BE40F8D82C /* IBLForgetPasswordViewModel.swift */,
+				263F98431F30CFEA00906749 /* IBLExchangePasswordViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -327,6 +332,7 @@
 				2624C7881F27ADA400EFFF1C /* IBLMainDomain.swift */,
 				26BDD0C41F2A3DF200125CDA /* IBLSettingDomain.swift */,
 				2627BB1F1F2F8561007EA719 /* IBLForgetPasswordDomain.swift */,
+				263F98451F30D02F00906749 /* IBLExchangePasswordDomain.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -668,8 +674,10 @@
 				2627BB1E1F2F7B26007EA719 /* IBLForgetPasswordViewController.swift in Sources */,
 				26FE23811F16366E007A53DF /* IBLDataRepository.swift in Sources */,
 				26BDD0C51F2A3DF200125CDA /* IBLSettingDomain.swift in Sources */,
+				263F98441F30CFEA00906749 /* IBLExchangePasswordViewModel.swift in Sources */,
 				26E567A51F1A3DE200A5CD31 /* IBLUser.swift in Sources */,
 				2624C7871F27AABA00EFFF1C /* IBLWebDomain.swift in Sources */,
+				263F98461F30D02F00906749 /* IBLExchangePasswordDomain.swift in Sources */,
 				26FE237F1F162F10007A53DF /* IBLLoginDomain.swift in Sources */,
 				2624C7891F27ADA400EFFF1C /* IBLMainDomain.swift in Sources */,
 				26FE23791F1627BE007A53DF /* IBLSchoolViewModel.swift in Sources */,

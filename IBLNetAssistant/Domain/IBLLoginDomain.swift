@@ -21,8 +21,10 @@ class IBLLoginDomain: PFSDomain {
 
     func auth(account: String, password: String) -> Driver<Result<IBLUser, MoyaError>> {
         let result = IBLDataRepository.shared.auth(account: account, password: password).do(onNext: {
-            let user = try? $0.dematerialize()
-            PFSRealm.shared.update(obj: user!, {
+            guard let user = try? $0.dematerialize() else {
+                return
+            }
+            PFSRealm.shared.update(obj: user, {
                 $0.loginModel = "0"
             })
         })
@@ -31,20 +33,19 @@ class IBLLoginDomain: PFSDomain {
     }
 
     func register(account: String, school: IBLSchool) -> Driver<Result<String, MoyaError>> {
-
-        var result :Driver<Result<String, MoyaError>> = Driver.just(Result(value: ""))
-
-        if let _: Bool = IBLDataRepository.shared.cache(key: "register") {
-            result = IBLDataRepository.shared.register(account: account, school: school).do(onNext: { result in
-                guard (try? result.dematerialize()) != nil else {
-                    return
-                }
-                
-                IBLDataRepository.shared.cache(key: "register", value: true)
-             })
+        
+        if let _: Bool = IBLDataRepository.shared.cache(key: "register")  {
+            return Driver.just(Result(value: ""))
         }
+        
+        return IBLDataRepository.shared.register(account: account, school: school).do(onNext: { result in
+            guard (try? result.dematerialize()) != nil else {
+                return
+            }
+            
+            IBLDataRepository.shared.cache(key: "register", value: true)
+        })
 
-        return result
     }
 
     func user(account: String?) -> Driver<Result<IBLUser, MoyaError>> {
@@ -67,8 +68,11 @@ class IBLLoginDomain: PFSDomain {
 
     func portalAuth(account: String, password: String, auth: [String: Any]) -> Driver<Result<IBLUser, MoyaError>> {
         let result: Driver<Result<IBLUser, MoyaError>> = IBLDataRepository.shared.portalAuth(account: account, password: password, auth).do(onNext: {
-            let user = try? $0.dematerialize()
-            PFSRealm.shared.update(obj: user!, {
+            guard let user = try? $0.dematerialize() else {
+                return
+            }
+            
+            PFSRealm.shared.update(obj: user, {
                 $0.loginModel = "1"
             })
         })

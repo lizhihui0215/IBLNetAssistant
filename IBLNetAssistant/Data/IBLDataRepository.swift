@@ -29,7 +29,11 @@ extension BaseMappable {
 class IBLDataRepository: PFSDataRepository {
 
     static let shared = IBLDataRepository()
-    
+
+    func exchangePassword(account: String, phone: String, sms: String, password: String) -> Driver<Result<String, MoyaError>> {
+        return self.request(.exchangePassword(account,phone,sms,password))
+    }
+
     private var _school: IBLSchool = IBLSchool()
 
     var school: IBLSchool{
