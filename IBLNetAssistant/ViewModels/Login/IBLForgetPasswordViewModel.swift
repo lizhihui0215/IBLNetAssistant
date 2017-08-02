@@ -31,12 +31,11 @@ class IBLForgetPasswordViewModel: PFSViewModel<IBLForgetPasswordViewController, 
 
     func sendSMS() -> Driver<Bool> {
 
-        let validateAccount = account.value.notNul(message: "用户名不能为空！")
+        let validateAccount = account.value.notNull(message: "用户名不能为空！")
 
-        let validatePhone = phone.value.notNul(message: "密码不能为空！")
+        let validatePhone = phone.value.phone(message: "手机号码格式不正确！")
 
         let validateResult = PFSValidate.of(validateAccount, validatePhone)
-
 
         let sms: Driver<Result<String, MoyaError>> = self.domain.sendSMS(account: account.value, phone: phone.value)
 

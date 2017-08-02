@@ -147,10 +147,10 @@ class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDelegat
     func logout()  {
         if self.user!.loginModel != "0" {
             self.domain.logout(account: self.user!.account, auth: self.user!.auth!).drive().dispose()
-            PFSRealm.shared.update(obj: PFSDomain.login()!, {
-                $0.isLogin = false
-            })
         }
+        PFSRealm.shared.update(obj: PFSDomain.login()!, {
+            $0.isLogin = false
+        })
         self.performSegue(withIdentifier: "toLogin", sender: nil)
     }
 

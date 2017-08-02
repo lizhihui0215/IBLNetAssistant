@@ -22,7 +22,7 @@ public func += <K, V> (left: inout [K:V], right: [K:V]) {
 enum IBLAPITarget: PFSTargetType {
 
 
-    case school(String, String)
+    case school(CLLocationCoordinate2D)
     case auth(String, String)
     case register(String, IBLSchool)
     case portal(String)
@@ -86,8 +86,8 @@ enum IBLAPITarget: PFSTargetType {
         
         var parameters = [String: Any]()
         switch self {
-        case let .school(longit,lati):
-            parameters = ["longit" : longit, "lati" : lati]
+        case let .school(locationCoordinate2D):
+            parameters = ["longit" : "\(locationCoordinate2D.longitude)", "lati" : "\(locationCoordinate2D.latitude)"]
             parameters = sign(parameters: parameters)
         case let .auth(username, password):
             parameters = ["account" : username, "password" : password]
@@ -131,7 +131,7 @@ enum IBLAPITarget: PFSTargetType {
     var path: String {
         var path = ""
         switch self {
-        case .school(_,_):
+        case .school:
             path = "userservice/getschoollist.do"
         case .auth(_,_):
             path = "ibillingportal/userservice/auth.do"
@@ -157,7 +157,7 @@ enum IBLAPITarget: PFSTargetType {
             return URL(string: auth["authurl"] as! String)!
         case let .logout(_, auth):
             return URL(string: auth["logouturl"] as! String)!
-        case .school(_,_):
+        case .school:
             return URL(string: "http://www.i-billing.com.cn:8081/ibillingplatform")!
         default:
             return URL(string: APIBaseURL)!

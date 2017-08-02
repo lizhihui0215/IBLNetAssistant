@@ -63,8 +63,8 @@ class IBLDataRepository: PFSDataRepository {
         super.init()
     }
 
-    func fetchSchools() -> Driver<Result<[IBLSchool], MoyaError>> {
-        let result: Observable<PFSResponseMappableArray<IBLSchool>> = PFSNetworkService<IBLAPITarget>.shared.request(.school("116.317489", "39.998813"))
+    func fetchSchools(locationCoordinate2D: CLLocationCoordinate2D) -> Driver<Result<[IBLSchool], MoyaError>> {
+        let result: Observable<PFSResponseMappableArray<IBLSchool>> = PFSNetworkService<IBLAPITarget>.shared.request(.school(locationCoordinate2D))
 
         return self.handlerError(response: result)
     }

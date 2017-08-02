@@ -23,6 +23,8 @@ class IBLSettingViewModel: PFSViewModel<IBLSettingViewController, IBLSettingDoma
     
     var selectedSchool: IBLSchool
     
+    var locationManager = PFSLocationManager()
+    
     var schoolName: Variable<String>
     
     override init(action: IBLSettingViewController, domain: IBLSettingDomain) {
@@ -45,22 +47,19 @@ class IBLSettingViewModel: PFSViewModel<IBLSettingViewController, IBLSettingDoma
     }
     
     func fetchSchools() -> Driver<[IBLSchoolSelection]> {
-        let schools: Driver<Result<[IBLSchool], Moya.Error>> = self.domain.fetchSchools()
-        
-        let c = schools.flatMapLatest {
-            return (self.action?.alert(result: $0))!
+        return self.locationManager.startUpdatingLocation().flatMapLatest {
+            self.domain.fetchSchools(locationCoordinate2D: $0.coordinate)
+            }.flatMapLatest {
+                return (self.action?.alert(result: $0))!
+            }.map {
+                
+                var result = [IBLSchoolSelection]()
+                switch $0 {
+                case .failure(_): break;
+                case let .success(schools):
+                    result = schools.map{IBLSchoolSelection(school: $0)}
+                }
+                return result
         }
-        
-        let x: Driver<[IBLSchoolSelection]> = c.map {
-            var result = [IBLSchoolSelection]()
-            switch $0 {
-            case .failure(_): break;
-            case let .success(schools):
-                result = schools.map{IBLSchoolSelection(school: $0)}
-            }
-            return result
-        }
-        
-        return x
     }
 }

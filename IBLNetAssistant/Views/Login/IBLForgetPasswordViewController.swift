@@ -26,6 +26,8 @@ class IBLForgetPasswordViewController: PFSViewController, IBLForgetPasswordActio
         self.navigationController?.isNavigationBarHidden = false
         
         (self.accountTextField.rx.textInput <-> (self.viewModel?.account)!).disposed(by: disposeBag)
+        
+        self.phoneTextField.keyboardType = .phonePad
         (self.phoneTextField.rx.textInput <-> (self.viewModel?.phone)!).disposed(by: disposeBag)
     }
 
@@ -53,12 +55,13 @@ class IBLForgetPasswordViewController: PFSViewController, IBLForgetPasswordActio
         if segue.identifier == "toExchagePassword" {
 
             let exchangePasswordController = segue.destination as! IBLExchagePasswordViewController
-
+            
             exchangePasswordController.viewModel = IBLExchangePasswordViewModel(action: exchangePasswordController,
                     domain: IBLExchangePasswordDomain(),
                     account: self.accountTextField.text!,
                     phone: self.phoneTextField.text!)
             
+            self.navigationController?.isNavigationBarHidden = true            
         }
     }
     

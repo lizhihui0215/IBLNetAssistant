@@ -32,29 +32,27 @@ class IBLSchoolViewModel<T: IBLSchoolAction>: PFSViewModel<T, IBLSchoolDomain> {
     
     var selectedSchool: IBLSchool? = nil
     
+    var locationManager = PFSLocationManager()
+    
     func setSelectedSchool(school: IBLSchool?) {
         self.selectedSchool = school
     }
 
     func fetchSchools() -> Driver<[IBLSchoolSelection]> {
-        let schools: Driver<Result<[IBLSchool], Moya.Error>> = self.domain.fetchSchools()
-        
-        let c = schools.flatMapLatest {
+        return self.locationManager.startUpdatingLocation().flatMapLatest {
+            self.domain.fetchSchools(locationCoordinate2D: $0.coordinate)
+        }.flatMapLatest {
             return (self.action?.alert(result: $0))!
+        }.map {
+                
+                var result = [IBLSchoolSelection]()
+                switch $0 {
+                case .failure(_): break;
+                case let .success(schools):
+                    result = schools.map{IBLSchoolSelection(school: $0)}
+                }
+                return result
         }
-        
-        let x: Driver<[IBLSchoolSelection]> = c.map {
-            
-            var result = [IBLSchoolSelection]()
-            switch $0 {
-            case .failure(_): break;
-            case let .success(schools):
-                result = schools.map{IBLSchoolSelection(school: $0)}
-            }
-            return result
-        }
-
-        return x
     }
     
     func cacheSchool() -> Driver<Bool> {

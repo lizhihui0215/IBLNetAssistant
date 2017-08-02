@@ -38,9 +38,9 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
 
         let isProtalSigin = self.school.mode != "0"
 
-        let validateAccount = account.notNul(message: "用户名不能为空！")
+        let validateAccount = account.notNull(message: "用户名不能为空！")
 
-        let validatePassword = password.notNul(message: "密码不能为空！")
+        let validatePassword = password.notNull(message: "密码不能为空！")
 
         let validateResult = PFSValidate.of(validateAccount, validatePassword)
 
@@ -67,9 +67,11 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
         return self.domain.register(account: account, school: self.school).flatMapLatest { result in
             (self.action?.alert(result: result))!
         }.flatMapLatest { result -> Driver<Result<PortalAuth, MoyaError>> in
-            return self.domain.portal(url: "http://115.28.0.62:8080/ibillingportal/ac.do")
-        }.flatMapLatest {
-            (self.action?.alert(result: $0))!
+            
+//            return self.domain.portal(url: "http://115.28.0.62:8080/ibillingportal/ac.do")
+            
+            return self.domain.portal(url: "http://www.baidu.com/")
+
         }.flatMapLatest { result  in
 
             guard let value = try? result.dematerialize() else {

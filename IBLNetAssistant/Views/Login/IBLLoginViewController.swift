@@ -33,6 +33,8 @@ class IBLLoginViewController: PFSViewController, IBLLoginAction {
                 self?.performSegue(withIdentifier: "toMain", sender: nil)
             }
         }) .disposed(by: disposeBag)
+        
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
@@ -42,12 +44,10 @@ class IBLLoginViewController: PFSViewController, IBLLoginAction {
                                                             self?.performSegue(withIdentifier: "toMain", sender: nil)
                                                         }
                                                        }).disposed(by: disposeBag)
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = true
     }
     
     @IBAction func registerButtonTapped(_ sender: UIButton) {

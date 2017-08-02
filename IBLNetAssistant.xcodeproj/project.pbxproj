@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		239D0E76615B9A6EA9BEEDDC /* Pods_IBLNetAssistant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798540E67217C4FB7768D696 /* Pods_IBLNetAssistant.framework */; };
+		260000321F321A3000FB8E26 /* PFSLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260000311F321A3000FB8E26 /* PFSLocationManager.swift */; };
 		2606F2FF1F1FB216002477E2 /* Extension+PFSDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2606F2FE1F1FB216002477E2 /* Extension+PFSDomain.swift */; };
 		2624C7811F279D3200EFFF1C /* IBLMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2624C7801F279D3200EFFF1C /* IBLMessageViewController.swift */; };
 		2624C7831F279D3C00EFFF1C /* IBLSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2624C7821F279D3C00EFFF1C /* IBLSettingViewController.swift */; };
@@ -67,6 +68,8 @@
 
 /* Begin PBXFileReference section */
 		1BBF0AF86C69FD1FB6AEE6D0 /* Pods-IBLNetAssistantUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IBLNetAssistantUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IBLNetAssistantUITests/Pods-IBLNetAssistantUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		260000311F321A3000FB8E26 /* PFSLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFSLocationManager.swift; sourceTree = "<group>"; };
+		260000331F321A9700FB8E26 /* IBLNetAssistant-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IBLNetAssistant-Bridging-Header.h"; sourceTree = "<group>"; };
 		2606F2FE1F1FB216002477E2 /* Extension+PFSDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+PFSDomain.swift"; sourceTree = "<group>"; };
 		2624C7801F279D3200EFFF1C /* IBLMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLMessageViewController.swift; sourceTree = "<group>"; };
 		2624C7821F279D3C00EFFF1C /* IBLSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLSettingViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +185,7 @@
 				26F949811EDE935900E81192 /* Main.storyboard */,
 				263477F81F092C0E0074D89C /* Backup.storyboard */,
 				26F949841EDE935900E81192 /* Assets.xcassets */,
+				260000331F321A9700FB8E26 /* IBLNetAssistant-Bridging-Header.h */,
 				26F949861EDE935900E81192 /* LaunchScreen.storyboard */,
 				26F949891EDE935900E81192 /* Info.plist */,
 			);
@@ -340,6 +344,7 @@
 		5B875E3C28E3CED33D47350F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				260000311F321A3000FB8E26 /* PFSLocationManager.swift */,
 				5B8757051C5D0378807398BB /* IBLRootViewController.swift */,
 				5B875C1803DE3EF034D74170 /* Login */,
 				5B8751EB0DCEB03347D492C2 /* Segues */,
@@ -665,6 +670,7 @@
 				26FE237B1F16289B007A53DF /* IBLSchoolDomain.swift in Sources */,
 				26FE237D1F16295F007A53DF /* IBLSchool.swift in Sources */,
 				263019F91EE53AA80002061E /* IBLLoginViewController.swift in Sources */,
+				260000321F321A3000FB8E26 /* PFSLocationManager.swift in Sources */,
 				26BDD0C71F2A3EC600125CDA /* IBLSettingViewModel.swift in Sources */,
 				26F9497E1EDE935900E81192 /* IBLAppDelegate.swift in Sources */,
 				26D8ACF81F1B6CEB00C2AC8F /* IBLRootDomain.swift in Sources */,
@@ -859,6 +865,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -disable-availability-checking";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibilling.IBLNetAssistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/IBLNetAssistant/IBLNetAssistant-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -877,6 +884,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -disable-availability-checking";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibilling.IBLNetAssistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/IBLNetAssistant/IBLNetAssistant-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
