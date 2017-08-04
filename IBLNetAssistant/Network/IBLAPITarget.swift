@@ -58,6 +58,10 @@ enum IBLAPITarget: PFSTargetType {
         var formattedParamters = [String]();
         
         for (key, value) in parameters {
+            if let v = value as? String, v == "" {
+                continue
+            }
+            
             let formatted = "\(key)=\(value)&"
             
             formattedParamters.append(formatted)

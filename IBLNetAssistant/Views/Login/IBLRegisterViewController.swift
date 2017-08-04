@@ -68,7 +68,7 @@ class IBLRegisterViewController: PFSViewController, WKUIDelegate, WKNavigationDe
         
         self.webAPI = IBLAPITarget.registerAccount
 
-        self.reload()
+        self.reload().drive().disposed(by: disposeBag)
     }
     
     override func didReceiveMemoryWarning() {
@@ -76,22 +76,52 @@ class IBLRegisterViewController: PFSViewController, WKUIDelegate, WKNavigationDe
         // Dispose of any resources that can be recreated.
     }
     
-    open func reload()  {
-        guard let webAPI = self.webAPI else { return }
+//    open func reload()  {
+//        guard let webAPI = self.webAPI else { return }
+//        
+//        let requestURL = self.url(for: webAPI)
+//        
+//        var request = URLRequest(url: requestURL)
+//        
+//        request.httpMethod = webAPI.method.rawValue
+//        
+//        request.allHTTPHeaderFields = webAPI.headers
+//        
+//        let encodingRequest = try? URLEncoding.default.encode(request, with: webAPI.parameters)
+//        
+//        webView.customUserAgent = "IBILLING_IOS_NETHELPER_APP"
+//        
+//        webView.load(encodingRequest!)
+//    }
+    
+    open func reload() -> Driver<Bool>  {
+        guard let webAPI = self.webAPI else { return Driver.just(false) }
         
-        let requestURL = self.url(for: webAPI)
+        let baseURL = "http://\(self.school!.serverInner!)"
         
-        var request = URLRequest(url: requestURL)
-        
-        request.httpMethod = webAPI.method.rawValue
-        
-        request.allHTTPHeaderFields = webAPI.headers
-        
-        let encodingRequest = try? URLEncoding.default.encode(request, with: webAPI.parameters)
-        
-        webView.customUserAgent = "IBILLING_IOS_NETHELPER_APP"
-        
-        webView.load(encodingRequest!)
+        return reachable(url: baseURL).flatMapLatest {
+            if ($0) {
+                IBLAPITarget.setBaseURL(URL: "http://\(self.school!.serverInner!)")
+            }else {
+                IBLAPITarget.setBaseURL(URL: "http://\(self.school!.serverOut!)")
+            }
+            
+            let requestURL = self.url(for: webAPI)
+            
+            var request = URLRequest(url: requestURL)
+            
+            request.httpMethod = webAPI.method.rawValue
+            
+            request.allHTTPHeaderFields = webAPI.headers
+            
+            let encodingRequest = try? URLEncoding.default.encode(request, with: webAPI.parameters)
+            
+            self.webView.customUserAgent = "IBILLING_IOS_NETHELPER_APP"
+            
+            self.webView.load(encodingRequest!)
+            
+            return Driver.just(true)
+        }
     }
     
     
