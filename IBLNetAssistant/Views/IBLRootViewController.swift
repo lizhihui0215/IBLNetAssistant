@@ -20,15 +20,12 @@ class IBLRootViewController: PFSViewController, IBLRootAction {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        let cahcedSchool: Driver<Result<IBLSchool, MoyaError>> = self.viewModel.cachedSchool()
+        guard self.viewModel.cachedSchool() != nil else {
+            self.performSegue(withIdentifier: "toSchool", sender: nil)
+            return
+        }
         
-        cahcedSchool.drive(onNext: {
-            guard let _ = try? $0.dematerialize() else {
-                self.performSegue(withIdentifier: "toSchool", sender: nil)
-                return
-            }
-            self.performSegue(withIdentifier: "toLogin", sender: nil)
-        }).disposed(by: disposeBag)
+        self.performSegue(withIdentifier: "toLogin", sender: nil)
     }
     
     override func didReceiveMemoryWarning() {

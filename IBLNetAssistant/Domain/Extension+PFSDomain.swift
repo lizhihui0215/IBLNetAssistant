@@ -29,4 +29,8 @@ extension PFSDomain {
         return IBLDataRepository.shared.cache(key: "account")
     }
     
+    static func  cachedSchool() -> IBLSchool? {
+        return IBLDataRepository.shared.cachedSchool()
+    }
+    
 }

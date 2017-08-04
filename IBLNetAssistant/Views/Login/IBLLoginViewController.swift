@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import PCCWFoundationSwift
 
-class IBLLoginViewController: PFSViewController, IBLLoginAction {
+class IBLLoginViewController: PFSViewController, IBLLoginAction, UINavigationControllerDelegate {
     
     var viewModel: IBLLoginViewModel?
     
@@ -20,6 +20,7 @@ class IBLLoginViewController: PFSViewController, IBLLoginAction {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var accountTextField: UITextField!
     
+    @IBOutlet weak var stackView: UIStackView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,8 +35,19 @@ class IBLLoginViewController: PFSViewController, IBLLoginAction {
             }
         }) .disposed(by: disposeBag)
         
-        self.navigationController?.isNavigationBarHidden = true
+        
+        self.navigationController?.delegate = self
+
+        if (self.viewModel?.school.supportRegister == "1") {
+            let spetorView = self.stackView.arrangedSubviews[3]
+            let registerButton = self.stackView.arrangedSubviews[4]
+            self.stackView.removeArrangedSubview(spetorView)
+            self.stackView.removeArrangedSubview(registerButton)
+            
+        }
     }
+    
+    
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         self.viewModel!.sigin(account: self.accountTextField.text!,
@@ -48,6 +60,7 @@ class IBLLoginViewController: PFSViewController, IBLLoginAction {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     @IBAction func registerButtonTapped(_ sender: UIButton) {
@@ -62,9 +75,27 @@ class IBLLoginViewController: PFSViewController, IBLLoginAction {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
     
+//    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+//        if let _ = viewController as? IBLLoginViewController {
+//            navigationController.isNavigationBarHidden = true
+//        } else {
+//            navigationController.isNavigationBarHidden = false
+//        }
+//    }
+//
+//    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+//        if let _ = viewController as? IBLLoginViewController {
+//            navigationController.isNavigationBarHidden = true
+//        } else {
+//            navigationController.isNavigationBarHidden = false
+//        }
+//    }
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

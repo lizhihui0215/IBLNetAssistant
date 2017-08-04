@@ -91,7 +91,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Fv0-hl-mVQ"/>
                                 </constraints>
-                                <state key="normal" title="登  陆">
+                                <state key="normal" title="登  录">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -187,6 +187,14 @@
                                     <constraint firstAttribute="height" constant="30" id="zph-d4-4Ei"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qps-B7-fig">
+                                <rect key="frame" x="267" y="545" width="37" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <state key="normal" title="设置" image="icon-设置"/>
+                                <connections>
+                                    <segue destination="eo9-Jg-eLn" kind="show" id="JRz-bF-1uF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
@@ -194,6 +202,7 @@
                             <constraint firstItem="l7f-3o-Nb0" firstAttribute="top" secondItem="iwo-SA-JmU" secondAttribute="bottom" id="BL0-Vg-im2"/>
                             <constraint firstItem="yJq-iK-cEt" firstAttribute="top" secondItem="7Ss-If-T4z" secondAttribute="bottom" constant="30" id="ELP-Pi-abr"/>
                             <constraint firstItem="7Ss-If-T4z" firstAttribute="centerX" secondItem="xqa-5s-IwT" secondAttribute="centerX" id="EW7-B8-G08"/>
+                            <constraint firstItem="l7f-3o-Nb0" firstAttribute="top" secondItem="Qps-B7-fig" secondAttribute="bottom" constant="8" id="Mvf-Al-SOZ"/>
                             <constraint firstItem="iwo-SA-JmU" firstAttribute="top" secondItem="xqa-5s-IwT" secondAttribute="top" id="PLG-b2-jSe"/>
                             <constraint firstItem="2C9-He-T83" firstAttribute="centerX" secondItem="xqa-5s-IwT" secondAttribute="centerX" id="VxJ-w2-BQB"/>
                             <constraint firstItem="Rc6-ub-YY4" firstAttribute="centerX" secondItem="xqa-5s-IwT" secondAttribute="centerX" id="XP6-kT-KdS"/>
@@ -203,6 +212,7 @@
                             <constraint firstItem="7Ss-If-T4z" firstAttribute="top" secondItem="Hq0-Tv-W5O" secondAttribute="bottom" constant="50" id="gnI-7l-fnY"/>
                             <constraint firstItem="yJq-iK-cEt" firstAttribute="centerX" secondItem="xqa-5s-IwT" secondAttribute="centerX" id="npe-bj-tYl"/>
                             <constraint firstItem="Rc6-ub-YY4" firstAttribute="top" secondItem="2C9-He-T83" secondAttribute="bottom" constant="20" id="tjQ-f9-Tbk"/>
+                            <constraint firstAttribute="trailing" secondItem="Qps-B7-fig" secondAttribute="trailing" constant="16" id="uev-Vw-ONb"/>
                             <constraint firstAttribute="trailing" secondItem="iwo-SA-JmU" secondAttribute="trailing" id="xJW-yk-Xna"/>
                             <constraint firstItem="iwo-SA-JmU" firstAttribute="leading" secondItem="xqa-5s-IwT" secondAttribute="leading" id="zzS-SI-Hhy"/>
                         </constraints>
@@ -212,8 +222,10 @@
                         <outlet property="accountTextField" destination="3D4-j3-Irq" id="N8y-lH-2J9"/>
                         <outlet property="aotoCheckbox" destination="dsg-dy-MdL" id="kZr-ap-Gaa"/>
                         <outlet property="passwordTextField" destination="DxX-YT-uuU" id="qmt-P6-ZlA"/>
+                        <outlet property="stackView" destination="2C9-He-T83" id="E8c-F5-29x"/>
                         <segue destination="PX5-Zh-p91" kind="custom" identifier="toMain" customClass="PFSExchageRootSegue" customModule="PCCWFoundationSwift" id="KhB-OV-xaL"/>
                         <segue destination="ENf-hg-E2Y" kind="show" identifier="toForgetPassword" id="pFr-Be-gWr"/>
+                        <segue destination="83j-cl-n7T" kind="show" identifier="toRegister" id="ZSK-u0-KBf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xIn-6v-UED" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -428,6 +440,24 @@
             </objects>
             <point key="canvasLocation" x="2561.25" y="839.78873239436621"/>
         </scene>
+        <!--Register View Controller-->
+        <scene sceneID="6kO-dF-vxd">
+            <objects>
+                <viewController id="83j-cl-n7T" customClass="IBLRegisterViewController" customModule="IBLNetAssistant" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bsJ-AH-Sen"/>
+                        <viewControllerLayoutGuide type="bottom" id="I5S-fd-aSH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="i67-jx-9rJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U9v-kq-xAE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3748" y="-587"/>
+        </scene>
         <!--主页-->
         <scene sceneID="ea2-Rf-DWg">
             <objects>
@@ -479,11 +509,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Oiy-6j-3oe"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="veF-ZO-lSB">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gmM-Nm-huT">
-                                <rect key="frame" x="0.0" y="20" width="320" height="120"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="120"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qhn-rx-FRg">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
@@ -602,6 +632,7 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="设置" image="setting-normal" selectedImage="setting-active" id="0UX-K1-9zQ"/>
+                    <navigationItem key="navigationItem" title="设置" id="qB2-oM-6d8"/>
                     <connections>
                         <outlet property="loginSwitch" destination="faF-8Z-iPc" id="tyJ-5f-40R"/>
                         <outlet property="schoolTextField" destination="Z5q-lM-Xo1" id="I2i-eM-eOk"/>
@@ -794,6 +825,7 @@
         <image name="home-normal" width="25" height="25"/>
         <image name="icon-applogo" width="121" height="39"/>
         <image name="icon-切换校园" width="9" height="21"/>
+        <image name="icon-设置" width="14" height="15"/>
         <image name="login-bg" width="375" height="667"/>
         <image name="message-active" width="25" height="25"/>
         <image name="message-normal" width="25" height="25"/>
@@ -801,6 +833,7 @@
         <image name="setting-normal" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="85y-id-thp"/>
+        <segue reference="LOE-Rn-00K"/>
+        <segue reference="JRz-bF-1uF"/>
     </inferredMetricsTieBreakers>
 </document>

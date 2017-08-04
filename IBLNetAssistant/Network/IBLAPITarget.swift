@@ -10,6 +10,9 @@ import UIKit
 import PCCWFoundationSwift
 import Moya
 import CryptoSwift
+import Alamofire
+import RxSwift
+import RxCocoa
 
 private var APIBaseURL = ""
 
@@ -28,6 +31,7 @@ enum IBLAPITarget: PFSTargetType {
     case portal(String)
     case portalAuth(String, String, [String : Any])
     case web([String : Any])
+    case registerAccount
     case logout(String, [String : Any])
     case sms(String, String)
     case exchangePassword(String, String, String, String)
@@ -111,6 +115,9 @@ enum IBLAPITarget: PFSTargetType {
         case let .exchangePassword(account, phone, sms, password):
             let param = ["account" : account, "mobile" : phone, "vcode" : sms, "password" : password]
             parameters = sign(parameters: param)
+        case let .registerAccount:
+            let param = ["clientType" : "0"]
+            parameters = sign(parameters: param)
         default:break
         }
         
@@ -143,6 +150,8 @@ enum IBLAPITarget: PFSTargetType {
             path = "nodeibilling/httpservices/user/getSmsCode.do"
         case .exchangePassword:
             path = "nodeibilling/httpservices/user/smsModifyPwd.do"
+        case .registerAccount:
+            path = "ibillingportal/userservice/regAccount.do"
         default:break
         }
         
@@ -166,12 +175,30 @@ enum IBLAPITarget: PFSTargetType {
     
     var method: Moya.Method {
         switch self {
-        case .web(_):
+        case .web(_): fallthrough
+        case .registerAccount:
             return .get
         default:
             return .post
         }
     }
-
-
 }
+
+public func reachable(url: String) -> Driver<Bool> {
+    let reachable = PublishSubject<Bool>()
+    
+    do {
+        var request = try URLRequest(url: URL(string: url)!, method: .head, headers: nil)
+        request.timeoutInterval = 5
+        Alamofire.request(request).responseString {
+            response in
+            reachable.onNext(response.error == nil)
+        }
+    } catch {
+        reachable.onNext(false)
+    }
+    
+    return reachable.asObservable().asDriver(onErrorJustReturn: false)
+}
+
+

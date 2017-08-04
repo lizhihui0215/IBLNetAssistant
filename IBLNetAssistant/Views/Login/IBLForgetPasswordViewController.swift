@@ -22,9 +22,7 @@ class IBLForgetPasswordViewController: PFSViewController, IBLForgetPasswordActio
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        self.navigationController?.isNavigationBarHidden = false
-        
+        // Do any additional setup after loading the view.        
         (self.accountTextField.rx.textInput <-> (self.viewModel?.account)!).disposed(by: disposeBag)
         
         self.phoneTextField.keyboardType = .phonePad
@@ -34,6 +32,11 @@ class IBLForgetPasswordViewController: PFSViewController, IBLForgetPasswordActio
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     @IBAction func sendSMSButtonPressed(_ sender: UIButton) {
@@ -59,9 +62,7 @@ class IBLForgetPasswordViewController: PFSViewController, IBLForgetPasswordActio
             exchangePasswordController.viewModel = IBLExchangePasswordViewModel(action: exchangePasswordController,
                     domain: IBLExchangePasswordDomain(),
                     account: self.accountTextField.text!,
-                    phone: self.phoneTextField.text!)
-            
-            self.navigationController?.isNavigationBarHidden = true            
+                    phone: self.phoneTextField.text!)            
         }
     }
     

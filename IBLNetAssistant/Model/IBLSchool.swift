@@ -21,6 +21,8 @@ class IBLSchool: PFSModel {
     dynamic var serverInner : String?
     dynamic var serverOut : String?
     dynamic var selected : Bool = false
+
+    dynamic var supportRegister = ""
     
     required convenience init?(map: Map) {
         self.init()
@@ -34,6 +36,7 @@ class IBLSchool: PFSModel {
         serverInner <- map["server_inner"]
         serverOut <- map["server_out"]
         selected <- map["selected"]
+        supportRegister <- map["support_register"]
     }
     
 }

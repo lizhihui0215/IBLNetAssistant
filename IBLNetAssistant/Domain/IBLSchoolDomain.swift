@@ -16,8 +16,6 @@ import Moya
 
 class IBLSchoolDomain: PFSDomain {
 
-
-
     override init() {
         super.init()
     }
@@ -29,6 +27,7 @@ class IBLSchoolDomain: PFSDomain {
     }
 
     func cache(school: IBLSchool) -> Driver<Result<IBLSchool, MoyaError>> {
+        try? PFSRealm.shared.clean()
         return Driver.just(PFSRealm.shared.save(obj: school))
     }
 }

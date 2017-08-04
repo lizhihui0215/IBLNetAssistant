@@ -8,6 +8,7 @@
 import MapKit
 import RxCocoa
 import RxSwift
+import Moya
 
 public typealias AMSearchCompletionHandler = ([AMapPOI]) -> Void
 
@@ -59,6 +60,14 @@ open class PFSLocationManager: NSObject, AMapSearchDelegate, AMapLocationManager
 //            }
 //        }
 //    }
+    
+//    - (void)amapLocationManager:(AMapLocationManager *)manager didFailWithError:(NSError *)error;
+    
+    public func amapLocationManager(_ manager: AMapLocationManager!, didFailWithError error: Swift.Error!) {
+        self.location.onError(MoyaError.underlying(error))
+        self.location.onCompleted()
+    }
+
     
     open func amapLocationManager(_ manager: AMapLocationManager!, didUpdate location: CLLocation!) {
         if let locationCompletionHandler = self.locationCompletionHandler {

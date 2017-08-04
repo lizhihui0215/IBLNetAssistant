@@ -17,12 +17,8 @@ class IBLRootViewModel: PFSViewModel<IBLRootViewController, IBLRootDomain> {
 
     var school: IBLSchool?
     
-    func cachedSchool() -> Driver<Result<IBLSchool, MoyaError>> {
-        
-        let cachedSchool = self.domain.cachedSchool()
-        
-        return cachedSchool.do(onNext: {[weak self] school in
-            self?.school = try? school.dematerialize()
-        })
+    func cachedSchool() -> IBLSchool? {
+        self.school = PFSDomain.cachedSchool()
+        return self.school
     }
 }

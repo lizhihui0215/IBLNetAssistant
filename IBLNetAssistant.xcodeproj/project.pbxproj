@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		239D0E76615B9A6EA9BEEDDC /* Pods_IBLNetAssistant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 798540E67217C4FB7768D696 /* Pods_IBLNetAssistant.framework */; };
 		260000321F321A3000FB8E26 /* PFSLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260000311F321A3000FB8E26 /* PFSLocationManager.swift */; };
+		260000361F33510E00FB8E26 /* IBLRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260000351F33510A00FB8E26 /* IBLRegisterViewController.swift */; };
 		2606F2FF1F1FB216002477E2 /* Extension+PFSDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2606F2FE1F1FB216002477E2 /* Extension+PFSDomain.swift */; };
 		2624C7811F279D3200EFFF1C /* IBLMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2624C7801F279D3200EFFF1C /* IBLMessageViewController.swift */; };
 		2624C7831F279D3C00EFFF1C /* IBLSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2624C7821F279D3C00EFFF1C /* IBLSettingViewController.swift */; };
@@ -21,6 +22,7 @@
 		263019F91EE53AA80002061E /* IBLLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263019F81EE53AA80002061E /* IBLLoginViewController.swift */; };
 		263019FB1EE53ADB0002061E /* IBLLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263019FA1EE53ADB0002061E /* IBLLoginViewModel.swift */; };
 		263019FF1EE5474F0002061E /* IBLAPITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263019FE1EE5474F0002061E /* IBLAPITarget.swift */; };
+		263029B31F3352A3005AE238 /* IBLRegisterDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263029B21F3352A3005AE238 /* IBLRegisterDomain.swift */; };
 		263477F31F091B1E0074D89C /* IBLTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263477F21F091B1E0074D89C /* IBLTabBarController.swift */; };
 		263477FA1F092C0E0074D89C /* Backup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 263477F81F092C0E0074D89C /* Backup.storyboard */; };
 		263F98441F30CFEA00906749 /* IBLExchangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263F98431F30CFEA00906749 /* IBLExchangePasswordViewModel.swift */; };
@@ -70,6 +72,7 @@
 		1BBF0AF86C69FD1FB6AEE6D0 /* Pods-IBLNetAssistantUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IBLNetAssistantUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IBLNetAssistantUITests/Pods-IBLNetAssistantUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		260000311F321A3000FB8E26 /* PFSLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFSLocationManager.swift; sourceTree = "<group>"; };
 		260000331F321A9700FB8E26 /* IBLNetAssistant-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IBLNetAssistant-Bridging-Header.h"; sourceTree = "<group>"; };
+		260000351F33510A00FB8E26 /* IBLRegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLRegisterViewController.swift; sourceTree = "<group>"; };
 		2606F2FE1F1FB216002477E2 /* Extension+PFSDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+PFSDomain.swift"; sourceTree = "<group>"; };
 		2624C7801F279D3200EFFF1C /* IBLMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLMessageViewController.swift; sourceTree = "<group>"; };
 		2624C7821F279D3C00EFFF1C /* IBLSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLSettingViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +85,7 @@
 		263019F81EE53AA80002061E /* IBLLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLLoginViewController.swift; sourceTree = "<group>"; };
 		263019FA1EE53ADB0002061E /* IBLLoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLLoginViewModel.swift; sourceTree = "<group>"; };
 		263019FE1EE5474F0002061E /* IBLAPITarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLAPITarget.swift; sourceTree = "<group>"; };
+		263029B21F3352A3005AE238 /* IBLRegisterDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLRegisterDomain.swift; sourceTree = "<group>"; };
 		263477F21F091B1E0074D89C /* IBLTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLTabBarController.swift; sourceTree = "<group>"; };
 		263477F91F092C0E0074D89C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Backup.storyboard; sourceTree = "<group>"; };
 		263F98431F30CFEA00906749 /* IBLExchangePasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLExchangePasswordViewModel.swift; sourceTree = "<group>"; };
@@ -303,6 +307,7 @@
 				263019F81EE53AA80002061E /* IBLLoginViewController.swift */,
 				2627BB1D1F2F7B26007EA719 /* IBLForgetPasswordViewController.swift */,
 				2627BB211F2F857D007EA719 /* IBLExchagePasswordViewController.swift */,
+				260000351F33510A00FB8E26 /* IBLRegisterViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -329,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				26FE237A1F16289B007A53DF /* IBLSchoolDomain.swift */,
+				263029B21F3352A3005AE238 /* IBLRegisterDomain.swift */,
 				26FE237E1F162F10007A53DF /* IBLLoginDomain.swift */,
 				26D8ACF71F1B6CEB00C2AC8F /* IBLRootDomain.swift */,
 				2624C7861F27AABA00EFFF1C /* IBLWebDomain.swift */,
@@ -670,6 +676,7 @@
 				26FE237B1F16289B007A53DF /* IBLSchoolDomain.swift in Sources */,
 				26FE237D1F16295F007A53DF /* IBLSchool.swift in Sources */,
 				263019F91EE53AA80002061E /* IBLLoginViewController.swift in Sources */,
+				263029B31F3352A3005AE238 /* IBLRegisterDomain.swift in Sources */,
 				260000321F321A3000FB8E26 /* PFSLocationManager.swift in Sources */,
 				26BDD0C71F2A3EC600125CDA /* IBLSettingViewModel.swift in Sources */,
 				26F9497E1EDE935900E81192 /* IBLAppDelegate.swift in Sources */,
@@ -686,6 +693,7 @@
 				263F98461F30D02F00906749 /* IBLExchangePasswordDomain.swift in Sources */,
 				26FE237F1F162F10007A53DF /* IBLLoginDomain.swift in Sources */,
 				2624C7891F27ADA400EFFF1C /* IBLMainDomain.swift in Sources */,
+				260000361F33510E00FB8E26 /* IBLRegisterViewController.swift in Sources */,
 				26FE23791F1627BE007A53DF /* IBLSchoolViewModel.swift in Sources */,
 				263019FB1EE53ADB0002061E /* IBLLoginViewModel.swift in Sources */,
 				26258CE31F1514CA00FA318F /* IBLSchoolViewController.swift in Sources */,

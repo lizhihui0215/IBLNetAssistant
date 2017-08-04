@@ -84,151 +84,148 @@ class IBLDataRepository: PFSDataRepository {
     }
 
     func logout(_ account: String, auth: PortalAuth) -> Driver<Result<String, MoyaError>> {
-        let result: Observable<PFSResponseNil> = PFSNetworkService<IBLAPITarget>.shared.request(.logout(account,auth.toJSONRealm()!))
+        
+        let authJSON = Dictionary<String, Any>.toJSON(JSONObject: auth.JSON!)
+
+        
+        let result: Observable<PFSResponseNil> = PFSNetworkService<IBLAPITarget>.shared.request(.logout(account,authJSON ?? [:]))
 
         return self.handlerError(response: result)
     }
 
-    func cachedSchool() -> Driver<Result<IBLSchool, MoyaError>> {
-        return Driver.just(Result{
-            guard let cachedSchool: IBLSchool = PFSRealm.shared.object() else {
-                throw error(message: "无缓存学校！")
-            }
-
-            return cachedSchool
-        })
+    func cachedSchool() -> IBLSchool? {
+        guard let cachedSchool: IBLSchool = PFSRealm.shared.object() else {
+            return  nil
+        }
+        
+        return cachedSchool
     }
 
     func portalAuth(account: String, password: String, _ auth: [String: Any]) -> Driver<Result<IBLUser, MoyaError>> {
-        return self.request(.portalAuth(account, password, auth))
+        let result: Observable<PFSResponseMappableObject<IBLUser>> = PFSNetworkService<IBLAPITarget>.shared.request(.portalAuth(account, password, auth))
+
+        
+        return self.handlerError(response: result)
     }
 
     public func request<T>(_ token: IBLAPITarget) -> Driver<Result<T, MoyaError>> {
-        let networkReachabilityManager = NetworkReachabilityManager()!
+        let baseURL = "http://\(self.school.serverInner!)"
         
-        let result: Observable<PFSResponseObject<T>> = PFSNetworkService<IBLAPITarget>.shared.request(token)
-        
-        if !networkReachabilityManager.isReachable {
-            return Driver.just(Result<T, MoyaError>(error: error(message: "无网络链接")))
-        }else if networkReachabilityManager.isReachableOnEthernetOrWiFi {
-            IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverInner!)")
-            
-            return self.handlerError(response: result).flatMapLatest{  result -> Driver<Result<T, MoyaError>> in
-                guard (try? result.dematerialize()) != nil else {
-                    IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverOut!)")
-                    let result: Observable<PFSResponseObject<T>> = PFSNetworkService<IBLAPITarget>.shared.request(token)
-                    
-                    return self.handlerError(response: result)
-                }
-                return Driver.just(result)
+        return reachable(url: baseURL).flatMapLatest {
+            if ($0) {
+                IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverInner!)")
+            }else {
+                IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverOut!)")
+                
             }
-
-        }else {
-            IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverOut!)")
+            
+            let result: Observable<PFSResponseObject<T>> = PFSNetworkService<IBLAPITarget>.shared.request(token)
+            
             return self.handlerError(response: result)
         }
     }
 
     public func request<T: Mappable>(_ token: IBLAPITarget) -> Driver<Result<[T], MoyaError>> {
-        let networkReachabilityManager = NetworkReachabilityManager()!
-        
-        let result: Observable<PFSResponseMappableArray<T>> = PFSNetworkService<IBLAPITarget>.shared.request(token)
-        
-        if !networkReachabilityManager.isReachable {
-            return Driver.just(Result<[T], MoyaError>(error: error(message: "无网络链接")))
-        }else if networkReachabilityManager.isReachableOnEthernetOrWiFi {
-            IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverInner!)")
-            
-            return self.handlerError(response: result).flatMapLatest{  result -> Driver<Result<[T], MoyaError>> in
-                guard (try? result.dematerialize()) != nil else {
-                    IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverOut!)")
-                    let result: Observable<PFSResponseMappableArray<T>> = PFSNetworkService<IBLAPITarget>.shared.request(token)
-                    
-                    return self.handlerError(response: result)
-                }
-                return Driver.just(result)
+        let baseURL = "http://\(self.school.serverInner!)"
+
+        return reachable(url: baseURL).flatMapLatest {
+            if ($0) {
+                IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverInner!)")
+            }else {
+                IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverOut!)")
+                
             }
             
-        }else {
-            IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverOut!)")
+            let result: Observable<PFSResponseMappableArray<T>> = PFSNetworkService<IBLAPITarget>.shared.request(token)
+            
             return self.handlerError(response: result)
         }
     }
 
 
     public func request<T>(_ token: IBLAPITarget) -> Driver<Result<[T], MoyaError>> {
-        let networkReachabilityManager = NetworkReachabilityManager()!
-        
-        let result: Observable<PFSResponseArray<T>> = PFSNetworkService<IBLAPITarget>.shared.request(token)
-        
-        if !networkReachabilityManager.isReachable {
-            return Driver.just(Result<[T], MoyaError>(error: error(message: "无网络链接")))
-        }else if networkReachabilityManager.isReachableOnEthernetOrWiFi {
-            IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverInner!)")
-            
-            return self.handlerError(response: result).flatMapLatest{  result -> Driver<Result<[T], MoyaError>> in
-                guard (try? result.dematerialize()) != nil else {
-                    IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverOut!)")
-                    let result: Observable<PFSResponseArray<T>> = PFSNetworkService<IBLAPITarget>.shared.request(token)
-                    
-                    return self.handlerError(response: result)
-                }
-                return Driver.just(result)
+        let baseURL = "http://\(self.school.serverInner!)"
+
+        return reachable(url: baseURL).flatMapLatest {
+            if ($0) {
+                IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverInner!)")
+            }else {
+                IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverOut!)")
+                
             }
             
-        }else {
-            IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverOut!)")
+            let result: Observable<PFSResponseArray<T>> = PFSNetworkService<IBLAPITarget>.shared.request(token)
+            
             return self.handlerError(response: result)
         }
-    }
 
+//        let networkReachabilityManager = NetworkReachabilityManager()!
+//        
+//        let result: Observable<PFSResponseArray<T>> = PFSNetworkService<IBLAPITarget>.shared.request(token)
+//        
+//        if !networkReachabilityManager.isReachable {
+//            return Driver.just(Result<[T], MoyaError>(error: error(message: "无网络链接")))
+//        }else if networkReachabilityManager.isReachableOnEthernetOrWiFi {
+//            IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverInner!)")
+//            
+//            return self.handlerError(response: result).flatMapLatest{  result -> Driver<Result<[T], MoyaError>> in
+//                do {
+//                    let _ = try result.dematerialize()
+//                } catch  {
+//                    switch error {
+//                    case MoyaError.underlying:
+//                        guard let cerror = error as? NSError,cerror.domain == NSURLErrorDomain, cerror.code == -1004  else {
+//                            return Driver.just(result)
+//                        }
+//                        
+//                        IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverOut!)")
+//                        let result: Observable<PFSResponseArray<T>> = PFSNetworkService<IBLAPITarget>.shared.request(token)
+//                        
+//                        return self.handlerError(response: result)
+//                    default:
+//                        return Driver.just(result)
+//                    }
+//                }
+//                return Driver.just(result)
+//            }
+//            
+//        }else {
+//            IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverOut!)")
+//            return self.handlerError(response: result)
+//        }
+    }
+    
     public func request<T: Mappable>(_ token: IBLAPITarget) -> Driver<Result<T, MoyaError>> {
-        let networkReachabilityManager = NetworkReachabilityManager()!
         
-        let result: Observable<PFSResponseMappableObject<T>> = PFSNetworkService<IBLAPITarget>.shared.request(token)
+        let baseURL = "http://\(self.school.serverInner!)"
         
-        if !networkReachabilityManager.isReachable {
-            return Driver.just(Result<T, MoyaError>(error: error(message: "无网络链接")))
-        }else if networkReachabilityManager.isReachableOnEthernetOrWiFi {
-            IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverInner!)")
-            
-            return self.handlerError(response: result).flatMapLatest{  result -> Driver<Result<T, MoyaError>> in
-                guard (try? result.dematerialize()) != nil else {
-                    IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverOut!)")
-                    let result: Observable<PFSResponseMappableObject<T>> = PFSNetworkService<IBLAPITarget>.shared.request(token)
-                    
-                    return self.handlerError(response: result)
-                }
-                return Driver.just(result)
+        return reachable(url: baseURL).flatMapLatest {
+            if ($0) {
+                IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverInner!)")
+            }else {
+                IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverOut!)")
+
             }
             
-        }else {
-            IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverOut!)")
+            let result: Observable<PFSResponseMappableObject<T>> = PFSNetworkService<IBLAPITarget>.shared.request(token)
+
             return self.handlerError(response: result)
         }
     }
 
     public func request(_ token: IBLAPITarget) -> Driver<Result<String, MoyaError>> {
-        let networkReachabilityManager = NetworkReachabilityManager()!
+        let baseURL = "http://\(self.school.serverInner!)"
         
-        let result: Observable<PFSResponseNil> = PFSNetworkService<IBLAPITarget>.shared.request(token)
-        
-        if !networkReachabilityManager.isReachable {
-            return Driver.just(Result<String, MoyaError>(error: error(message: "无网络链接")))
-        }else if networkReachabilityManager.isReachableOnEthernetOrWiFi {
-            IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverInner!)")
-            
-            return self.handlerError(response: result).flatMapLatest{  result -> Driver<Result<String, MoyaError>> in
-                guard (try? result.dematerialize()) != nil else {
-                    IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverOut!)")
-                    let result: Observable<PFSResponseNil> = PFSNetworkService<IBLAPITarget>.shared.request(token)
-                    
-                    return self.handlerError(response: result)
-                }
-                return Driver.just(result)
+        return reachable(url: baseURL).flatMapLatest {
+            if ($0) {
+                IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverInner!)")
+            }else {
+                IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverOut!)")
+                
             }
-        }else {
-            IBLAPITarget.setBaseURL(URL: "http://\(self.school.serverOut!)")
+            
+            let result: Observable<PFSResponseNil> = PFSNetworkService<IBLAPITarget>.shared.request(token)
+            
             return self.handlerError(response: result)
         }
     }
@@ -243,3 +240,63 @@ class IBLDataRepository: PFSDataRepository {
         })
     }
 }
+
+func test (){
+       //1.建立连接
+    
+//         NSString *host =@"127.0.0.1";
+//    
+//         intport =12345;
+//    
+//         //定义C语言输入输出流
+//    
+//         CFReadStreamRef readStream;
+//    
+//         CFWriteStreamRef writeStream;
+//    
+//         CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef)host, port, &readStream, &writeStream);
+    
+
+    
+    
+
+}
+
+//- (void)test
+//    {
+//        NSString * host =@"123.33.33.1";
+//        NSNumber * port = @1233;
+//        
+//        // 创建 socket
+//        int socketFileDescriptor = socket(AF_INET, SOCK_STREAM, 0);
+//        if (-1 == socketFileDescriptor) {
+//            NSLog(@"创建失败");
+//            return;
+//        }
+//        
+//        // 获取 IP 地址
+//        struct hostent * remoteHostEnt = gethostbyname([host UTF8String]);
+//        if (NULL == remoteHostEnt) {
+//            close(socketFileDescriptor);
+//            NSLog(@"%@",@"无法解析服务器的主机名");
+//            return;
+//        }
+//        
+//        struct in_addr * remoteInAddr = (struct in_addr *)remoteHostEnt->h_addr_list[0];
+//        
+//        // 设置 socket 参数
+//        struct sockaddr_in socketParameters;
+//        socketParameters.sin_family = AF_INET;
+//        socketParameters.sin_addr = *remoteInAddr;
+//        socketParameters.sin_port = htons([port intValue]);
+//        
+//        // 连接 socket
+//        int ret = connect(socketFileDescriptor, (struct sockaddr *) &socketParameters, sizeof(socketParameters));
+//        if (-1 == ret) {
+//            close(socketFileDescriptor);
+//            NSLog(@"连接失败");
+//            return;
+//        }
+//        
+//        NSLog(@"连接成功");
+//}

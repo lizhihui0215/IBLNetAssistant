@@ -28,7 +28,7 @@ class IBLExchagePasswordViewController: PFSViewController, IBLExchangePasswordAc
     @IBAction func submitButtonTapped(_ sender: UIButton) {
         self.viewModel?.exchangePassword().drive(onNext: { success in
             if success {
-                self.navigationController?.popToRootViewController(animated: true)
+                self.navigationController?.popToRootViewController(animated: true)                
             }
         }).disposed(by: disposeBag)
     }

@@ -23,10 +23,19 @@ class IBLSettingViewController: PFSViewController, IBLSettingAction {
         // Do any additional setup after loading the view.
         self.viewModel = IBLSettingViewModel(action: self, domain: IBLSettingDomain())
         
+        self.loginSwitch.isEnabled = self.viewModel!.isEnableLoginSwitch()
+        
         (self.loginSwitch.rx.isOn <-> (self.viewModel?.isAutoLogin)!).disposed(by: disposeBag)
         (self.schoolTextField.rx.textInput <-> (self.viewModel?.schoolName)!).disposed(by: disposeBag)
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
+
     
     @IBAction func selectedSchoolTapped(_ sender: UITapGestureRecognizer) {
         self.viewModel?.fetchSchools().drive(onNext: {[weak self] result in
