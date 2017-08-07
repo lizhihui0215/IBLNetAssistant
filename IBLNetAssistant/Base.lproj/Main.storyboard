@@ -192,7 +192,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <state key="normal" title="设置" image="icon-设置"/>
                                 <connections>
-                                    <segue destination="eo9-Jg-eLn" kind="show" id="JRz-bF-1uF"/>
+                                    <segue destination="FS0-aA-pJh" kind="show" id="JRz-bF-1uF"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -245,7 +245,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Dwj-1x-jgd">
-                                <rect key="frame" x="10" y="84" width="300" height="117"/>
+                                <rect key="frame" x="10" y="40" width="300" height="117"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="通过手机号码找回密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhJ-3X-BKk">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="17"/>
@@ -276,7 +276,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F55-qS-vTK">
-                                <rect key="frame" x="10" y="221" width="300" height="35"/>
+                                <rect key="frame" x="10" y="177" width="300" height="35"/>
                                 <color key="backgroundColor" red="0.28306889533996582" green="0.56570243835449219" blue="0.88538080453872681" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="v1l-pE-DSi"/>
@@ -329,7 +329,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="EDp-ow-bnD">
-                                <rect key="frame" x="10" y="84" width="300" height="140"/>
+                                <rect key="frame" x="10" y="40" width="300" height="140"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7k0-n1-kCs">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="40"/>
@@ -397,7 +397,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WkP-r7-lpa">
-                                <rect key="frame" x="10" y="244" width="300" height="35"/>
+                                <rect key="frame" x="10" y="200" width="300" height="35"/>
                                 <color key="backgroundColor" red="0.28306889530000001" green="0.56570243840000001" blue="0.88538080450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="9ha-7F-OR5"/>
@@ -458,7 +458,7 @@
             </objects>
             <point key="canvasLocation" x="3748" y="-587"/>
         </scene>
-        <!--主页-->
+        <!--Web View Controller-->
         <scene sceneID="ea2-Rf-DWg">
             <objects>
                 <viewController id="swM-cS-Ifi" customClass="PFSWebViewController" customModule="IBLNetAssistant" customModuleProvider="target" sceneMemberID="viewController">
@@ -467,11 +467,10 @@
                         <viewControllerLayoutGuide type="bottom" id="OiY-F5-1nf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="CCV-ob-dIm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="主页" image="home-normal" selectedImage="home-active" id="8cy-AV-19k"/>
                     <navigationItem key="navigationItem" id="hWr-gE-qC5"/>
                     <connections>
                         <segue destination="WGZ-uH-Nlx" kind="custom" identifier="toLogin" customClass="PFSExchageRootSegue" customModule="PCCWFoundationSwift" id="CiB-7j-8pI"/>
@@ -479,9 +478,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XSy-6I-LRP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4657.5" y="-520.77464788732391"/>
+            <point key="canvasLocation" x="5655" y="-520.77464788732391"/>
         </scene>
-        <!--消息-->
+        <!--View Controller-->
         <scene sceneID="FLV-fu-D7X">
             <objects>
                 <viewController id="gXb-1p-RCz" sceneMemberID="viewController">
@@ -490,15 +489,15 @@
                         <viewControllerLayoutGuide type="bottom" id="xky-2o-ota"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="PI8-2s-KbC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="消息" image="message-normal" selectedImage="message-active" id="qOa-br-zZ6"/>
+                    <navigationItem key="navigationItem" id="2ol-u1-gBm"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bh1-9n-hxa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4657.5" y="146.83098591549296"/>
+            <point key="canvasLocation" x="5655" y="146.83098591549296"/>
         </scene>
         <!--设置-->
         <scene sceneID="TKq-Za-FYy">
@@ -513,7 +512,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gmM-Nm-huT">
-                                <rect key="frame" x="0.0" y="64" width="320" height="120"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="120"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qhn-rx-FRg">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
@@ -631,7 +630,6 @@
                             <constraint firstAttribute="trailing" secondItem="gmM-Nm-huT" secondAttribute="trailing" id="VT5-yy-5pN"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="设置" image="setting-normal" selectedImage="setting-active" id="0UX-K1-9zQ"/>
                     <navigationItem key="navigationItem" title="设置" id="qB2-oM-6d8"/>
                     <connections>
                         <outlet property="loginSwitch" destination="faF-8Z-iPc" id="tyJ-5f-40R"/>
@@ -646,7 +644,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3660" y="874.64788732394368"/>
+            <point key="canvasLocation" x="4657.5" y="874.64788732394368"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="7J8-mp-aJA">
@@ -660,9 +658,9 @@
                         <color key="barTintColor" red="0.18731150031089783" green="0.64673465490341187" blue="0.89220011234283447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="swM-cS-Ifi" kind="relationship" relationship="viewControllers" id="mzX-H6-HRf"/>
-                        <segue destination="gXb-1p-RCz" kind="relationship" relationship="viewControllers" id="HVI-tx-MBw"/>
-                        <segue destination="eo9-Jg-eLn" kind="relationship" relationship="viewControllers" id="hmF-8J-Dz0"/>
+                        <segue destination="fRm-tL-3kc" kind="relationship" relationship="viewControllers" id="mzX-H6-HRf"/>
+                        <segue destination="H8O-X0-Apc" kind="relationship" relationship="viewControllers" id="HVI-tx-MBw"/>
+                        <segue destination="FS0-aA-pJh" kind="relationship" relationship="viewControllers" id="hmF-8J-Dz0"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C2z-L9-QZr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -814,6 +812,63 @@
             </objects>
             <point key="canvasLocation" x="1906.875" y="119.36619718309859"/>
         </scene>
+        <!--消息-->
+        <scene sceneID="J1P-Ig-ACV">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="H8O-X0-Apc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="消息" image="message-normal" selectedImage="message-active" id="qOa-br-zZ6"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="71h-4l-jbY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="gXb-1p-RCz" kind="relationship" relationship="rootViewController" id="Lv1-E8-vsb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZV9-SM-5gf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4657.5" y="146.83098591549296"/>
+        </scene>
+        <!--设置-->
+        <scene sceneID="HCI-xH-D0P">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FS0-aA-pJh" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="设置" image="setting-normal" selectedImage="setting-active" id="0UX-K1-9zQ"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dWx-6L-QYf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eo9-Jg-eLn" kind="relationship" relationship="rootViewController" id="y2v-JK-yto"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QZt-mC-EzR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3660" y="874.64788732394368"/>
+        </scene>
+        <!--主页-->
+        <scene sceneID="n7d-Rd-EF6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fRm-tL-3kc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="主页" image="home-normal" selectedImage="home-active" id="8cy-AV-19k"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3g8-Uh-dsm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="swM-cS-Ifi" kind="relationship" relationship="rootViewController" id="tfF-02-GyZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Ys-Of-rFZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4657.5" y="-520.77464788732391"/>
+        </scene>
     </scenes>
     <resources>
         <image name="form-密码" width="290" height="46"/>
@@ -833,7 +888,7 @@
         <image name="setting-normal" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LOE-Rn-00K"/>
-        <segue reference="JRz-bF-1uF"/>
+        <segue reference="CiB-7j-8pI"/>
+        <segue reference="hmF-8J-Dz0"/>
     </inferredMetricsTieBreakers>
 </document>

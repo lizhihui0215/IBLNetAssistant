@@ -64,7 +64,7 @@ class IBLLoginViewController: PFSViewController, IBLLoginAction, UINavigationCon
     }
     
     @IBAction func registerButtonTapped(_ sender: UIButton) {
-        
+        self.performSegue(withIdentifier: "toRegister", sender: nil)
     }
 
     @IBAction func forgetPasswordTapped(_ sender: UIButton) {

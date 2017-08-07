@@ -42,7 +42,6 @@ class IBLRootViewController: PFSViewController, IBLRootAction {
         // Pass the selected object to the new view controller.
         if segue.identifier == "toLogin" {
             
-            
             let loginViewController = (segue.destination as! UINavigationController).topViewController  as! IBLLoginViewController
             
             loginViewController.viewModel = IBLLoginViewModel(action: loginViewController,

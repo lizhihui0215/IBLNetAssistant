@@ -68,8 +68,8 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
             (self.action?.alert(result: result))!
             }.flatMapLatest { result -> Driver<Result<PortalAuth, MoyaError>> in
                 
-//                return self.domain.portal(url: "http://115.28.0.62:8080/ibillingportal/ac.do")
-                return self.domain.portal(url: "http://www.baidu.com/")
+                return self.domain.portal(url: "http://115.28.0.62:8080/ibillingportal/ac.do")
+//                return self.domain.portal(url: "http://www.baidu.com/")
             }.flatMapLatest { result  in
                 
                 guard let value = try? result.dematerialize() else {
@@ -179,12 +179,12 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
             
             PFSDomain.login(user: user)
             
-            if !user.isLogin {
+            guard user.isAutoLogin, user.isLogin else {
                 return Driver.just(false)
             }
             
             if user.loginModel == "0" {
-                return Driver.just(user.isAutoLogin)
+                return Driver.just(true)
             }
             
             return self.portalSigin(account: user.account, password: user.password)

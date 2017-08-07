@@ -32,7 +32,6 @@ class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDelegat
         let webConfiguration = WKWebViewConfiguration()
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
         webView.uiDelegate = self
-        webView.navigationDelegate = self
         view = webView
     }
     
@@ -48,6 +47,9 @@ class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDelegat
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        self.navigationController?.isNavigationBarHidden = true
+
         guard let user = PFSDomain.login()  else {
             self.alert(message: "登陆用户为空！").drive().disposed(by: disposeBag)
             return
@@ -157,7 +159,7 @@ class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDelegat
     
     func logout()  {
         if self.user!.loginModel != "0" {
-            self.domain.logout(account: self.user!.account, auth: self.user!.auth!).drive().dispose()
+            self.domain.logout(account: self.user!.account, auth: self.user!.auth!).drive()
         }
         PFSRealm.shared.update(obj: PFSDomain.login()!, {
             $0.isLogin = false
