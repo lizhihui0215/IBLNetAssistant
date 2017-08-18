@@ -36,6 +36,12 @@ class IBLDataRepository: PFSDataRepository {
 
     private var _school: IBLSchool = IBLSchool()
 
+    func offline(kickurl: String, online: IBLOnline) -> Driver<Result<String, MoyaError>> {
+        let result: Observable<PFSResponseNil> = PFSNetworkService<IBLAPITarget>.shared.request(.offline(kickurl, online.account!, online.userip!))
+
+        return self.handlerError(response: result)
+    }
+
     var school: IBLSchool{
         get{
             guard _school.serverInner != nil else {

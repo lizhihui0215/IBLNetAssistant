@@ -56,6 +56,7 @@ PODS:
     - TZImagePickerController
     - UIColor_Hex_Swift
     - WebViewJavascriptBridge
+  - PopupDialog (0.5.4)
   - Realm (2.8.3):
     - Realm/Headers (= 2.8.3)
   - Realm/Headers (2.8.3)
@@ -82,6 +83,7 @@ DEPENDENCIES:
   - AMapLocation
   - AMapSearch
   - PCCWFoundationSwift
+  - PopupDialog
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
@@ -102,6 +104,7 @@ SPEC CHECKSUMS:
   ObjectMapper: 3d571bb5af471c779e1160828cd9ad5c4ef90958
   ObjectMapper+Realm: 98992926f775a4fdf1c025541b97c78119f15b8a
   PCCWFoundationSwift: 22d9860f5dc5e637e7ef1d3257b75c6b7affa3e0
+  PopupDialog: 75cf955693590b0cb2fdde00223fb65d99c57247
   Realm: 3601ef091c8c499a31101d8563b991e75546cdce
   RealmSwift: 8183818515471b01a99abdd2970f8e4fd52b6f4a
   Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
@@ -116,6 +119,6 @@ SPEC CHECKSUMS:
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
   WebViewJavascriptBridge: 791ee0e26d1bf15efe5fb7fb9666a71a19b89d77
 
-PODFILE CHECKSUM: 9b6c9d531e6f976f79b54a9e38b7afeb418cb131
+PODFILE CHECKSUM: 9716083ac9f91c191306596d2f6f6f7dca4de5bd
 
 COCOAPODS: 1.2.1

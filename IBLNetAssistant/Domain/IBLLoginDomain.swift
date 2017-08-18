@@ -32,6 +32,12 @@ class IBLLoginDomain: PFSDomain {
         return result
     }
 
+    func offline(kickurl: String, online: IBLOnline) -> Driver<Result<String, MoyaError>> {
+        let result: Driver<Result<String, MoyaError>>  = IBLDataRepository.shared.offline(kickurl: kickurl, online: online)
+
+        return result
+    }
+
     func register(account: String, school: IBLSchool) -> Driver<Result<String, MoyaError>> {
         
         if let _: Bool = IBLDataRepository.shared.cache(key: "register")  {

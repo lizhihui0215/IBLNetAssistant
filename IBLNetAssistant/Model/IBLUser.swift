@@ -31,8 +31,15 @@ public class IBLUser: PFSModel {
     
     dynamic var loginModel = ""
     
+    var onlineList: [IBLOnline]?
+    
+    
     required convenience public init?(map: Map) {
         self.init()
+    }
+    
+    override public static func ignoredProperties() -> [String] {
+        return ["onlineList"]
     }
     
     override public func mapping(map: Map) {
@@ -46,6 +53,7 @@ public class IBLUser: PFSModel {
         redirectUrl <- map["redirectUrl"]
         auth <- map["auth"]
         loginModel <- map["loginModel"]
+        onlineList <- map["onlineList"]
     }
 
     

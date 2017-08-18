@@ -57,7 +57,7 @@ class IBLSettingViewModel: PFSViewModel<IBLSettingViewController, IBLSettingDoma
         return self.locationManager.startUpdatingLocation().flatMapLatest {
             self.domain.fetchSchools(locationCoordinate2D: $0.coordinate)
             }.flatMapLatest {
-                return (self.action?.alert(result: $0))!
+                return (self.action?.toast(result: $0))!
             }.map {
                 
                 var result = [IBLSchoolSelection]()

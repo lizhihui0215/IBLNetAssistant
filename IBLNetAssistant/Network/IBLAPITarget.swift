@@ -35,6 +35,7 @@ enum IBLAPITarget: PFSTargetType {
     case logout(String, [String : Any])
     case sms(String, String)
     case exchangePassword(String, String, String, String)
+    case offline(String, String, String)
     
     public static func setBaseURL(URL: String) {
         APIBaseURL = URL
@@ -119,8 +120,12 @@ enum IBLAPITarget: PFSTargetType {
         case let .exchangePassword(account, phone, sms, password):
             let param = ["account" : account, "mobile" : phone, "vcode" : sms, "password" : password]
             parameters = sign(parameters: param)
-        case let .registerAccount:
+        case .registerAccount:
             let param = ["clientType" : "0"]
+            parameters = sign(parameters: param)
+        case let .offline(_, account, userip):
+            let param = ["account" : account,
+                         "userip" : userip]
             parameters = sign(parameters: param)
         default:break
         }
@@ -172,6 +177,8 @@ enum IBLAPITarget: PFSTargetType {
             return URL(string: auth["logouturl"] as! String)!
         case .school:
             return URL(string: "http://www.i-billing.com.cn:8081/ibillingplatform")!
+        case let .offline(kickurl, _, _):
+            return URL(string: kickurl)!
         default:
             return URL(string: APIBaseURL)!
         }

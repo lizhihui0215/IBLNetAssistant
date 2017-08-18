@@ -13,14 +13,22 @@ import Result
 import Moya
 import class Alamofire.NetworkReachabilityManager
 
-protocol IBLLoginAction: PFSViewAction {
-    
+public protocol IBLLoginAction: PFSViewAction {
+    func showPanel(user: IBLUser)
 }
 
 class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
     
     var school: IBLSchool
-    
+
+    func offline(kickurl: String, online: IBLOnline) -> Driver<Bool> {
+        return self.domain.offline(kickurl: kickurl, online: online).flatMapLatest{
+            return self.action!.toast(result: $0)
+        }.flatMapLatest{ _ in
+            return Driver.just(true)
+        }
+    }
+
     var account: Variable<String?>
     
     var auth: PortalAuth?
@@ -57,7 +65,7 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
         }
         
         return  validateResult.flatMapLatest {
-            return (self.action?.alert(result: $0))!
+            return (self.action?.toast(result: $0))!
             }.flatMapLatest { _ in
                 return sigin
         }
@@ -65,7 +73,7 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
     
     private func portalSigin(account: String, password: String) -> Driver<Bool> {
         return self.domain.register(account: account, school: self.school).flatMapLatest { result in
-            (self.action?.alert(result: result))!
+            (self.action?.toast(result: result))!
             }.flatMapLatest { result -> Driver<Result<PortalAuth, MoyaError>> in
                 
                 return self.domain.portal(url: "http://115.28.0.62:8080/ibillingportal/ac.do")
@@ -93,13 +101,30 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
                 
                 let portalAuth: Driver<Result<IBLUser, MoyaError>> = self.domain.portalAuth(account: account, password: password, auth: auth ?? [:])
                 return portalAuth
-            }.flatMapLatest { (c: Result<IBLUser, MoyaError>) in
-                guard (try? c.dematerialize()) != nil else {
+            }.flatMapLatest { (user: Result<IBLUser, MoyaError>) in
+                
+                do {
+                    let _ = try user.dematerialize()
+                } catch MoyaError.underlying(let aError) {
+                    guard let theError = aError as? NSError, theError.domain == PFSServerErrorDomain && theError.code == 808 else {
+                        return self.domain.auth(account: account, password: password)
+                    }
+                    
+                    let response = theError.userInfo["response"] as! PFSResponseMappableObject<IBLUser>
+                    
+//                    self.auth?.onlineList = (response.result?.onlineList)!
+                    let user = response.result!
+                    user.auth = self.auth
+                    
+                    self.action?.showPanel(user: user)
+                    
+//                    return Driver.never()
+                } catch {
                     return self.domain.auth(account: account, password: password)
                 }
-                return Driver.just(c)
+                return Driver.just(user)
             }.flatMapLatest {
-                return (self.action?.alert(result: $0))!
+                return (self.action?.toast(result: $0))!
             }.flatMapLatest {
                 return self.save(account: account, password: password, user: $0)
             }
@@ -109,11 +134,11 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
         let register: Driver<Result<String, MoyaError>> = self.domain.register(account: account, school: self.school)
         
         return register.flatMapLatest {
-            return (self.action?.alert(result: $0))!
+            return (self.action?.toast(result: $0))!
             }.flatMapLatest { _ in
                 return self.domain.auth(account: account, password: password)
             }.flatMapLatest {
-                return (self.action?.alert(result: $0))!
+                return (self.action?.toast(result: $0))!
             }.flatMapLatest {
                 return self.save(account: account, password: password, user: $0)
         }

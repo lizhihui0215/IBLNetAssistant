@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IBLOnlineTableViewController" customModule="IBLNetAssistant" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="tableViews" destination="hfy-68-5n8" collectionClass="NSMutableArray" id="L9S-5T-YiH"/>
+                <outletCollection property="tableViews" destination="hfy-68-5n8" collectionClass="NSMutableArray" id="VSZ-lk-pRc"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="311"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qaU-Ii-hYb">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您超出了最大在线数，请踢下线之后再登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n1X-db-1oa">
+                            <rect key="frame" x="20" y="12" width="271.5" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.5846203566" blue="0.93762737510000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="RkL-L1-btJ"/>
+                        <constraint firstItem="n1X-db-1oa" firstAttribute="centerY" secondItem="qaU-Ii-hYb" secondAttribute="centerY" id="t0d-VE-TLE"/>
+                        <constraint firstItem="n1X-db-1oa" firstAttribute="leading" secondItem="qaU-Ii-hYb" secondAttribute="leading" constant="20" id="yZW-nn-kgx"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hfy-68-5n8">
+                    <rect key="frame" x="0.0" y="40" width="375" height="271"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="271" id="rWv-Mt-Fal"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Njp-Ph-rwz"/>
+                        <outlet property="delegate" destination="-1" id="0aV-WA-tw6"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="hfy-68-5n8" firstAttribute="top" secondItem="qaU-Ii-hYb" secondAttribute="bottom" id="BfZ-VX-3fZ"/>
+                <constraint firstAttribute="trailing" secondItem="qaU-Ii-hYb" secondAttribute="trailing" id="GVw-F8-3xZ"/>
+                <constraint firstAttribute="trailing" secondItem="hfy-68-5n8" secondAttribute="trailing" id="HcG-db-gJ4"/>
+                <constraint firstItem="hfy-68-5n8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="IzL-xP-McJ"/>
+                <constraint firstItem="qaU-Ii-hYb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="LEa-5u-vsS"/>
+                <constraint firstItem="qaU-Ii-hYb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="tAU-sC-fX9"/>
+                <constraint firstAttribute="bottom" secondItem="hfy-68-5n8" secondAttribute="bottom" id="zN5-CL-IBH"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="50.5" y="286.5"/>
+        </view>
+    </objects>
+</document>

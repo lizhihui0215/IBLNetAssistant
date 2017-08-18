@@ -66,7 +66,7 @@ class PortalAuth: PFSModel {
         let dic = map.JSON
         self.JSON = dic.toJSONString(prettyPrint: true)
     }
-
+ 
     override func mapping(map: Map) {
         super.mapping(map: map)
         authurl <- map["authurl"]

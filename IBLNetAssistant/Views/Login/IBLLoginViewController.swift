@@ -10,8 +10,56 @@ import UIKit
 import RxCocoa
 import RxSwift
 import PCCWFoundationSwift
+import PopupDialog
 
-class IBLLoginViewController: PFSViewController, IBLLoginAction, UINavigationControllerDelegate {
+
+
+extension IBLLoginViewController: IBLOnlineTableViewControllerDelegate {
+    func onlineTableView(_ onlineTableViewController: IBLOnlineTableViewController,
+                         didTapped user: IBLUser, at indexPath: IndexPath) {
+        let authJSON = Dictionary<String, Any>.toJSON(JSONObject: user.auth!.JSON!)!
+        let kickUrl = authJSON["kickurl"] as! String
+        let online = user.onlineList?[indexPath.row]
+        let offline: Driver<Bool> = self.viewModel!.offline(kickurl: kickUrl, online: online!)
+        let sigin = self.viewModel!.sigin(account: self.accountTextField.text!,
+                                          password: passwordTextField.text!)
+        self.startAnimating()
+        offline.flatMapLatest{ _ -> Driver<Bool> in
+            self.dismiss(animated: true, completion: nil)
+            return sigin
+        }.drive(onNext: {[weak self] success in
+                self?.stopAnimating()
+                if (success) {
+                    self?.performSegue(withIdentifier: "toMain", sender: nil)
+                }
+        }).disposed(by: disposeBag)
+    }
+}
+
+extension IBLLoginViewController: IBLLoginAction {
+    func showPanel(user: IBLUser) {
+        let onlineTableViewController = IBLOnlineTableViewController(user: user)
+
+        // Create the dialog
+        let popup = PopupDialog(viewController: onlineTableViewController, buttonAlignment: .horizontal, transitionStyle: .bounceDown, gestureDismissal: true)
+        
+        // Create first button
+        let buttonOne = CancelButton(title: "Cancel", height: 40) {
+            
+        }
+        
+        onlineTableViewController.delegate = self
+        
+        // Add buttons to dialog
+        popup.addButtons([buttonOne])
+
+        // Present dialog
+        present(popup, animated: true, completion: nil)
+        
+    }
+}
+
+class IBLLoginViewController: PFSViewController {
     
     var viewModel: IBLLoginViewModel?
     
@@ -36,27 +84,28 @@ class IBLLoginViewController: PFSViewController, IBLLoginAction, UINavigationCon
         }) .disposed(by: disposeBag)
         
         
-        self.navigationController?.delegate = self
-
         if (self.viewModel?.school.supportRegister == "1") {
             let spetorView = self.stackView.arrangedSubviews[3]
             let registerButton = self.stackView.arrangedSubviews[4]
             self.stackView.removeArrangedSubview(spetorView)
             self.stackView.removeArrangedSubview(registerButton)
-            
+            spetorView.removeFromSuperview()
+            registerButton.removeFromSuperview()
         }
     }
     
-    
-    
     @IBAction func loginButtonPressed(_ sender: UIButton) {
+        self.startAnimating()
         self.viewModel!.sigin(account: self.accountTextField.text!,
                                                        password: passwordTextField.text!).drive(onNext: {[weak self] success in
+                                                        self?.stopAnimating()
                                                         if (success) {
                                                             self?.performSegue(withIdentifier: "toMain", sender: nil)
                                                         }
                                                        }).disposed(by: disposeBag)
     }
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -80,22 +129,6 @@ class IBLLoginViewController: PFSViewController, IBLLoginAction, UINavigationCon
         super.viewDidAppear(animated)
     }
     
-//    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-//        if let _ = viewController as? IBLLoginViewController {
-//            navigationController.isNavigationBarHidden = true
-//        } else {
-//            navigationController.isNavigationBarHidden = false
-//        }
-//    }
-//
-//    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-//        if let _ = viewController as? IBLLoginViewController {
-//            navigationController.isNavigationBarHidden = true
-//        } else {
-//            navigationController.isNavigationBarHidden = false
-//        }
-//    }
-
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -111,6 +144,4 @@ class IBLLoginViewController: PFSViewController, IBLLoginAction, UINavigationCon
                                                                             account: accountTextField.text ?? "")
         }
     }
-    
-
 }

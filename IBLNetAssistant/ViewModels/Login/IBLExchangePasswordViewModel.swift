@@ -47,7 +47,7 @@ class IBLExchangePasswordViewModel: PFSViewModel<IBLExchagePasswordViewControlle
         let sms: Driver<Result<String, MoyaError>> = self.domain.sendSMS(account: account.value, phone: phone.value)
         
         return sms.flatMapLatest {
-                return self.action!.alert(result: $0)
+                return self.action!.toast(result: $0)
             }.flatMapLatest { _ in
                 return Driver.just(true)
         }
@@ -63,11 +63,11 @@ class IBLExchangePasswordViewModel: PFSViewModel<IBLExchagePasswordViewControlle
         let validateResult = PFSValidate.of(validateAccount, validatePassword, validateSame)
         
         return validateResult.flatMapLatest{
-            (self.action?.alert(result: $0))!
+            (self.action?.toast(result: $0))!
         }.flatMapLatest {_ in
             return self.domain.exchangePassword(account: self.account.value, phone: self.phone.value, sms: self.smsCode.value, password: self.password.value)
         }.flatMapLatest {
-                (self.action?.alert(result: $0))!
+                (self.action?.toast(result: $0))!
         }.flatMapLatest { _ in
             return Driver.just(true)
         }

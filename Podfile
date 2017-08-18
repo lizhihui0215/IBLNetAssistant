@@ -8,12 +8,14 @@ target 'IBLNetAssistant' do
 
   # Pods for IBLNetAssistant
   pod 'PCCWFoundationSwift'
-  
+
   pod 'AMap3DMap'  #3D地图SDK
-  
+
   pod 'AMapSearch' #搜索功能
-  
+
   pod 'AMapLocation'
+
+  pod 'PopupDialog'
 
   target 'IBLNetAssistantTests' do
     inherit! :search_paths
@@ -24,7 +26,7 @@ target 'IBLNetAssistant' do
     inherit! :search_paths
     # Pods for testing
   end
-  
+
   post_install do |installer|
       installer.pods_project.targets.each do |target|
           target.build_configurations.each do |config|
