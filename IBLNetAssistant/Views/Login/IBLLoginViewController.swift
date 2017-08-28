@@ -39,14 +39,14 @@ extension IBLLoginViewController: IBLOnlineTableViewControllerDelegate {
 extension IBLLoginViewController: IBLLoginAction {
     
     func confirmToSelfAuth(message: String)  {
-        
+        self.stopAnimating()
         let confirm: Driver<Void?> = self.confirm(message: "\(message),是否自助登录？")
             
-        confirm.flatMapLatest{ _ in
-            return  (self.viewModel!.selfSigin(account: self.accountTextField.text!,
+        confirm.flatMapLatest{ _ -> (SharedSequence<DriverSharingStrategy, Bool>) in
+            self.startAnimating()
+            return (self.viewModel!.selfSigin(account: self.accountTextField.text!,
                                                password: self.passwordTextField.text!))
         }.drive(onNext: {[weak self] success in
-            self?.stopAnimating()
             self?.stopAnimating()
             if (success) {
                 self?.performSegue(withIdentifier: "toMain", sender: nil)
