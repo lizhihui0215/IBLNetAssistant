@@ -14,6 +14,8 @@ import Moya
 import class Alamofire.NetworkReachabilityManager
 
 public protocol IBLLoginAction: PFSViewAction {
+    func confirmToSelfAuth(message: String)
+    
     func showPanel(user: IBLUser)
 }
 
@@ -106,19 +108,34 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
                 do {
                     let _ = try user.dematerialize()
                 } catch MoyaError.underlying(let aError) {
-                    guard let theError = aError as? NSError, theError.domain == PFSServerErrorDomain && theError.code == 808 else {
-                        return self.domain.auth(account: account, password: password)
+                    
+//                    guard let theError = aError as? NSError, theError.domain == PFSServerErrorDomain && theError.code == 808 else {
+//                    }
+                    
+                    let theError = aError as NSError
+                    let message = theError.localizedDescription
+                    if theError.domain == PFSServerErrorDomain {
+                        switch theError.code {
+                        case 808:
+                            let response = theError.userInfo["response"] as! PFSResponseMappableObject<IBLUser>
+                            let user = response.result!
+                            user.auth = self.auth
+                            self.action?.showPanel(user: user)
+                        case 803:
+                            fallthrough
+                        case 804:
+                            fallthrough
+                        case 805:
+                            fallthrough
+                        case 807:
+//                            self.action?.confirm(message: message, content: user)
+                            self.action?.confirmToSelfAuth(message: message)
+                            return Driver.never()
+                        default:
+                            return self.domain.auth(account: account, password: password)
+                        }
                     }
                     
-                    let response = theError.userInfo["response"] as! PFSResponseMappableObject<IBLUser>
-                    
-//                    self.auth?.onlineList = (response.result?.onlineList)!
-                    let user = response.result!
-                    user.auth = self.auth
-                    
-                    self.action?.showPanel(user: user)
-                    
-//                    return Driver.never()
                 } catch {
                     return self.domain.auth(account: account, password: password)
                 }
@@ -130,7 +147,7 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
             }
     }
     
-    private func selfSigin(account: String, password: String) -> Driver<Bool> {
+    public func selfSigin(account: String, password: String) -> Driver<Bool> {
         let register: Driver<Result<String, MoyaError>> = self.domain.register(account: account, school: self.school)
         
         return register.flatMapLatest {

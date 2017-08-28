@@ -42,27 +42,6 @@ open class PFSLocationManager: NSObject, AMapSearchDelegate, AMapLocationManager
         return self.location.asObservable().asDriver(onErrorJustReturn: location)
     }
     
-//    open func search(query: String = "", page: Int, count: Int, completionHandler: @escaping AMSearchCompletionHandler)  {
-//        self.searchCompletionHandler = completionHandler
-//        self.startUpdatingLocation {[weak self] location in
-//            
-//            let request = AMapPOIAroundSearchRequest()
-//            if let strongSelf = self {
-//                strongSelf.search = AMapSearchAPI()
-//                strongSelf.search?.delegate = self
-//                strongSelf.locationManager.stopUpdatingLocation()
-//                request.location = AMapGeoPoint.location(withLatitude: CGFloat(location.coordinate.latitude), longitude: CGFloat(location.coordinate.longitude))
-//                request.keywords = query
-//                request.page = page
-//                request.offset = count
-//                request.requireExtension = true
-//                strongSelf.search?.aMapPOIAroundSearch(request)
-//            }
-//        }
-//    }
-    
-//    - (void)amapLocationManager:(AMapLocationManager *)manager didFailWithError:(NSError *)error;
-    
     public func amapLocationManager(_ manager: AMapLocationManager!, didFailWithError error: Swift.Error!) {
         self.location.onError(MoyaError.underlying(error))
         self.location.onCompleted()

@@ -63,9 +63,10 @@ extension IBLOnlineTableViewController: UITableViewDataSource {
         
         let online = self.onlines[indexPath.row]
         
-        cell.titleLabel.text = online.clientname ?? online.clienttype
+        let title = online.clientname ?? online.clienttype ?? ""
+        cell.titleLabel.text = "终端类型：\(title)"
         
-        cell.dateLabel.text = "登陆时间：\(online.accesstime ?? "")"
+        cell.dateLabel.text = "登录时间：\(online.accesstime ?? "")"
         
         cell.offlineButton.indexPath = indexPath
 
@@ -107,6 +108,9 @@ class IBLOnlineTableViewController: PFSTableViewController {
         self.tableView.register(nib, forCellReuseIdentifier: "IBLOnlineTableViewCell")
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        
+        self.tableView.estimatedRowHeight = 70.0;
+
     }
 
     override func didReceiveMemoryWarning() {

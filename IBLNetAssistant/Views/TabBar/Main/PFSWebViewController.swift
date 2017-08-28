@@ -132,6 +132,7 @@ class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDelegat
     }
     
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        self.startAnimating()
     }
     
     public func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
@@ -145,10 +146,11 @@ class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDelegat
     }
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        self.stopAnimating()
     }
     
     public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Swift.Error) {
-        
+        self.stopAnimating()
     }
     
     public func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {

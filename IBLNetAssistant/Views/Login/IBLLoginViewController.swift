@@ -37,6 +37,24 @@ extension IBLLoginViewController: IBLOnlineTableViewControllerDelegate {
 }
 
 extension IBLLoginViewController: IBLLoginAction {
+    
+    func confirmToSelfAuth(message: String)  {
+        
+        let confirm: Driver<Void?> = self.confirm(message: "\(message),是否自助登录？")
+            
+        confirm.flatMapLatest{ _ in
+            return  (self.viewModel!.selfSigin(account: self.accountTextField.text!,
+                                               password: self.passwordTextField.text!))
+        }.drive(onNext: {[weak self] success in
+            self?.stopAnimating()
+            self?.stopAnimating()
+            if (success) {
+                self?.performSegue(withIdentifier: "toMain", sender: nil)
+            }
+        }).disposed(by: disposeBag)
+
+        
+    }
     func showPanel(user: IBLUser) {
         let onlineTableViewController = IBLOnlineTableViewController(user: user)
 
@@ -44,7 +62,7 @@ extension IBLLoginViewController: IBLLoginAction {
         let popup = PopupDialog(viewController: onlineTableViewController, buttonAlignment: .horizontal, transitionStyle: .bounceDown, gestureDismissal: true)
         
         // Create first button
-        let buttonOne = CancelButton(title: "Cancel", height: 40) {
+        let buttonOne = CancelButton(title: "关闭", height: 40) {
             
         }
         
