@@ -29,22 +29,30 @@ open class PFSLocationManager: NSObject, AMapSearchDelegate, AMapLocationManager
     public override init() {
         super.init()
         AMapServices.sharedServices().apiKey = "4a677acff506f75571a0b45178b1c4e2"
-        self.locationManager.delegate = self
         self.locationManager.distanceFilter = 200
     }
     
     
     open func startUpdatingLocation() -> Driver<CLLocation>  {
         self.locationManager.startUpdatingLocation()
+
+        self.locationManager.delegate = self
         
         let location = CLLocation(latitude: kCLLocationCoordinate2DInvalid.latitude, longitude: kCLLocationCoordinate2DInvalid.longitude)
         
+        self.location = PublishSubject<CLLocation>()
+                
         return self.location.asObservable().asDriver(onErrorJustReturn: location)
     }
     
     public func amapLocationManager(_ manager: AMapLocationManager!, didFailWithError error: Swift.Error!) {
         self.location.onError(MoyaError.underlying(error))
-        self.location.onCompleted()
+        self.locationManager.stopUpdatingLocation()
+    }
+    
+    public func stopUpdatingLocation() {
+        self.locationManager.stopUpdatingLocation()
+        self.locationManager.delegate = nil
     }
 
     
@@ -52,7 +60,7 @@ open class PFSLocationManager: NSObject, AMapSearchDelegate, AMapLocationManager
         if let locationCompletionHandler = self.locationCompletionHandler {
             locationCompletionHandler(location)
         }
-        
+        self.stopUpdatingLocation()
         self.location.onNext(location)
         self.location.onCompleted()
     }
@@ -64,7 +72,8 @@ open class PFSLocationManager: NSObject, AMapSearchDelegate, AMapLocationManager
     }
     
     deinit {
-        self.locationManager.stopUpdatingLocation()
+        self.stopUpdatingLocation()
+        self.location.onCompleted()
     }
 
 }

@@ -32,15 +32,14 @@ class IBLSchoolViewController: PFSViewController, IBLSchoolAction {
     }
     
     @IBAction func schoolTapped(_ sender: UITapGestureRecognizer) {
-        self.view.isUserInteractionEnabled = false
+        self.startAnimating()
         self.viewModel?.fetchSchools().drive(onNext: {[weak self] result in
+            self?.stopAnimating()
             self?.presentPicker(items: result, completeHandler: { item in
                 self?.viewModel?.setSelectedSchool(school: item.school)
                 self?.schoolTextField.text = item.title
             })
-            }, onCompleted: {
-                self.view.isUserInteractionEnabled = true;
-        }).disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     @IBAction func nextStapTapped(_ sender: UIButton) {

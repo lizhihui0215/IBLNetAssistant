@@ -40,8 +40,9 @@ class IBLForgetPasswordViewController: PFSViewController, IBLForgetPasswordActio
     }
     
     @IBAction func sendSMSButtonPressed(_ sender: UIButton) {
-
+        self.startAnimating()
         self.viewModel?.sendSMS().drive(onNext: {[weak self] success in
+            self?.stopAnimating()
             if (success) {
                 self?.performSegue(withIdentifier: "toExchagePassword", sender: nil)
             }

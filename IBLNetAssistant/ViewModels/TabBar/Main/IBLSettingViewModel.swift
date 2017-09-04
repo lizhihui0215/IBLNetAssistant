@@ -49,7 +49,9 @@ class IBLSettingViewModel: PFSViewModel<IBLSettingViewController, IBLSettingDoma
     
     func setSelectedSchool(school: IBLSchool) -> Driver<IBLSchool?> {
         return ((self.action?.confirm(message:"切换校园之后，您的数据将丢失，请谨慎操作，确认切换吗？", content: school))?.do(onNext: { school in
-            self.domain.switchSchool(school: school!)
+            if let school = school {
+                self.domain.switchSchool(school: school)
+            }
         }))!
     }
     

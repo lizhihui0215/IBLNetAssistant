@@ -26,9 +26,11 @@ class IBLExchagePasswordViewController: PFSViewController, IBLExchangePasswordAc
     @IBOutlet weak var confirmTextField: UITextField!
 
     @IBAction func submitButtonTapped(_ sender: UIButton) {
+        self.startAnimating()
         self.viewModel?.exchangePassword().drive(onNext: { success in
+            self.stopAnimating()
             if success {
-                self.navigationController?.popToRootViewController(animated: true)                
+                self.navigationController?.popToRootViewController(animated: true)
             }
         }).disposed(by: disposeBag)
     }

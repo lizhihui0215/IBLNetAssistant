@@ -54,7 +54,7 @@ class IBLExchangePasswordViewModel: PFSViewModel<IBLExchagePasswordViewControlle
     }
 
     func exchangePassword() -> Driver<Bool> {
-        let validateAccount = smsCode.value.notNull(message: "用户名不能为空！")
+        let validateAccount = smsCode.value.notNull(message: "验证码不能为空！")
         
         let validatePassword = password.value.notNull(message: "密码不能为空！")
         

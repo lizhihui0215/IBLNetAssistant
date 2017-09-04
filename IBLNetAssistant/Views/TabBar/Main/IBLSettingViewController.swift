@@ -38,14 +38,17 @@ class IBLSettingViewController: PFSViewController, IBLSettingAction {
 
     
     @IBAction func selectedSchoolTapped(_ sender: UITapGestureRecognizer) {
+        self.startAnimating()
         self.viewModel?.fetchSchools().drive(onNext: {[weak self] result in
             self?.presentPicker(items: result, completeHandler: { item in
                 self?.viewModel?.setSelectedSchool(school: item.school).drive(onNext: { school in
-                    self?.performSegue(withIdentifier: "toLogin", sender: school)
+                    if let school = school {
+                        self?.performSegue(withIdentifier: "toLogin", sender: school)
+                    }
                 }).disposed(by: (self?.disposeBag)!)
             })
             }, onCompleted: {
-                self.view.isUserInteractionEnabled = true;
+                self.stopAnimating()
         }).disposed(by: disposeBag)
 
     }

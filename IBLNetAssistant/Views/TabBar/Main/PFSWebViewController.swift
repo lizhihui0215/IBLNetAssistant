@@ -30,6 +30,7 @@ class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDelegat
     
     override func loadView() {
         let webConfiguration = WKWebViewConfiguration()
+        webConfiguration.ignoresViewportScaleLimits = true
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
         webView.uiDelegate = self
         view = webView

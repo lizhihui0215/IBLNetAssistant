@@ -192,7 +192,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <state key="normal" title="设置" image="icon-设置"/>
                                 <connections>
-                                    <segue destination="FS0-aA-pJh" kind="show" id="JRz-bF-1uF"/>
+                                    <action selector="settingButtonTapped:" destination="NvP-hS-7Vt" eventType="touchUpInside" id="goG-Ot-X3f"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -226,6 +226,7 @@
                         <segue destination="PX5-Zh-p91" kind="custom" identifier="toMain" customClass="PFSExchageRootSegue" customModule="PCCWFoundationSwift" id="KhB-OV-xaL"/>
                         <segue destination="ENf-hg-E2Y" kind="show" identifier="toForgetPassword" id="pFr-Be-gWr"/>
                         <segue destination="83j-cl-n7T" kind="show" identifier="toRegister" id="ZSK-u0-KBf"/>
+                        <segue destination="eo9-Jg-eLn" kind="show" identifier="toSetting" id="zeH-gN-0Pf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xIn-6v-UED" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -837,6 +838,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FS0-aA-pJh" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="设置" image="setting-normal" selectedImage="setting-active" id="0UX-K1-9zQ"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="sEp-hj-LwC"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dWx-6L-QYf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -888,7 +890,7 @@
         <image name="setting-normal" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CiB-7j-8pI"/>
-        <segue reference="JRz-bF-1uF"/>
+        <segue reference="LOE-Rn-00K"/>
+        <segue reference="zeH-gN-0Pf"/>
     </inferredMetricsTieBreakers>
 </document>

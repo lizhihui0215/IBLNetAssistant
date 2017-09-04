@@ -125,6 +125,9 @@ class IBLLoginViewController: PFSViewController {
     
     
     
+    @IBAction func settingButtonTapped(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "toSetting", sender: nil)
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
