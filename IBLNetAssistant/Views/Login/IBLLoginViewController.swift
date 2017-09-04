@@ -102,7 +102,7 @@ class IBLLoginViewController: PFSViewController {
         }) .disposed(by: disposeBag)
         
         
-        if (self.viewModel?.school.supportRegister == "1") {
+        if (self.viewModel?.school.supportRegister == "0") {
             let spetorView = self.stackView.arrangedSubviews[3]
             let registerButton = self.stackView.arrangedSubviews[4]
             self.stackView.removeArrangedSubview(spetorView)

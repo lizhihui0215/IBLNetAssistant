@@ -24,6 +24,18 @@ class IBLSchoolViewController: PFSViewController, IBLSchoolAction {
         
         // Do any additional setup after loading the view.
         self.viewModel = IBLSchoolViewModel(action: self, domain: IBLSchoolDomain())
+        
+        self.startAnimating()
+        self.viewModel?.fetchSchools().drive(onNext: {[weak self] result in
+            self?.stopAnimating()
+            let item = result.first(where: { $0.school.selected })
+            if let school = item?.school {
+                self?.viewModel?.setSelectedSchool(school: school)
+                self?.schoolTextField.text = item?.title
+            }
+            
+        }).disposed(by: disposeBag)
+
     }
 
     override func didReceiveMemoryWarning() {
