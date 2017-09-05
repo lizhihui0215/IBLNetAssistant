@@ -52,9 +52,16 @@ extension IBLLoginViewController: IBLLoginAction {
                 self?.performSegue(withIdentifier: "toMain", sender: nil)
             }
         }).disposed(by: disposeBag)
-
-        
     }
+    
+    func confirm(message: String) {
+        let  alertView = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "确定", style: .cancel, handler: nil)
+        alertView.addAction(action)
+        self.present(alertView, animated: true)
+    }
+    
     func showPanel(user: IBLUser) {
         let onlineTableViewController = IBLOnlineTableViewController(user: user)
 

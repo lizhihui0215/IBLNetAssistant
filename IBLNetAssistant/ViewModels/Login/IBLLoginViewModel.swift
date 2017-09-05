@@ -17,6 +17,8 @@ public protocol IBLLoginAction: PFSViewAction {
     func confirmToSelfAuth(message: String)
     
     func showPanel(user: IBLUser)
+    
+    func confirm(message: String)
 }
 
 class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
@@ -127,9 +129,30 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
                             fallthrough
                         case 805:
                             fallthrough
+                        case 806:
+                            fallthrough
+                        case 9:
+                            fallthrough
                         case 807:
 //                            self.action?.confirm(message: message, content: user)
                             self.action?.confirmToSelfAuth(message: message)
+                            return Driver.never()
+                        case 801:
+                            fallthrough
+                        case 802:
+                            fallthrough
+                        case 809:
+                            fallthrough
+                        case 810:
+                            fallthrough
+                        case 811:
+                            fallthrough
+                        case 901:
+                            fallthrough
+                        case 902:
+                            fallthrough
+                        case 903:
+                            self.action?.confirm(message: message)
                             return Driver.never()
                         default:
                             return self.domain.auth(account: account, password: password)
