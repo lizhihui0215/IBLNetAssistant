@@ -17,7 +17,14 @@ class IBLTabBarController: UITabBarController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let navigationController = self.viewControllers?[2] as! UINavigationController
         
+        let settingViewController = navigationController.topViewController as! IBLSettingViewController
+        
+        let user = PFSDomain.login()
+        
+        settingViewController.viewModel = IBLSettingViewModel(action: settingViewController, domain: IBLSettingDomain(), isAutoLogin: user?.isAutoLogin ?? false)
+
     }
     
     override func didReceiveMemoryWarning() {

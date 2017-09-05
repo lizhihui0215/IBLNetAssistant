@@ -24,6 +24,8 @@ class IBLExchagePasswordViewController: PFSViewController, IBLExchangePasswordAc
     @IBOutlet weak var passwordTextField: UITextField!
 
     @IBOutlet weak var confirmTextField: UITextField!
+    
+    var timer: Timer?
 
     @IBAction func submitButtonTapped(_ sender: UIButton) {
         self.startAnimating()
@@ -44,26 +46,41 @@ class IBLExchagePasswordViewController: PFSViewController, IBLExchangePasswordAc
         
         (self.passwordTextField.rx.textInput <-> (self.viewModel?.password)!).disposed(by: disposeBag)
         (self.confirmTextField.rx.textInput <-> (self.viewModel?.confirm)!).disposed(by: disposeBag)
+    }
+    
+    func check(timer: Timer)  {
+        print("Timer timeInventorcal \(timer.timeInterval)")
+        print("Timer tolerance \(timer.tolerance)")
+
+        let date = timer.userInfo as! Date
         
+        let timeInterval = Int(-date.timeIntervalSinceNow)
         
+        print("timeInterval \(timeInterval)")
+
+        if (timeInterval - 60 > 0) {
+            timer.invalidate()
+            self.secondHightConstraint.constant = 0;
+            self.sendSMSButton.isEnabled = true
+        }else {
+            self.secondLabel.text = "\(60 - timeInterval)秒后可重新发送"
+        }
     }
     
     func startTimer() {
         self.sendSMSButton.isEnabled = false
-        var total = 60
         self.secondHightConstraint.constant = 16;
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-            if (total <= 0) {
-                timer.invalidate()
-                self.secondHightConstraint.constant = 0;
-                self.sendSMSButton.isEnabled = true
-            }else {
-                total -= 1   
-                self.secondLabel.text = "\(total)秒后可重新发送"
-            }
-        }
+        
+        let selector = #selector(IBLExchagePasswordViewController.check(timer:))
+        
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: selector, userInfo: Date(), repeats: true)
+       
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        timer?.invalidate()
+    }
     
 
     override func didReceiveMemoryWarning() {

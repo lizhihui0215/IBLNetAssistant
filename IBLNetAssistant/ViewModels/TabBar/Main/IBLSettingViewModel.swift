@@ -27,9 +27,9 @@ class IBLSettingViewModel: PFSViewModel<IBLSettingViewController, IBLSettingDoma
     
     var schoolName: Variable<String>
     
-    override init(action: IBLSettingViewController, domain: IBLSettingDomain) {
+    init(action: IBLSettingViewController, domain: IBLSettingDomain, isAutoLogin: Bool) {
         self.user = PFSDomain.login()
-        self.isAutoLogin = Variable(self.user?.isAutoLogin ?? false)
+        self.isAutoLogin = Variable(isAutoLogin)
         self.selectedSchool = PFSDomain.cachedSchool()!
         self.schoolName = Variable(self.selectedSchool.sname!)
         super.init(action: action, domain: domain)
@@ -47,12 +47,20 @@ class IBLSettingViewModel: PFSViewModel<IBLSettingViewController, IBLSettingDoma
         return self.user != nil
     }
     
-    func setSelectedSchool(school: IBLSchool) -> Driver<IBLSchool?> {
-        return ((self.action?.confirm(message:"切换校园之后，您的数据将丢失，请谨慎操作，确认切换吗？", content: school))?.do(onNext: { school in
-            if let school = school {
+    func setSelectedSchool(school: IBLSchool) -> Driver<Bool> {
+        if school.sid == self.selectedSchool.sid {
+            return Driver.never()
+        }
+        
+        let confirm = self.action?.confirm(content: ("切换校园之后，您的数据将丢失，请谨慎操作，确认切换吗？", school)).do(onNext: { (message, success, content) in
+            if  success {
                 self.domain.switchSchool(school: school)
             }
-        }))!
+        })
+        
+        return confirm!.flatMapLatest{
+            return Driver.just($0.1)
+        }
     }
     
     func fetchSchools() -> Driver<[IBLSchoolSelection]> {

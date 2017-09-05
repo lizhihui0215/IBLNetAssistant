@@ -10,24 +10,37 @@ import UIKit
 import RxCocoa
 import PCCWFoundationSwift
 
+protocol IBLSettingViewControllerDelegate: class {
+    func `switch`(aotoLogin: Bool)
+}
+
 class IBLSettingViewController: PFSViewController, IBLSettingAction {
     
     var viewModel: IBLSettingViewModel?
     
     @IBOutlet weak var loginSwitch: UISwitch!
     @IBOutlet weak var schoolTextField: UITextField!
+    
+    weak var delegate: IBLSettingViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        self.viewModel = IBLSettingViewModel(action: self, domain: IBLSettingDomain())
         
-        self.loginSwitch.isEnabled = self.viewModel!.isEnableLoginSwitch()
+//        self.loginSwitch.isEnabled = self.viewModel!.isEnableLoginSwitch()
         
         (self.loginSwitch.rx.isOn <-> (self.viewModel?.isAutoLogin)!).disposed(by: disposeBag)
+        
         (self.schoolTextField.rx.textInput <-> (self.viewModel?.schoolName)!).disposed(by: disposeBag)
         
+        self.loginSwitch.rx.isOn.asObservable().subscribe(onNext: {[weak self] isOn in
+            
+            if let delegate = self?.delegate {
+                delegate.switch(aotoLogin: isOn)
+            }
+            
+        }).addDisposableTo(disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,9 +54,9 @@ class IBLSettingViewController: PFSViewController, IBLSettingAction {
         self.startAnimating()
         self.viewModel?.fetchSchools().drive(onNext: {[weak self] result in
             self?.presentPicker(items: result, completeHandler: { item in
-                self?.viewModel?.setSelectedSchool(school: item.school).drive(onNext: { school in
-                    if let school = school {
-                        self?.performSegue(withIdentifier: "toLogin", sender: school)
+                self?.viewModel?.setSelectedSchool(school: item.school).drive(onNext: { success in
+                    if success {
+                        self?.performSegue(withIdentifier: "toLogin", sender: item.school)
                     }
                 }).disposed(by: (self?.disposeBag)!)
             })

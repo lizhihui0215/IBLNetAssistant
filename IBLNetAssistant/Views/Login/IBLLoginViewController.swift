@@ -40,12 +40,10 @@ extension IBLLoginViewController: IBLLoginAction {
     
     func confirmToSelfAuth(message: String)  {
         self.stopAnimating()
-//        let confirm: Driver<Void> = self.confirm(message: "\(message),是否自助登录？")
+        let confirm = self.confirm(content: ("\(message),是否自助登录？", ""))
         
-//        let confirm: Driver<String?> =
-        let confirm: Driver<Void> = self.confirm(content: ("\(message),是否自助登录？", Void))
-        
-        confirm.flatMapLatest{ _ -> (SharedSequence<DriverSharingStrategy, Bool>) in
+        confirm.flatMapLatest{ (message, success, content) -> Driver<Bool> in
+            if !success {  return Driver.never() }
             self.startAnimating()
             return (self.viewModel!.selfSigin(account: self.accountTextField.text!,
                                                password: self.passwordTextField.text!))
@@ -84,6 +82,12 @@ extension IBLLoginViewController: IBLLoginAction {
         // Present dialog
         present(popup, animated: true, completion: nil)
         
+    }
+}
+
+extension IBLLoginViewController: IBLSettingViewControllerDelegate{
+    func `switch`(aotoLogin: Bool){
+        self.aotoCheckbox.isSelected = aotoLogin
     }
 }
 
@@ -173,6 +177,11 @@ class IBLLoginViewController: PFSViewController {
             forgetPasswordController.viewModel = IBLForgetPasswordViewModel(action: forgetPasswordController,
                                                                             domain: IBLForgetPasswordDomain(),
                                                                             account: accountTextField.text ?? "")
+        }else if segue.identifier == "toSetting" {
+            let settingViewController = segue.destination as! IBLSettingViewController
+            settingViewController.viewModel = IBLSettingViewModel(action: settingViewController, domain: IBLSettingDomain(), isAutoLogin: self.aotoCheckbox.isSelected)
+
+            settingViewController.delegate = self
         }
     }
 }

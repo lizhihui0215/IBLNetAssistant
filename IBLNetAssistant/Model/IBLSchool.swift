@@ -15,7 +15,7 @@ import PCCWFoundationSwift
 
 class IBLSchool: PFSModel {
     
-    dynamic var sid : Int64 = 0
+    dynamic var sid: String = ""
     dynamic var sname : String?
     dynamic var mode : String?
     dynamic var serverInner : String?

@@ -98,11 +98,11 @@ enum IBLAPITarget: PFSTargetType {
         case let .school(locationCoordinate2D):
             parameters = ["longit" : "\(locationCoordinate2D.longitude)", "lati" : "\(locationCoordinate2D.latitude)"]
             
-            #if DEBUG
+//            #if DEBUG
                 parameters += ["debug" : "1"]
-            #else
-                parameters += ["debug" : "0"]
-            #endif
+//            #else
+//                parameters += ["debug" : "0"]
+//            #endif
             
             parameters = sign(parameters: parameters)
         case let .auth(username, password):
