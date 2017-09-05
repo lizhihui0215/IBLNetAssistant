@@ -40,8 +40,11 @@ extension IBLLoginViewController: IBLLoginAction {
     
     func confirmToSelfAuth(message: String)  {
         self.stopAnimating()
-        let confirm: Driver<Void?> = self.confirm(message: "\(message),是否自助登录？")
-            
+//        let confirm: Driver<Void> = self.confirm(message: "\(message),是否自助登录？")
+        
+//        let confirm: Driver<String?> =
+        let confirm: Driver<Void> = self.confirm(content: ("\(message),是否自助登录？", Void))
+        
         confirm.flatMapLatest{ _ -> (SharedSequence<DriverSharingStrategy, Bool>) in
             self.startAnimating()
             return (self.viewModel!.selfSigin(account: self.accountTextField.text!,
