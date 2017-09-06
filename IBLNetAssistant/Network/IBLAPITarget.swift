@@ -160,8 +160,6 @@ enum IBLAPITarget: PFSTargetType {
             path = "ibillingportal/userservice/auth.do"
         case .register(_,_):
             path = "nodeibilling/httpservices/user/appRegister.do"
-        case .web(_):
-            path = "ibillingportal/userservice/index.do"
         case .sms:
             path = "nodeibilling/httpservices/user/getSmsCode.do"
         case .exchangePassword:

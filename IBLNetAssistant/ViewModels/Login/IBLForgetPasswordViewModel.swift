@@ -40,11 +40,11 @@ class IBLForgetPasswordViewModel: PFSViewModel<IBLForgetPasswordViewController, 
         let sms: Driver<Result<String, MoyaError>> = self.domain.sendSMS(account: account.value, phone: phone.value)
 
         return validateResult.flatMapLatest {
-            return (self.action?.toast(result: $0))!
+            return (self.action?.alert(result: $0))!
         }.flatMapLatest {_ in 
             return sms
         }.flatMapLatest {
-            return self.action!.toast(result: $0)
+            return self.action!.alert(result: $0)
         }.flatMapLatest { _ in
             return Driver.just(true)
         }

@@ -56,6 +56,7 @@ extension IBLLoginViewController: IBLLoginAction {
     }
     
     func confirm(message: String) {
+        self.stopAnimating()
         let  alertView = UIAlertController(title: "", message: message, preferredStyle: .alert)
         
         let action = UIAlertAction(title: "确定", style: .cancel, handler: nil)

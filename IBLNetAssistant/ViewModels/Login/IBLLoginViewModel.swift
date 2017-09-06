@@ -27,7 +27,7 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
 
     func offline(kickurl: String, online: IBLOnline) -> Driver<Bool> {
         return self.domain.offline(kickurl: kickurl, online: online).flatMapLatest{
-            return self.action!.toast(result: $0)
+            return self.action!.alert(result: $0)
         }.flatMapLatest{ _ in
             return Driver.just(true)
         }
@@ -69,7 +69,7 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
         }
         
         return  validateResult.flatMapLatest {
-            return (self.action?.toast(result: $0))!
+            return (self.action?.alert(result: $0))!
             }.flatMapLatest { _ in
                 return sigin
         }
@@ -77,11 +77,11 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
     
     private func portalSigin(account: String, password: String) -> Driver<Bool> {
         return self.domain.register(account: account, school: self.school).flatMapLatest { result in
-            (self.action?.toast(result: result))!
+            (self.action?.alert(result: result))!
             }.flatMapLatest { result -> Driver<Result<PortalAuth, MoyaError>> in
                 
-//                return self.domain.portal(url: "http://115.28.0.62:8080/ibillingportal/ac.do")
-                return self.domain.portal(url: "http://www.baidu.com/")
+                return self.domain.portal(url: "http://115.28.0.62:8080/ibillingportal/ac.do")
+//                return self.domain.portal(url: "http://www.baidu.com/")
             }.flatMapLatest { result  in
                 
                 guard let value = try? result.dematerialize() else {
@@ -164,7 +164,7 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
                 }
                 return Driver.just(user)
             }.flatMapLatest {
-                return (self.action?.toast(result: $0))!
+                return (self.action?.alert(result: $0))!
             }.flatMapLatest {
                 return self.save(account: account, password: password, user: $0)
             }
@@ -174,11 +174,11 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
         let register: Driver<Result<String, MoyaError>> = self.domain.register(account: account, school: self.school)
         
         return register.flatMapLatest {
-            return (self.action?.toast(result: $0))!
+            return (self.action?.alert(result: $0))!
             }.flatMapLatest { _ in
                 return self.domain.auth(account: account, password: password)
             }.flatMapLatest {
-                return (self.action?.toast(result: $0))!
+                return (self.action?.alert(result: $0))!
             }.flatMapLatest {
                 return self.save(account: account, password: password, user: $0)
         }

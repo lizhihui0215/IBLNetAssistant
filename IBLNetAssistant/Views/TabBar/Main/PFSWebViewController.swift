@@ -68,13 +68,14 @@ class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDelegat
             self?.logout()
         })
         
-        
-        
-        
         self.webAPI = IBLAPITarget.web(["account": user.account,
-                                                        "accessToken": user.accessToken!])
+                                        "accessToken": user.accessToken!])
 
-        self.reload().drive().disposed(by: disposeBag)
+        let baseURL = "http://\(self.user!.selectedSchool!.serverInner!)/ibillingportal/userservice/index.do"
+
+        self.resetURL(url: baseURL, isSwitchToOut: true).flatMapLatest { _ -> Driver<Bool> in
+            return self.reload(webAPI: self.webAPI!)
+        }.drive().disposed(by: disposeBag)
     }
     
     override func didReceiveMemoryWarning() {
@@ -82,41 +83,56 @@ class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDelegat
         // Dispose of any resources that can be recreated.
     }
     
-    open func reload() -> Driver<Bool>  {
-        guard let webAPI = self.webAPI else { return Driver.just(false) }
-        
-        let baseURL = "http://\(self.user!.selectedSchool!.serverInner!)"
-        
-        return reachable(url: baseURL).flatMapLatest {
-            if ($0) {
-                IBLAPITarget.setBaseURL(URL: "http://\(self.user!.selectedSchool!.serverInner!)")
-            }else {
-                IBLAPITarget.setBaseURL(URL: "http://\(self.user!.selectedSchool!.serverOut!)")
-            }
-            
-            let requestURL = self.url(for: webAPI)
-            
-            var request = URLRequest(url: requestURL)
-            
-            request.httpMethod = webAPI.method.rawValue
-            
-            request.allHTTPHeaderFields = webAPI.headers
-            
-            let encodingRequest = try? URLEncoding.default.encode(request, with: webAPI.parameters)
-            
-            self.webView.customUserAgent = "IBILLING_IOS_NETHELPER_APP"
-            
-            self.webView.load(encodingRequest!)
+    func resetURL(url: String, isSwitchToOut: Bool) -> Driver<Bool> {
+        IBLAPITarget.setBaseURL(URL: url)
+
+        guard isSwitchToOut else {
             
             return Driver.just(true)
+        }
+        
+        return reachable(url: url).flatMapLatest {
+            if !$0 {
+                IBLAPITarget.setBaseURL(URL: "http://\(self.user!.selectedSchool!.serverOut!)/ibillingportal/userservice/index.do")
+
+                return Driver.just(true)
+            }
+            
+            return Driver.just(false)
         }
     }
     
     
+    open func reload(webAPI: PFSTargetType) -> Driver<Bool>  {
+        
+        var request = URLRequest(url: webAPI.baseURL)
+        
+        request.httpMethod = webAPI.method.rawValue
+        
+        request.allHTTPHeaderFields = webAPI.headers
+        
+        let encodingRequest = try? URLEncoding.default.encode(request, with: webAPI.parameters)
+        
+        self.webView.customUserAgent = "IBILLING_IOS_NETHELPER_APP"
+        
+        self.webView.load(encodingRequest!)
+        
+        return Driver.just(true)
+    }
     
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        print("\n=========================================\n decidePolicyFor:navigationAction \(navigationAction) \n=========================================\n ")
         
-        decisionHandler(.allow)
+        if navigationAction.navigationType == .linkActivated {
+            let url = navigationAction.request.url?.absoluteString
+            let requestURL = url?.components(separatedBy: ";")[0]
+            self.resetURL(url: requestURL!, isSwitchToOut: false).flatMapLatest { _ -> Driver<Bool> in
+                return self.reload(webAPI: self.webAPI!)
+                }.drive().disposed(by: disposeBag)
+            decisionHandler(.cancel)
+        }else {
+            decisionHandler(.allow)
+        }
     }
     
     public func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
@@ -128,36 +144,50 @@ class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDelegat
             decisionHandler(.cancel)
             return
         }
-        
+        print("\n=========================================\n decidePolicyFor:navigationResponse \(navigationResponse) \n=========================================\n ")
+
         decisionHandler(.allow)
     }
     
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         self.startAnimating()
+        print("\n=========================================\n didStartProvisionalNavigation:navigation \(navigation) \n=========================================\n ")
+
     }
     
     public func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
+        print("\n=========================================\n didReceiveServerRedirectForProvisionalNavigation:navigation \(navigation) \n=========================================\n ")
     }
     
     public func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Swift.Error) {
-        print(error)
+        print("\n=========================================\n didFailProvisionalNavigation:navigation\(navigation) :error\(error) \n=========================================\n ")
+
     }
     
     public func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        print("\n=========================================\n didCommit: navigation\(navigation) \n=========================================\n ")
+
     }
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.stopAnimating()
+        print("\n=========================================\n didFinish: navigation\(navigation) \n=========================================\n ")
+
     }
     
     public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Swift.Error) {
         self.stopAnimating()
+        print("\n=========================================\n didFail: navigation\(navigation) :error\(error) \n=========================================\n ")
+
     }
     
     public func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        print("\n=========================================\n didReceive: challenge\(challenge) \n=========================================\n ")
+
     }
     
     public func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
+        print("\n=========================================\n webViewWebContentProcessDidTerminate \n=========================================\n ")
     }
     
     func logout()  {
