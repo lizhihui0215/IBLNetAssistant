@@ -124,10 +124,23 @@ class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDelegat
         print("\n=========================================\n decidePolicyFor:navigationAction \(navigationAction) \n=========================================\n ")
         
         if navigationAction.navigationType == .linkActivated {
-            let url = navigationAction.request.url?.absoluteString
-            let requestURL = url?.components(separatedBy: ";")[0]
-            self.resetURL(url: requestURL!, isSwitchToOut: false).flatMapLatest { _ -> Driver<Bool> in
-                return self.reload(webAPI: self.webAPI!)
+            let url = navigationAction.request.url!
+            
+            
+            let baseURL = url.absoluteString.components(separatedBy: ";")[0]
+            
+            var API = self.webAPI!
+            if var query = url.queryParameters {
+                let parameters = ["account": user!.account,
+                                  "accessToken": user!.accessToken!]
+                query += parameters
+                API = IBLAPITarget.web(query)
+            }
+            
+            let requestURL = "\(baseURL)"
+            
+            self.resetURL(url: requestURL, isSwitchToOut: false).flatMapLatest { _ -> Driver<Bool> in
+                return self.reload(webAPI: API)
                 }.drive().disposed(by: disposeBag)
             decisionHandler(.cancel)
         }else {
@@ -216,4 +229,27 @@ class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDelegat
         }
     }
 
+}
+
+extension URL {
+    var queryParameters: [String : String]? {
+        if let query = self.query {
+            var parameters = [String : String]()
+            let parameterPires = query.components(separatedBy: "&")
+            
+            for parameterPire in parameterPires {
+                let keyValue = parameterPire.components(separatedBy: "=")
+                
+                let key = keyValue[0]
+                
+                let value = keyValue[1]
+                
+                parameters += [key : value]
+            }
+            
+            return parameters
+        }
+        
+        return nil
+    }
 }
