@@ -8,23 +8,58 @@
 
 import UIKit
 import PCCWFoundationSwift
+import RxCocoa
 
-class IBLTabBarController: UITabBarController {
+open class PFSTabBarController: UITabBarController {
+    
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    func viewControllerAtIndex<T: UIViewController>(at index: Int) -> T {
+        if let navigationController = self.viewControllers?[index] as? UINavigationController {
+            return navigationController.topViewController as! T
+        }
+        
+        return self.viewControllers![index] as! T
+    }
+
+    
+}
+
+class IBLTabBarController: PFSTabBarController {
 
     var domain = IBLMainDomain()
     
+    let user = PFSDomain.login()!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let navigationController = self.viewControllers?[2] as! UINavigationController
         
-        let settingViewController = navigationController.topViewController as! IBLSettingViewController
+        self.setupSettingViewController()
         
-        let user = PFSDomain.login()
+        self.setupWebViewController()
         
-        settingViewController.viewModel = IBLSettingViewModel(action: settingViewController, domain: IBLSettingDomain(), isAutoLogin: user?.isAutoLogin ?? false)
+    }
+    
+    
 
+    
+    func setupWebViewController()  {
+        let webViewController: IBLWebViewController = self.viewControllerAtIndex(at: 0)
+        
+        webViewController.user = self.user
+        
+    }
+    
+    func setupSettingViewController()  {
+        let settingViewController: IBLSettingViewController  = self.viewControllerAtIndex(at: 2)
+        
+        settingViewController.viewModel = IBLSettingViewModel(action: settingViewController, domain: IBLSettingDomain(), isAutoLogin: user.isAutoLogin )
     }
     
     override func didReceiveMemoryWarning() {

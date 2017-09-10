@@ -66,6 +66,7 @@ enum IBLAPITarget: PFSTargetType {
             let formatted = "\(key)=\(value)&"
             
             formattedParamters.append(formatted)
+        
         }
         
         formattedParamters.sort{ $0.caseInsensitiveCompare($1) == .orderedAscending}

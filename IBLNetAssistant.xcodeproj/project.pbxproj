@@ -19,6 +19,7 @@
 		2627BB1E1F2F7B26007EA719 /* IBLForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2627BB1D1F2F7B26007EA719 /* IBLForgetPasswordViewController.swift */; };
 		2627BB201F2F8561007EA719 /* IBLForgetPasswordDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2627BB1F1F2F8561007EA719 /* IBLForgetPasswordDomain.swift */; };
 		2627BB221F2F857D007EA719 /* IBLExchagePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2627BB211F2F857D007EA719 /* IBLExchagePasswordViewController.swift */; };
+		262A07531F658D9500497CB6 /* IBLWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262A07521F658D9500497CB6 /* IBLWebViewController.swift */; };
 		263019F91EE53AA80002061E /* IBLLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263019F81EE53AA80002061E /* IBLLoginViewController.swift */; };
 		263019FB1EE53ADB0002061E /* IBLLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263019FA1EE53ADB0002061E /* IBLLoginViewModel.swift */; };
 		263019FF1EE5474F0002061E /* IBLAPITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263019FE1EE5474F0002061E /* IBLAPITarget.swift */; };
@@ -87,6 +88,7 @@
 		2627BB1D1F2F7B26007EA719 /* IBLForgetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		2627BB1F1F2F8561007EA719 /* IBLForgetPasswordDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLForgetPasswordDomain.swift; sourceTree = "<group>"; };
 		2627BB211F2F857D007EA719 /* IBLExchagePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLExchagePasswordViewController.swift; sourceTree = "<group>"; };
+		262A07521F658D9500497CB6 /* IBLWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLWebViewController.swift; sourceTree = "<group>"; };
 		263019F81EE53AA80002061E /* IBLLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLLoginViewController.swift; sourceTree = "<group>"; };
 		263019FA1EE53ADB0002061E /* IBLLoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLLoginViewModel.swift; sourceTree = "<group>"; };
 		263019FE1EE5474F0002061E /* IBLAPITarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBLAPITarget.swift; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 				2624C7801F279D3200EFFF1C /* IBLMessageViewController.swift */,
 				2624C7821F279D3C00EFFF1C /* IBLSettingViewController.swift */,
 				5B875BCC06E93D7161D7B5D4 /* PFSWebViewController.swift */,
+				262A07521F658D9500497CB6 /* IBLWebViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -720,6 +723,7 @@
 				2606F2FF1F1FB216002477E2 /* Extension+PFSDomain.swift in Sources */,
 				2624C7811F279D3200EFFF1C /* IBLMessageViewController.swift in Sources */,
 				5B875197097BB06BEB97D8EE /* IBLRootViewController.swift in Sources */,
+				262A07531F658D9500497CB6 /* IBLWebViewController.swift in Sources */,
 				5B8754E8747EE9AB0B7850E5 /* IBLRootViewModel.swift in Sources */,
 				5B8758CB64DC71045EB1A22C /* PortalAuth.swift in Sources */,
 				5B875D30EC5F0EA6A2F35BA5 /* PFSWebViewController.swift in Sources */,

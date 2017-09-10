@@ -43,7 +43,7 @@
         <!--Login View Controller-->
         <scene sceneID="YcN-Ye-9RD">
             <objects>
-                <viewController id="NvP-hS-7Vt" customClass="IBLLoginViewController" customModule="IBLNetAssistant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="IBLLoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NvP-hS-7Vt" customClass="IBLLoginViewController" customModule="IBLNetAssistant" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Pjb-W4-Atd"/>
                         <viewControllerLayoutGuide type="bottom" id="l7f-3o-Nb0"/>
@@ -462,7 +462,7 @@
         <!--Web View Controller-->
         <scene sceneID="ea2-Rf-DWg">
             <objects>
-                <viewController id="swM-cS-Ifi" customClass="PFSWebViewController" customModule="IBLNetAssistant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="IBLWebViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="swM-cS-Ifi" customClass="IBLWebViewController" customModule="IBLNetAssistant" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Kvg-am-cOz"/>
                         <viewControllerLayoutGuide type="bottom" id="OiY-F5-1nf"/>
@@ -472,7 +472,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="hWr-gE-qC5"/>
+                    <navigationItem key="navigationItem" id="hWr-gE-qC5">
+                        <barButtonItem key="backBarButtonItem" title="返回" id="RUx-Nk-Wfp"/>
+                    </navigationItem>
                     <connections>
                         <segue destination="WGZ-uH-Nlx" kind="custom" identifier="toLogin" customClass="PFSExchageRootSegue" customModule="PCCWFoundationSwift" id="CiB-7j-8pI"/>
                     </connections>
@@ -858,7 +860,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fRm-tL-3kc" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="主页" image="home-normal" selectedImage="home-active" id="8cy-AV-19k"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3g8-Uh-dsm">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="3g8-Uh-dsm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -890,7 +892,7 @@
         <image name="setting-normal" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LOE-Rn-00K"/>
+        <segue reference="CiB-7j-8pI"/>
         <segue reference="zeH-gN-0Pf"/>
     </inferredMetricsTieBreakers>
 </document>
