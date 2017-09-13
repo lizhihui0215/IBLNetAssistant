@@ -88,7 +88,7 @@ open class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDe
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        webView.addObserver(self, forKeyPath: "title", options: .new, context: nil)
+//        webView.addObserver(self, forKeyPath: "title", options: .new, context: nil)
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)        
     }
     
@@ -101,12 +101,12 @@ open class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDe
 //            return
 //        }
         
-        if keyPath == "title" {
-            if let title = change[NSKeyValueChangeKey.newKey] as? String {
-                self.navigationItem.title = title
-            }
-            return
-        }
+//        if keyPath == "title" {
+//            if let title = change[NSKeyValueChangeKey.newKey] as? String {
+//                self.navigationItem.title = title
+//            }
+//            return
+//        }
         if keyPath == "estimatedProgress" {
             if let progress = (change[NSKeyValueChangeKey.newKey] as AnyObject).floatValue {
                 progressView.progress = progress;
@@ -189,7 +189,7 @@ open class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDe
     }
     
     deinit {
-        webView.removeObserver(self, forKeyPath: "title")
+//        webView.removeObserver(self, forKeyPath: "title")
         webView.removeObserver(self, forKeyPath: "estimatedProgress")
         
         //remove progress bar from navigation bar

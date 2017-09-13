@@ -38,6 +38,16 @@ class IBLWebViewController: PFSWebViewController {
                 }.drive().disposed(by: disposeBag)
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let viewControllers = self.navigationController?.viewControllers, viewControllers.count == 1 {
+            self.navigationController?.isNavigationBarHidden = true
+        }else {
+            self.navigationController?.isNavigationBarHidden = false
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -89,6 +99,7 @@ class IBLWebViewController: PFSWebViewController {
             return
         }
         
+        print("\(url)")
         if url.queryParameters?["allow"] != "true" {
                 
             let webViewController = self.storyboard?.instantiateViewController(withIdentifier: "IBLWebViewController") as! IBLWebViewController
@@ -101,7 +112,13 @@ class IBLWebViewController: PFSWebViewController {
             
             let baseURL = url.absoluteString.components(separatedBy: ";")[0]
             
-            if let query = url.queryParameters {
+            if var query = url.queryParameters {
+                if let title = query["ibl_title"] {
+                    let decodedTitle = title.removingPercentEncoding
+                    query["ibl_title"] = nil
+                    webViewController.title = decodedTitle
+                }
+                
                 parameters += query
             }
 
@@ -114,6 +131,7 @@ class IBLWebViewController: PFSWebViewController {
             
             self.navigationController?.pushViewController(webViewController, animated: true)
         }
+        
         
         let navigationActionPolicy: WKNavigationActionPolicy = url.queryParameters?["allow"] == "true" ? .allow : .cancel
         
