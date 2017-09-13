@@ -15,7 +15,7 @@ class IBLWebViewController: PFSWebViewController {
     var domain: IBLWebDomain = IBLWebDomain()
 
     var user: IBLUser!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,6 +23,20 @@ class IBLWebViewController: PFSWebViewController {
         
         bridge.registerHandler("logout", handler: {[weak self] data, responseCallback in
             self?.logout()
+        })
+        
+        bridge.registerHandler("ibl_web_back", handler: {[weak self] data, responseCallback in
+            let viewControllers = self?.navigationController?.viewControllers
+            let count = (viewControllers?.count)! - 2
+            let isRefresh = data as? String
+            if  count > 0, isRefresh == "1" {
+                let webViewController = viewControllers?[count] as! IBLWebViewController
+                
+                webViewController.reload()
+            }
+            
+            self?.navigationController?.popViewController(animated: true)
+            
         })
         
         if let webAPI = self.webAPI {
@@ -37,21 +51,29 @@ class IBLWebViewController: PFSWebViewController {
                 return self.reload(webAPI: self.webAPI!)
                 }.drive().disposed(by: disposeBag)
         }
+        
+        self.url = self.webAPI?.baseURL.absoluteString
+    }
+    
+    func isRootController() -> Bool {
+        return  self.navigationController?.viewControllers.count == 1
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let viewControllers = self.navigationController?.viewControllers, viewControllers.count == 1 {
-            self.navigationController?.isNavigationBarHidden = true
-        }else {
-            self.navigationController?.isNavigationBarHidden = false
-        }
+        self.navigationController?.isNavigationBarHidden = self.isRootController()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    open func reload() {
+        self.resetURL(url: self.url!, isSwitchToOut: false).flatMapLatest { [weak self] _ in
+            return (self?.reload(webAPI: (self?.webAPI)!))!
+        }.drive().disposed(by: disposeBag)
     }
     
     func resetURL(url: String, isSwitchToOut: Bool) -> Driver<Bool> {
@@ -91,12 +113,26 @@ class IBLWebViewController: PFSWebViewController {
         UIApplication.shared.delegate?.window??.rootViewController = loginViewController
     }
     
+    func baseURLString(url: URL) -> String {
+        var baseURL = url.absoluteString
+        if url.absoluteString.components(separatedBy: ";").count > 1 {
+            baseURL = url.absoluteString.components(separatedBy: ";")[0]
+        }else {
+            baseURL = url.absoluteString.components(separatedBy: "?")[0]
+        }
+        return baseURL
+    }
+    
     public override func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         super.webView(webView, decidePolicyFor: navigationAction, decisionHandler: decisionHandler)
         
         guard let url = navigationAction.request.url, !self.isWebViewJavascriptBridgeURL(url: url) else {
             decisionHandler(.cancel)
             return
+        }
+        
+        if self.isRootController() {
+            self.startAnimating()
         }
         
         print("\(url)")
@@ -110,13 +146,14 @@ class IBLWebViewController: PFSWebViewController {
                               "accessToken": user.accessToken!,
                               "allow" : "true"]
             
-            let baseURL = url.absoluteString.components(separatedBy: ";")[0]
+            
+            let baseURL = self.baseURLString(url: url)
+            
             
             if var query = url.queryParameters {
                 if let title = query["ibl_title"] {
-                    let decodedTitle = title.removingPercentEncoding
+                    webViewController.title = title
                     query["ibl_title"] = nil
-                    webViewController.title = decodedTitle
                 }
                 
                 parameters += query
@@ -132,12 +169,16 @@ class IBLWebViewController: PFSWebViewController {
             self.navigationController?.pushViewController(webViewController, animated: true)
         }
         
-        
         let navigationActionPolicy: WKNavigationActionPolicy = url.queryParameters?["allow"] == "true" ? .allow : .cancel
         
         decisionHandler(navigationActionPolicy)
     }
     
+    open override func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        super.webView(webView, didFinish: navigation)
+        self.stopAnimating()
+    }
+
     public override func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         
         let response = navigationResponse.response as! HTTPURLResponse

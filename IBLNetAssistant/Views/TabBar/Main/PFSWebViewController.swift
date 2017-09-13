@@ -32,7 +32,7 @@ open class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDe
                      kQueueHasMessage,
                      kBridgeLoaded]
     
-    public var url: URL?
+    public var url: String?
     
     override open func loadView() {
         let webConfiguration = WKWebViewConfiguration()
@@ -136,6 +136,8 @@ open class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDe
         
         return Driver.just(true)
     }
+    
+    
     
     open func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if let url = navigationAction.request.url, self.isWebViewJavascriptBridgeURL(url: url) {
