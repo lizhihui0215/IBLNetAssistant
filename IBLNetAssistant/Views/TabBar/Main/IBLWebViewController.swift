@@ -103,14 +103,16 @@ class IBLWebViewController: PFSWebViewController {
             $0.isLogin = false
         })
         
-        let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "IBLLoginViewController") as! IBLLoginViewController
+        let navigationController = self.storyboard?.instantiateViewController(withIdentifier: "LoginNavigationController") as! UINavigationController
+        
+        let loginViewController = navigationController.topViewController as! IBLLoginViewController
         
         loginViewController.viewModel = IBLLoginViewModel(action: loginViewController,
                                                           domain: IBLLoginDomain(),
                                                           school: (self.user!.selectedSchool)!)
 
         
-        UIApplication.shared.delegate?.window??.rootViewController = loginViewController
+        UIApplication.shared.delegate?.window??.rootViewController = navigationController
     }
     
     func baseURLString(url: URL) -> String {
@@ -123,16 +125,21 @@ class IBLWebViewController: PFSWebViewController {
         return baseURL
     }
     
+
+
+    override func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        super.webView(webView, didStartProvisionalNavigation: navigation)
+            if self.isRootController() {
+                self.startAnimating()
+            }
+    }
+    
     public override func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         super.webView(webView, decidePolicyFor: navigationAction, decisionHandler: decisionHandler)
         
         guard let url = navigationAction.request.url, !self.isWebViewJavascriptBridgeURL(url: url) else {
             decisionHandler(.cancel)
             return
-        }
-        
-        if self.isRootController() {
-            self.startAnimating()
         }
         
         print("\(url)")
@@ -152,7 +159,8 @@ class IBLWebViewController: PFSWebViewController {
             
             if var query = url.queryParameters {
                 if let title = query["ibl_title"] {
-                    webViewController.title = title
+                    let decodedTitle = title.removingPercentEncoding
+                    webViewController.title = decodedTitle
                     query["ibl_title"] = nil
                 }
                 
@@ -190,6 +198,13 @@ class IBLWebViewController: PFSWebViewController {
         let navigationResponsePolicy: WKNavigationResponsePolicy = response.statusCode == 500 ? .cancel : .allow
         
         decisionHandler(navigationResponsePolicy)
+    }
+
+    
+    open override func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Swift.Error) {
+        super.webView(webView, didFail: navigation, withError: error)
+        self.stopAnimating()
+        self.alert(message: error.localizedDescription).drive().disposed(by: disposeBag)
     }
 
 

@@ -170,7 +170,7 @@ open class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDe
     }
     
     open func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Swift.Error) {
-
+        progressView.isHidden = true
     }
     
     open func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {

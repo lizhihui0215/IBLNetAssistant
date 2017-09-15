@@ -800,7 +800,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Es2-br-Wm8">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WGZ-uH-Nlx" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LoginNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WGZ-uH-Nlx" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="onr-5r-H0U">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

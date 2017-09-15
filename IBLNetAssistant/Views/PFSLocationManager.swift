@@ -28,7 +28,7 @@ open class PFSLocationManager: NSObject, AMapSearchDelegate, AMapLocationManager
     
     public override init() {
         super.init()
-        AMapServices.sharedServices().apiKey = "4a677acff506f75571a0b45178b1c4e2"
+        AMapServices.shared().apiKey = "4a677acff506f75571a0b45178b1c4e2"
         self.locationManager.distanceFilter = 200
     }
     

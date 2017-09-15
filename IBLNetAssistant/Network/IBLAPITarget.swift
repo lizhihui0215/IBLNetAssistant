@@ -77,10 +77,20 @@ enum IBLAPITarget: PFSTargetType {
         
         let sign = result.md5().uppercased()
         
-        parameters["sign"] = sign
+        var decodedParameters = [String: Any]()
         
+        for (key, value) in parameters {
+            guard let v = value as? String, v != "" else {
+                decodedParameters[key] = value
+                continue
+            }
+            
+            decodedParameters[key] = v.removingPercentEncoding
+        }
         
-        return parameters
+        decodedParameters["sign"] = sign
+        
+        return decodedParameters
     }
     
     var headers: [String : String] {
@@ -137,7 +147,7 @@ enum IBLAPITarget: PFSTargetType {
             parameters = sign(parameters: param)
         default:break
         }
-        
+        print(parameters)
         return parameters
     }
     var parameterEncoding: ParameterEncoding {

@@ -15,8 +15,8 @@ import Moya
 import RealmSwift
 
 class IBLSettingDomain: PFSDomain {
-    func fetchSchools(locationCoordinate2D: CLLocationCoordinate2D) -> Driver<Result<[IBLSchool], Moya.Error>> {
-        let result: Driver<Result<[IBLSchool], Moya.Error>> = IBLDataRepository.shared.fetchSchools(locationCoordinate2D: locationCoordinate2D)
+    func fetchSchools(locationCoordinate2D: CLLocationCoordinate2D) -> Driver<Result<[IBLSchool], Moya.MoyaError>> {
+        let result: Driver<Result<[IBLSchool], Moya.MoyaError>> = IBLDataRepository.shared.fetchSchools(locationCoordinate2D: locationCoordinate2D)
         
         return result
     }

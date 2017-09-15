@@ -249,7 +249,7 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
             }
             
             if user.loginModel == "0" {
-                return Driver.just(true)
+                return self.selfSigin(account: user.account, password: user.password)
             }
             
             return self.portalSigin(account: user.account, password: user.password)

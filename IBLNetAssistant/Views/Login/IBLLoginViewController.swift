@@ -110,7 +110,9 @@ class IBLLoginViewController: PFSViewController {
         
         (self.accountTextField.rx.text <-> (self.viewModel?.account)!).disposed(by: disposeBag)
         
+        self.startAnimating()
         self.viewModel!.login().drive(onNext: {[weak self] isLogin in
+            self?.stopAnimating()
             if (isLogin) {
                 self?.performSegue(withIdentifier: "toMain", sender: nil)
             }
