@@ -207,6 +207,12 @@ class IBLWebViewController: PFSWebViewController {
         self.alert(message: error.localizedDescription).drive().disposed(by: disposeBag)
     }
 
+    open override func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Swift.Error) {
+        super.webView(webView, didFailProvisionalNavigation: navigation, withError: error)
+        self.stopAnimating()
+        self.alert(message: error.localizedDescription).drive().disposed(by: disposeBag)
+        
+    }
 
     
 

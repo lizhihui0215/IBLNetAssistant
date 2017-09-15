@@ -157,6 +157,7 @@ open class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDe
     }
     
     open func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Swift.Error) {
+        progressView.isHidden = true
 
     }
     
