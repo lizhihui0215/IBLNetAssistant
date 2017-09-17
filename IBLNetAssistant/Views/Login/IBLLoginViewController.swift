@@ -112,7 +112,9 @@ class IBLLoginViewController: PFSViewController {
         
         self.startAnimating()
         self.viewModel!.login().drive(onNext: {[weak self] isLogin in
-            self?.stopAnimating()
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(0)) {
+                self?.stopAnimating()
+            }
             if (isLogin) {
                 self?.performSegue(withIdentifier: "toMain", sender: nil)
             }

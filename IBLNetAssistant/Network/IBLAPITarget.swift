@@ -110,7 +110,7 @@ enum IBLAPITarget: PFSTargetType {
             parameters = ["longit" : "\(locationCoordinate2D.longitude)", "lati" : "\(locationCoordinate2D.latitude)"]
             
 //            #if DEBUG
-                parameters += ["debug" : "1"]
+                parameters += ["debug" : "0"]
 //            #else
 //                parameters += ["debug" : "0"]
 //            #endif
