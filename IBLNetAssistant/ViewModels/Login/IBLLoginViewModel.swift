@@ -114,7 +114,7 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
 //                    guard let theError = aError as? NSError, theError.domain == PFSServerErrorDomain && theError.code == 808 else {
 //                    }
                     
-                    let theError = aError as NSError
+                    let theError = aError.0 as NSError
                     let message = theError.localizedDescription
                     if theError.domain == PFSServerErrorDomain {
                         switch theError.code {

@@ -46,7 +46,7 @@ open class PFSLocationManager: NSObject, AMapSearchDelegate, AMapLocationManager
     }
     
     public func amapLocationManager(_ manager: AMapLocationManager!, didFailWithError error: Swift.Error!) {
-        self.location.onError(MoyaError.underlying(error))
+        self.location.onError(MoyaError.underlying(error, nil))
         self.locationManager.stopUpdatingLocation()
     }
     

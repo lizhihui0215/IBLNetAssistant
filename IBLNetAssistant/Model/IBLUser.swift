@@ -13,23 +13,23 @@ import ObjectMapper_Realm
 import PCCWFoundationSwift
 
 public class IBLUser: PFSModel {
-    dynamic var accessToken : String?
+    @objc dynamic var accessToken : String?
     
-    dynamic var isAutoLogin: Bool = false
+    @objc dynamic var isAutoLogin: Bool = false
     
-    dynamic var account: String = ""
+    @objc dynamic var account: String = ""
     
-    dynamic var password: String = ""
+    @objc dynamic var password: String = ""
     
-    dynamic var selectedSchool: IBLSchool?
+    @objc dynamic var selectedSchool: IBLSchool?
     
-    dynamic var auth: PortalAuth?
+    @objc dynamic var auth: PortalAuth?
     
-    dynamic var isLogin: Bool = false
+    @objc dynamic var isLogin: Bool = false
 
-    dynamic var redirectUrl = ""
+    @objc dynamic var redirectUrl = ""
     
-    dynamic var loginModel = ""
+    @objc dynamic var loginModel = ""
     
     var onlineList: [IBLOnline]?
     

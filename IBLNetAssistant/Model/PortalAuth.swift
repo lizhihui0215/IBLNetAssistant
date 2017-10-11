@@ -56,10 +56,10 @@ extension Dictionary {
 }
 
 class PortalAuth: PFSModel {
-    dynamic var authurl : String?
-    dynamic var logouturl : String?
-    dynamic var account: String?
-    dynamic var JSON: String?
+    @objc dynamic var authurl : String?
+    @objc dynamic var logouturl : String?
+    @objc dynamic var account: String?
+    @objc dynamic var JSON: String?
 
     required convenience init?(map: Map) {
         self.init()

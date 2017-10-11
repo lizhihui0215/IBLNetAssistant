@@ -37,7 +37,7 @@ class IBLDataRepository: PFSDataRepository {
     private var _school: IBLSchool = IBLSchool()
 
     func offline(kickurl: String, online: IBLOnline) -> Driver<Result<String, MoyaError>> {
-        let result: Observable<PFSResponseNil> = PFSNetworkService<IBLAPITarget>.shared.request(.offline(kickurl, online.account!, online.userip!))
+        let result: Single<PFSResponseNil> = PFSNetworkService<IBLAPITarget>.shared.request(.offline(kickurl, online.account!, online.userip!))
 
         return self.handlerError(response: result)
     }
@@ -70,7 +70,7 @@ class IBLDataRepository: PFSDataRepository {
     }
 
     func fetchSchools(locationCoordinate2D: CLLocationCoordinate2D) -> Driver<Result<[IBLSchool], MoyaError>> {
-        let result: Observable<PFSResponseMappableArray<IBLSchool>> = PFSNetworkService<IBLAPITarget>.shared.request(.school(locationCoordinate2D))
+        let result: Single<PFSResponseMappableArray<IBLSchool>> = PFSNetworkService<IBLAPITarget>.shared.request(.school(locationCoordinate2D))
 
         return self.handlerError(response: result)
     }
@@ -84,7 +84,7 @@ class IBLDataRepository: PFSDataRepository {
     }
     
     func portal(url: String) -> Driver<Result<PortalAuth, MoyaError>> {
-        let result: Observable<PFSResponseMappableObject<PortalAuth>> = PFSNetworkService<IBLAPITarget>.shared.request(.portal(url))
+        let result: Single<PFSResponseMappableObject<PortalAuth>> = PFSNetworkService<IBLAPITarget>.shared.request(.portal(url))
 
         return self.handlerError(response: result)
     }
@@ -94,7 +94,7 @@ class IBLDataRepository: PFSDataRepository {
         let authJSON = Dictionary<String, Any>.toJSON(JSONObject: auth.JSON!)
 
         
-        let result: Observable<PFSResponseNil> = PFSNetworkService<IBLAPITarget>.shared.request(.logout(account,authJSON ?? [:]))
+        let result: Single<PFSResponseNil> = PFSNetworkService<IBLAPITarget>.shared.request(.logout(account,authJSON ?? [:]))
 
         return self.handlerError(response: result)
     }
@@ -108,7 +108,7 @@ class IBLDataRepository: PFSDataRepository {
     }
 
     func portalAuth(account: String, password: String, _ auth: [String: Any]) -> Driver<Result<IBLUser, MoyaError>> {
-        let result: Observable<PFSResponseMappableObject<IBLUser>> = PFSNetworkService<IBLAPITarget>.shared.request(.portalAuth(account, password, auth))
+        let result: Single<PFSResponseMappableObject<IBLUser>> = PFSNetworkService<IBLAPITarget>.shared.request(.portalAuth(account, password, auth))
 
         
         return self.handlerError(response: result)
@@ -125,7 +125,7 @@ class IBLDataRepository: PFSDataRepository {
                 
             }
             
-            let result: Observable<PFSResponseObject<T>> = PFSNetworkService<IBLAPITarget>.shared.request(token)
+            let result: Single<PFSResponseObject<T>> = PFSNetworkService<IBLAPITarget>.shared.request(token)
             
             return self.handlerError(response: result)
         }
@@ -142,7 +142,7 @@ class IBLDataRepository: PFSDataRepository {
                 
             }
             
-            let result: Observable<PFSResponseMappableArray<T>> = PFSNetworkService<IBLAPITarget>.shared.request(token)
+            let result: Single<PFSResponseMappableArray<T>> = PFSNetworkService<IBLAPITarget>.shared.request(token)
             
             return self.handlerError(response: result)
         }
@@ -160,7 +160,7 @@ class IBLDataRepository: PFSDataRepository {
                 
             }
             
-            let result: Observable<PFSResponseArray<T>> = PFSNetworkService<IBLAPITarget>.shared.request(token)
+            let result: Single<PFSResponseArray<T>> = PFSNetworkService<IBLAPITarget>.shared.request(token)
             
             return self.handlerError(response: result)
         }
@@ -213,7 +213,7 @@ class IBLDataRepository: PFSDataRepository {
 
             }
             
-            let result: Observable<PFSResponseMappableObject<T>> = PFSNetworkService<IBLAPITarget>.shared.request(token)
+            let result: Single<PFSResponseMappableObject<T>> = PFSNetworkService<IBLAPITarget>.shared.request(token)
 
             return self.handlerError(response: result)
         }
@@ -230,7 +230,7 @@ class IBLDataRepository: PFSDataRepository {
                 
             }
             
-            let result: Observable<PFSResponseNil> = PFSNetworkService<IBLAPITarget>.shared.request(token)
+            let result: Single<PFSResponseNil> = PFSNetworkService<IBLAPITarget>.shared.request(token)
             
             return self.handlerError(response: result)
         }
@@ -246,63 +246,3 @@ class IBLDataRepository: PFSDataRepository {
         })
     }
 }
-
-func test (){
-       //1.建立连接
-    
-//         NSString *host =@"127.0.0.1";
-//    
-//         intport =12345;
-//    
-//         //定义C语言输入输出流
-//    
-//         CFReadStreamRef readStream;
-//    
-//         CFWriteStreamRef writeStream;
-//    
-//         CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef)host, port, &readStream, &writeStream);
-    
-
-    
-    
-
-}
-
-//- (void)test
-//    {
-//        NSString * host =@"123.33.33.1";
-//        NSNumber * port = @1233;
-//        
-//        // 创建 socket
-//        int socketFileDescriptor = socket(AF_INET, SOCK_STREAM, 0);
-//        if (-1 == socketFileDescriptor) {
-//            NSLog(@"创建失败");
-//            return;
-//        }
-//        
-//        // 获取 IP 地址
-//        struct hostent * remoteHostEnt = gethostbyname([host UTF8String]);
-//        if (NULL == remoteHostEnt) {
-//            close(socketFileDescriptor);
-//            NSLog(@"%@",@"无法解析服务器的主机名");
-//            return;
-//        }
-//        
-//        struct in_addr * remoteInAddr = (struct in_addr *)remoteHostEnt->h_addr_list[0];
-//        
-//        // 设置 socket 参数
-//        struct sockaddr_in socketParameters;
-//        socketParameters.sin_family = AF_INET;
-//        socketParameters.sin_addr = *remoteInAddr;
-//        socketParameters.sin_port = htons([port intValue]);
-//        
-//        // 连接 socket
-//        int ret = connect(socketFileDescriptor, (struct sockaddr *) &socketParameters, sizeof(socketParameters));
-//        if (-1 == ret) {
-//            close(socketFileDescriptor);
-//            NSLog(@"连接失败");
-//            return;
-//        }
-//        
-//        NSLog(@"连接成功");
-//}

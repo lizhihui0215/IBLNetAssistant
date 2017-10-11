@@ -121,19 +121,13 @@ open class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDe
     }
     
     open func reload(webAPI: PFSTargetType) -> Driver<Bool>  {
-        
-        var request = URLRequest(url: webAPI.baseURL)
-        
-        request.httpMethod = webAPI.method.rawValue
-        
-        request.allHTTPHeaderFields = webAPI.headers
-        
-        let encodingRequest = try? URLEncoding.default.encode(request, with: webAPI.parameters)
-        
+                
+        let endpoint = PFSNetworkService.defaultEndpointMapping(for: webAPI as! IBLAPITarget)
+
         self.webView.customUserAgent = "IBILLING_IOS_NETHELPER_APP"
         
-        self.webView.load(encodingRequest!)
-        
+        self.webView.load(endpoint.urlRequest!)
+
         return Driver.just(true)
     }
     

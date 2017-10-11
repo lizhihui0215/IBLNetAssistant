@@ -48,7 +48,7 @@ class IBLExchagePasswordViewController: PFSViewController, IBLExchangePasswordAc
         (self.confirmTextField.rx.textInput <-> (self.viewModel?.confirm)!).disposed(by: disposeBag)
     }
     
-    func check(timer: Timer)  {
+    @objc func check(timer: Timer)  {
         print("Timer timeInventorcal \(timer.timeInterval)")
         print("Timer tolerance \(timer.tolerance)")
 

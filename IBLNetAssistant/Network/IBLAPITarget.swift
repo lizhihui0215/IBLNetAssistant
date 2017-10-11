@@ -93,11 +93,10 @@ enum IBLAPITarget: PFSTargetType {
         return decodedParameters
     }
     
-    var headers: [String : String] {
+    public var headers: [String : String]? {
         return ["user-agent" : "IBILLING_IOS_NETHELPER_APP"]
     }
 
-    
     var sampleData: Data {
         return "".data(using: String.Encoding.utf8)!
     }
@@ -155,7 +154,53 @@ enum IBLAPITarget: PFSTargetType {
     }
     
     var task: Task {
-        return .request
+        var parameters = [String: Any]()
+        switch self {
+        case let .school(locationCoordinate2D):
+            parameters = ["longit" : "\(locationCoordinate2D.longitude)", "lati" : "\(locationCoordinate2D.latitude)"]
+            
+            //            #if DEBUG
+            parameters += ["debug" : "0"]
+            //            #else
+            //                parameters += ["debug" : "0"]
+            //            #endif
+            
+            parameters = sign(parameters: parameters)
+        case let .auth(username, password):
+            parameters = ["account" : username, "password" : password]
+            parameters = sign(parameters: parameters)
+        case let .register(account,school):
+            parameters = ["account" : account, "sid" : school.sid , "sname" : school.sname ?? ""]
+            parameters = sign(parameters: parameters)
+        case let .portalAuth(account, password, auth):
+            var param = ["loginName" : account, "loginPwd" : password] as [String : Any]
+            param += auth
+            parameters = sign(parameters: param)
+        case let .web(param):
+            parameters = sign(parameters: param)
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
+        case let .logout(account, auth):
+            var param = ["loginName" : account] as [String : Any]
+            param += auth
+            parameters = sign(parameters: param)
+        case let .sms(account, phone):
+            let param = ["account" : account, "mobile" : phone]
+            parameters = sign(parameters: param)
+        case let .exchangePassword(account, phone, sms, password):
+            let param = ["account" : account, "mobile" : phone, "vcode" : sms, "password" : password]
+            parameters = sign(parameters: param)
+        case .registerAccount:
+            let param = ["clientType" : "0"]
+            parameters = sign(parameters: param)
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
+        case let .offline(_, account, userip):
+            let param = ["account" : account,
+                         "userip" : userip]
+            parameters = sign(parameters: param)
+        default:break
+        }
+        print(parameters)
+        return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
     }
     
     var validate: Bool {
@@ -179,7 +224,6 @@ enum IBLAPITarget: PFSTargetType {
             path = "ibillingportal/userservice/regAccount.do"
         default:break
         }
-        
         return path
     }
     
