@@ -138,7 +138,6 @@ class IBLWebViewController: PFSWebViewController {
         super.webView(webView, decidePolicyFor: navigationAction, decisionHandler: decisionHandler)
         
         guard let url = navigationAction.request.url, !self.isWebViewJavascriptBridgeURL(url: url) else {
-            decisionHandler(.cancel)
             return
         }
         

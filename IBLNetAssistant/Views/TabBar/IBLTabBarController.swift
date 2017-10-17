@@ -57,7 +57,7 @@ class IBLTabBarController: PFSTabBarController {
     }
     
     func setupSettingViewController()  {
-        let settingViewController: IBLSettingViewController  = self.viewControllerAtIndex(at: 2)
+        let settingViewController: IBLSettingViewController  = self.viewControllerAtIndex(at: 1)
         
         settingViewController.viewModel = IBLSettingViewModel(action: settingViewController, domain: IBLSettingDomain(), isAutoLogin: user.isAutoLogin )
     }

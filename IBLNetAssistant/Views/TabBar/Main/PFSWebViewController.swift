@@ -135,7 +135,7 @@ open class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDe
     
     open func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if let url = navigationAction.request.url, self.isWebViewJavascriptBridgeURL(url: url) {
-            decisionHandler(.cancel)
+            return
         }
     }
     
