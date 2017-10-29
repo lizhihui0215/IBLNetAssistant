@@ -15,7 +15,11 @@ import RxCocoa
 import Result
 import Moya
 
-class IBLRegisterViewController: PFSViewController, WKUIDelegate, WKNavigationDelegate {
+class IBLRegisterViewController: PFSViewController, WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        BaiduMobStat.default().didReceiveScriptMessage(message.name, body: message.body as! [AnyHashable : Any])
+    }
+    
 
     var domain: IBLRegisterDomain = IBLRegisterDomain()
     
@@ -29,6 +33,15 @@ class IBLRegisterViewController: PFSViewController, WKUIDelegate, WKNavigationDe
     
     override func loadView() {
         let webConfiguration = WKWebViewConfiguration()
+        // 设置偏好设置
+        webConfiguration.preferences =  WKPreferences()
+        // web内容处理池
+        webConfiguration.processPool = WKProcessPool()
+        // 通过JS与webview内容交互
+        webConfiguration.userContentController = WKUserContentController()
+        // 注入JS对象名称AppModel，当JS通过AppModel来调用时，
+        // 我们可以在WKScriptMessageHandler代理中接收到
+        webConfiguration.userContentController.add(self, name: "bmtj")
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
         webView.uiDelegate = self
         webView.navigationDelegate = self

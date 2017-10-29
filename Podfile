@@ -16,6 +16,8 @@ target 'IBLNetAssistant' do
   pod 'AMapLocation'
 
   pod 'PopupDialog'
+  
+  pod 'BaiduMobStat'
 
   target 'IBLNetAssistantTests' do
     inherit! :search_paths

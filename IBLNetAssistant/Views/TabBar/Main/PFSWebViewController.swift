@@ -35,7 +35,9 @@ open class PFSWebViewController: PFSViewController, WKUIDelegate, WKNavigationDe
     public var url: String?
     
     override open func loadView() {
+        // WKWebView统计
         let webConfiguration = WKWebViewConfiguration()
+        
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
         webView.uiDelegate = self
         view = webView

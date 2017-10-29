@@ -8,6 +8,7 @@
 
 import UIKit
 import PCCWFoundationSwift
+//import BaiduMobStat
 
 @UIApplicationMain
 class IBLAppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,10 +26,13 @@ class IBLAppDelegate: UIResponder, UIApplicationDelegate {
                                                code: "resultCode",
                                                result: "result")
         print(PFSFileManager.shared.document)
-        
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor : UIColor.white], for: .normal)
-    
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor : UIColor.white], for: .selected)
+        let statTracker: BaiduMobStat = BaiduMobStat.default()
+        statTracker.shortAppVersion  = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
+        statTracker.enableDebugOn = true
+        statTracker.start(withAppId: "dac931d9df") // 设置您在mtj网站上添加的app的appkey,此处AppId即为应用的appKey
+    UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor : UIColor.white], for: .normal)
+
+    UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor : UIColor.white], for: .selected)
         
         return true
     }

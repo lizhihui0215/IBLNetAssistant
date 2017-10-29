@@ -11,13 +11,27 @@ import PCCWFoundationSwift
 import WebKit
 import RxCocoa
 
-class IBLWebViewController: PFSWebViewController {
+class IBLWebViewController: PFSWebViewController, WKScriptMessageHandler {
     var domain: IBLWebDomain = IBLWebDomain()
 
     var user: IBLUser!
     
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        BaiduMobStat.default().didReceiveScriptMessage(message.name, body: message.body as! [AnyHashable : Any])
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 设置偏好设置
+        self.webView.configuration.preferences =  WKPreferences()
+        // web内容处理池
+        self.webView.configuration.processPool = WKProcessPool()
+        // 通过JS与webview内容交互
+        self.webView.configuration.userContentController = WKUserContentController()
+        // 注入JS对象名称AppModel，当JS通过AppModel来调用时，
+        // 我们可以在WKScriptMessageHandler代理中接收到
+        self.webView.configuration.userContentController.add(self, name: "bmtj")
 
         // Do any additional setup after loading the view.
         
