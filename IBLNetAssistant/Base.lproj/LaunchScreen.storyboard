@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,18 +21,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-bg" translatesAutoresizingMaskIntoConstraints="NO" id="CtO-hi-tso">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="start-page" translatesAutoresizingMaskIntoConstraints="NO" id="CtO-hi-tso">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-applogo" translatesAutoresizingMaskIntoConstraints="NO" id="4cE-iR-PpK">
-                                <rect key="frame" x="127" y="234" width="121" height="39"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="4cE-iR-PpK" firstAttribute="centerX" secondItem="rWc-eD-lAV" secondAttribute="centerX" id="5wG-sV-LgC"/>
+                            <constraint firstItem="CtO-hi-tso" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="Dyp-hf-4yC"/>
                             <constraint firstAttribute="trailing" secondItem="CtO-hi-tso" secondAttribute="trailing" id="JU7-9N-vVT"/>
-                            <constraint firstItem="4cE-iR-PpK" firstAttribute="centerY" secondItem="rWc-eD-lAV" secondAttribute="centerY" constant="-80" id="Pcf-mQ-gto"/>
                             <constraint firstItem="CtO-hi-tso" firstAttribute="top" secondItem="rWc-eD-lAV" secondAttribute="top" id="Phi-o7-ggR"/>
                             <constraint firstItem="CtO-hi-tso" firstAttribute="leading" secondItem="rWc-eD-lAV" secondAttribute="leading" id="ZTN-dY-bWM"/>
                         </constraints>
@@ -44,7 +40,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon-applogo" width="121" height="39"/>
-        <image name="login-bg" width="375" height="667"/>
+        <image name="start-page" width="375" height="667"/>
     </resources>
 </document>

@@ -29,6 +29,7 @@ class IBLAppDelegate: UIResponder, UIApplicationDelegate {
         let statTracker: BaiduMobStat = BaiduMobStat.default()
         statTracker.shortAppVersion  = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
         statTracker.enableDebugOn = true
+        statTracker.getTestDeviceId()
         statTracker.start(withAppId: "dac931d9df") // 设置您在mtj网站上添加的app的appkey,此处AppId即为应用的appKey
     UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor : UIColor.white], for: .normal)
 
