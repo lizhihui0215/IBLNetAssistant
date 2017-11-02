@@ -35,6 +35,8 @@ class IBLAppDelegate: UIResponder, UIApplicationDelegate {
 
     UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor : UIColor.white], for: .selected)
         
+        device
+        
         return true
     }
 
