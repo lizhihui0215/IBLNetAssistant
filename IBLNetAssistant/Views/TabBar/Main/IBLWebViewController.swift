@@ -55,16 +55,15 @@ class IBLWebViewController: PFSWebViewController, WKScriptMessageHandler {
         
         bridge.registerHandler("getNetInfo") { [weak self] data, responseCallback in
             let ip = device.getWiFiAddress()!
-            let networkReachabilityManager = NetworkReachabilityManager()!
             var netMode = 3
-            
+            var model = "SELF"
+            let networkReachabilityManager = NetworkReachabilityManager()!
+
             if !networkReachabilityManager.isReachableOnEthernetOrWiFi {
                 netMode = 1
             }else if networkReachabilityManager.isReachableOnWWAN {
                 netMode = 2
             }
-            
-            var model = "SELF"
             
             if self?.user.loginModel != "0" {
                 model = "PORTAL"
