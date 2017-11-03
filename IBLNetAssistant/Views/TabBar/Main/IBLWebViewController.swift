@@ -10,6 +10,7 @@ import UIKit
 import PCCWFoundationSwift
 import WebKit
 import RxCocoa
+import Alamofire
 
 class IBLWebViewController: PFSWebViewController, WKScriptMessageHandler {
     var domain: IBLWebDomain = IBLWebDomain()
@@ -43,15 +44,36 @@ class IBLWebViewController: PFSWebViewController, WKScriptMessageHandler {
             let viewControllers = self?.navigationController?.viewControllers
             let count = (viewControllers?.count)! - 2
             let isRefresh = data as? String
+            
             if  count > 0, isRefresh == "1" {
                 let webViewController = viewControllers?[count] as! IBLWebViewController
-                
                 webViewController.reload()
             }
             
             self?.navigationController?.popViewController(animated: true)
-            
         })
+        
+        bridge.registerHandler("getNetInfo") { [weak self] data, responseCallback in
+            let ip = device.getWiFiAddress()!
+            let networkReachabilityManager = NetworkReachabilityManager()!
+            var netMode = 3
+            
+            if !networkReachabilityManager.isReachableOnEthernetOrWiFi {
+                netMode = 1
+            }else if networkReachabilityManager.isReachableOnWWAN {
+                netMode = 2
+            }
+            
+            var model = "SELF"
+            
+            if self?.user.loginModel != "0" {
+                model = "PORTAL"
+            }
+
+            responseCallback!(["ip" : ip,
+                              "netMode": netMode,
+                              "model": model])
+        }
         
         if let webAPI = self.webAPI {
             self.reload(webAPI: webAPI).drive().disposed(by: disposeBag)

@@ -31,11 +31,9 @@ class IBLAppDelegate: UIResponder, UIApplicationDelegate {
         statTracker.enableDebugOn = true
         statTracker.getTestDeviceId()
         statTracker.start(withAppId: "dac931d9df") // 设置您在mtj网站上添加的app的appkey,此处AppId即为应用的appKey
-    UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor : UIColor.white], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor : UIColor.white], for: .normal)
 
-    UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor : UIColor.white], for: .selected)
-        
-        device
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor : UIColor.white], for: .selected)
         
         return true
     }

@@ -131,7 +131,7 @@ class IBLLoginViewController: PFSViewController {
         }
     }
     
-    @IBAction func loginButtonPressed(_ sender: UIButton) throws {
+    @IBAction func loginButtonxPressed(_ sender: UIButton) {
         self.startAnimating()
         self.viewModel!.sigin(account: self.accountTextField.text!,
                                                        password: passwordTextField.text!).drive(onNext: {[weak self] success in
