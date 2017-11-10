@@ -41,6 +41,7 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
     
     
     init(action: IBLLoginViewController, domain: IBLLoginDomain, school: IBLSchool) {
+        self.isAutoLogin.value = true
         self.school = school
         self.account = Variable("")
         super.init(action: action, domain: domain)

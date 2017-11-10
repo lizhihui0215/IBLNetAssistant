@@ -10,7 +10,7 @@ PODS:
   - BaiduMobStat (4.6.4)
   - CryptoSwift (0.8.0)
   - DeviceKit (1.4.0)
-  - IQKeyboardManagerSwift (5.0.4)
+  - IQKeyboardManagerSwift (5.0.5)
   - KeychainAccess (3.1.0)
   - Kingfisher (3.13.1)
   - KissXML (5.2.0)
@@ -96,7 +96,7 @@ SPEC CHECKSUMS:
   BaiduMobStat: 4b75c0e1f9472ba4fc549b9352141c91d34ee27c
   CryptoSwift: f81907430ebbe38b8404b4f6fb40f3c576a8755f
   DeviceKit: fa74d97499660e88081718b16688e19217595dba
-  IQKeyboardManagerSwift: a0592bb636b10a9a1cf75d2b2c61144226226c84
+  IQKeyboardManagerSwift: ee393093cfb41069a72584a8f599ba5519a7febe
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   Kingfisher: ed9707a409cc47fddafbcd12a43a9757e3600af5
   KissXML: 1c1eeeb6b94e4522cd2f2373e5d0d03c9227738f

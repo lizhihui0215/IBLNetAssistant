@@ -65,7 +65,7 @@ class IBLRegisterViewController: PFSViewController, WKUIDelegate, WKNavigationDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.isNavigationBarHidden = false
         // Do any additional setup after loading the view.
         guard let school = PFSDomain.cachedSchool()  else {
             self.alert(message: "无缓存学校！").drive().disposed(by: disposeBag)

@@ -71,7 +71,7 @@ class IBLWebViewController: PFSWebViewController, WKScriptMessageHandler {
 
             responseCallback!(["ip" : ip,
                               "netMode": netMode,
-                              "model": model])
+                              "mode": model])
         }
         
         if let webAPI = self.webAPI {
