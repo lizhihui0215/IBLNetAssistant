@@ -46,9 +46,6 @@ class IBLTabBarController: PFSTabBarController {
         
     }
     
-    
-
-    
     func setupWebViewController()  {
         let webViewController: IBLWebViewController = self.viewControllerAtIndex(at: 0)
         
