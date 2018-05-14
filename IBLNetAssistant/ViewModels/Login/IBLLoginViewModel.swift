@@ -77,98 +77,110 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
     }
     
     private func portalSigin(account: String, password: String) -> Driver<Bool> {
-        return self.domain.register(account: account, school: self.school).flatMapLatest { result in
+        
+        
+        let q = self.domain.register(account: account, school: self.school).flatMapLatest { result in
             (self.action?.alert(result: result))!
-            }.flatMapLatest { result -> Driver<Result<PortalAuth, MoyaError>> in
-                
-//                return self.domain.portal(url: "http://115.28.0.62:8080/ibillingportal/ac.do")
-                return self.domain.portal(url: "http://www.baidu.com/")
-            }.flatMapLatest { result  in
-                
-                guard let value = try? result.dematerialize() else {
-                    return self.domain.auth(account: account, password: password)
-                }
-                
-                value.account = account
-                
-                if let auth: PortalAuth = PFSRealm.shared.object("account == '\(account)'")  {
-                    PFSRealm.shared.update(obj: auth, {
-                        $0.account = value.account
-                        $0.authurl = value.authurl
-                        $0.logouturl = value.logouturl
-                    })
-                    self.auth = auth
-                }else {
-                    self.auth = value
-                }
-                
-                let auth = Dictionary<String, Any>.toJSON(JSONObject: value.JSON!)
-                
-                let portalAuth: Driver<Result<IBLUser, MoyaError>> = self.domain.portalAuth(account: account, password: password, auth: auth ?? [:])
-                return portalAuth
-            }.flatMapLatest { (user: Result<IBLUser, MoyaError>) in
-                
-                do {
-                    let _ = try user.dematerialize()
-                } catch MoyaError.underlying(let aError) {
-                    
-//                    guard let theError = aError as? NSError, theError.domain == PFSServerErrorDomain && theError.code == 808 else {
-//                    }
-                    
-                    let theError = aError.0 as NSError
-                    let message = theError.localizedDescription
-                    if theError.domain == PFSServerErrorDomain {
-                        switch theError.code {
-                        case 808:
-                            let response = theError.userInfo["response"] as! PFSResponseMappableObject<IBLUser>
-                            let user = response.result!
-                            user.auth = self.auth
-                            self.action?.showPanel(user: user)
-                        case 803:
-                            fallthrough
-                        case 804:
-                            fallthrough
-                        case 805:
-                            fallthrough
-                        case 806:
-                            fallthrough
-                        case 9:
-                            fallthrough
-                        case 807:
-//                            self.action?.confirm(message: message, content: user)
-                            self.action?.confirmToSelfAuth(message: message)
-                            return Driver.never()
-                        case 801:
-                            fallthrough
-                        case 802:
-                            fallthrough
-                        case 809:
-                            fallthrough
-                        case 810:
-                            fallthrough
-                        case 811:
-                            fallthrough
-                        case 901:
-                            fallthrough
-                        case 902:
-                            fallthrough
-                        case 903:
-                            self.action?.confirm(message: message)
-                            return Driver.never()
-                        default:
-                            return self.domain.auth(account: account, password: password)
-                        }
-                    }
-                    
-                } catch {
-                    return self.domain.auth(account: account, password: password)
-                }
-                return Driver.just(user)
-            }.flatMapLatest {
-                return (self.action?.alert(result: $0))!
-            }.flatMapLatest {
-                return self.save(account: account, password: password, user: $0)
+        }
+        let b =   q.flatMapLatest { result -> Driver<Result<PortalAuth, MoyaError>> in
+            
+            //                return self.domain.portal(url: "http://115.28.0.62:8080/ibillingportal/ac.do")
+            return self.domain.portal(url: "http://www.baidu.com/")
+        }
+        let c = b.flatMapLatest { result  -> Driver<Result<IBLUser, MoyaError>> in
+            
+            guard let value = try? result.dematerialize() else {
+                return self.domain.auth(account: account, password: password)
             }
+            
+            value.account = account
+            
+            if let auth: PortalAuth = PFSRealm.shared.object("account == '\(account)'")  {
+                PFSRealm.shared.update(obj: auth, {
+                    $0.account = value.account
+                    $0.authurl = value.authurl
+                    $0.logouturl = value.logouturl
+                })
+                self.auth = auth
+            }else {
+                self.auth = value
+            }
+            
+            let auth = Dictionary<String, Any>.toJSON(JSONObject: value.JSON!)
+            
+            let portalAuth: Driver<Result<IBLUser, MoyaError>> = self.domain.portalAuth(account: account, password: password, auth: auth ?? [:])
+            return portalAuth
+        }
+        
+    
+        
+        let d = c.flatMapLatest { (user: Result<IBLUser, MoyaError>) -> Driver<Result<IBLUser, MoyaError>> in
+
+            do {
+                let _ = try user.dematerialize()
+            } catch MoyaError.underlying(let aError) {
+
+                //                    guard let theError = aError as? NSError, theError.domain == PFSServerErrorDomain && theError.code == 808 else {
+                //                    }
+
+                let theError = aError.0 as NSError
+                let message = theError.localizedDescription
+                if theError.domain == PFSServerErrorDomain {
+                    switch theError.code {
+                    case 808:
+                        let response = theError.userInfo["response"] as! PFSResponseMappableObject<IBLUser>
+                        let user = response.result!
+                        user.auth = self.auth
+                        self.action?.showPanel(user: user)
+                    case 803:
+                        fallthrough
+                    case 804:
+                        fallthrough
+                    case 805:
+                        fallthrough
+                    case 806:
+                        fallthrough
+                    case 9:
+                        fallthrough
+                    case 807:
+                        //                            self.action?.confirm(message: message, content: user)
+                        self.action?.confirmToSelfAuth(message: message)
+                        return Driver.never()
+                    case 801:
+                        fallthrough
+                    case 802:
+                        fallthrough
+                    case 809:
+                        fallthrough
+                    case 810:
+                        fallthrough
+                    case 811:
+                        fallthrough
+                    case 901:
+                        fallthrough
+                    case 902:
+                        fallthrough
+                    case 903:
+                        self.action?.confirm(message: message)
+                        return Driver.never()
+                    default:
+                        return self.domain.auth(account: account, password: password)
+                    }
+                }
+
+            } catch {
+                return self.domain.auth(account: account, password: password)
+            }
+            return Driver.just(user)
+        }
+        let e = d.flatMapLatest {
+            return (self.action?.alert(result: $0))!
+        }
+        let f = e.flatMapLatest {
+            return self.save(account: account, password: password, user: $0)
+        }
+        
+        return f
     }
     
     public func selfSigin(account: String, password: String) -> Driver<Bool> {

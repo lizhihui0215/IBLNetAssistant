@@ -424,8 +424,6 @@
 				26F9498A1EDE935900E81192 /* Sources */,
 				26F9498B1EDE935900E81192 /* Frameworks */,
 				26F9498C1EDE935900E81192 /* Resources */,
-				DE9DDFD72D3E7F76E84E7761 /* [CP] Embed Pods Frameworks */,
-				97C54B0AC6A398D1AE71F6E6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -445,8 +443,6 @@
 				26F949951EDE935900E81192 /* Sources */,
 				26F949961EDE935900E81192 /* Frameworks */,
 				26F949971EDE935900E81192 /* Resources */,
-				B157F724B805BD6BEA4B3304 /* [CP] Embed Pods Frameworks */,
-				5F83FBFA8439704F93D525F9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -613,21 +609,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IBLNetAssistant/Pods-IBLNetAssistant-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5F83FBFA8439704F93D525F9 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IBLNetAssistantUITests/Pods-IBLNetAssistantUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		785F0118DEBADA3C27BF31E5 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -639,7 +620,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMap.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -680,51 +661,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		97C54B0AC6A398D1AE71F6E6 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IBLNetAssistantTests/Pods-IBLNetAssistantTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B157F724B805BD6BEA4B3304 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IBLNetAssistantUITests/Pods-IBLNetAssistantUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DE9DDFD72D3E7F76E84E7761 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IBLNetAssistantTests/Pods-IBLNetAssistantTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E72F646D3F60A215661F6992 /* [CP] Check Pods Manifest.lock */ = {
