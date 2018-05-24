@@ -130,7 +130,10 @@ class IBLRegisterViewController: PFSViewController, WKUIDelegate, WKNavigationDe
             
             self.webView.customUserAgent = "IBILLING_IOS_NETHELPER_APP"
             
-            self.webView.load(endpoint.urlRequest!)
+            if let c = try? endpoint.urlRequest() {
+                self.webView.load(c)
+            }
+            
             
             return Driver.just(true)
         }
