@@ -18,6 +18,7 @@ target 'IBLNetAssistant' do
   pod 'PopupDialog'
   
   pod 'BaiduMobStat'
+  pod 'CryptoSwift', '~> 0.8.3'
 
   target 'IBLNetAssistantTests' do
     inherit! :search_paths

@@ -8,9 +8,9 @@ PODS:
   - AMapSearch (6.1.0):
     - AMapFoundation (~> 1.4)
   - BaiduMobStat (4.7.2)
-  - CryptoSwift (0.9.0)
+  - CryptoSwift (0.8.3)
   - DeviceKit (1.7.0)
-  - IQKeyboardManagerSwift (6.0.3)
+  - IQKeyboardManagerSwift (6.0.2)
   - KeychainAccess (3.1.1)
   - Kingfisher (3.13.1)
   - KissXML (5.2.2)
@@ -84,11 +84,12 @@ DEPENDENCIES:
   - AMapLocation
   - AMapSearch
   - BaiduMobStat
+  - CryptoSwift (~> 0.8.3)
   - PCCWFoundationSwift
   - PopupDialog
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - AMap3DMap
     - AMapFoundation
@@ -130,9 +131,9 @@ SPEC CHECKSUMS:
   AMapLocation: 55116a2c8956eab7550cbb56e989aa5cdcc424e3
   AMapSearch: e3f96bd0681abe70abba303709a1a05625a8f76c
   BaiduMobStat: e84187c7057f87daac852e05692fd94c8d656bd3
-  CryptoSwift: bca8c5b653dcc2d9734409242a070ff53bafac86
+  CryptoSwift: 033efc3523865d19cc6ab6612fa17a62613b5dfa
   DeviceKit: 6a5bdeb103c03757bb94aef1ccb01e08bc8ef4ee
-  IQKeyboardManagerSwift: 04e8679f85e496bb2c474eeb9284052f1b3c391c
+  IQKeyboardManagerSwift: 59d4b0e140bc546c3c76ae5bb35b3dafd10b8172
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
   Kingfisher: ed9707a409cc47fddafbcd12a43a9757e3600af5
   KissXML: 4418f32138aec43797891845d682b00fc8cd4677
@@ -158,6 +159,6 @@ SPEC CHECKSUMS:
   UIColor_Hex_Swift: c5ff88470499383b8fd85302d59344bb24ba9436
   WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
 
-PODFILE CHECKSUM: 49ef484cca8eeba007391610674f2bd28804a5f8
+PODFILE CHECKSUM: 7c912aab83018d09211919bc3df73f47341f2af3
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.0
