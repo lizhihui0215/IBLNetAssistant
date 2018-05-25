@@ -207,7 +207,6 @@ class IBLWebViewController: PFSWebViewController, WKScriptMessageHandler {
             
             webViewController.hidesBottomBarWhenPushed = true
 
-            
             self.navigationController?.pushViewController(webViewController, animated: true)
         }
         
@@ -233,7 +232,6 @@ class IBLWebViewController: PFSWebViewController, WKScriptMessageHandler {
         
         decisionHandler(navigationResponsePolicy)
     }
-
     
     open override func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Swift.Error) {
         super.webView(webView, didFail: navigation, withError: error)
@@ -245,10 +243,7 @@ class IBLWebViewController: PFSWebViewController, WKScriptMessageHandler {
         super.webView(webView, didFailProvisionalNavigation: navigation, withError: error)
         self.stopAnimating()
         self.alert(message: error.localizedDescription).drive().disposed(by: disposeBag)
-        
     }
-
-    
 
     /*
     // MARK: - Navigation
