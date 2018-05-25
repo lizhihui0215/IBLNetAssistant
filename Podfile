@@ -1,11 +1,11 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '8.0'
+platform :ios, '9.0'
 
 target 'IBLNetAssistant' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
   inhibit_all_warnings!
-
+  
   # Pods for IBLNetAssistant
   pod 'PCCWFoundationSwift'
 
@@ -15,7 +15,7 @@ target 'IBLNetAssistant' do
 
   pod 'AMapLocation'
 
-  pod 'PopupDialog'
+  pod 'PopupDialog', '~> 0.7'
   
   pod 'BaiduMobStat'
 
@@ -32,15 +32,15 @@ target 'IBLNetAssistant' do
   post_install do |installer|
       installer.pods_project.targets.each do |target|
         swift4 = Array['CryptoSwift', 'RSKGrowingTextView', 'RSKPlaceholderTextView']
-        if swift4.include? target.name then
+#        if swift4.include? target.name then
             target.build_configurations.each do |config|
                 config.build_settings['SWIFT_VERSION'] = '4.0'
             end
-            else
-            target.build_configurations.each do |config|
-                config.build_settings['SWIFT_VERSION'] = '3.2'
-            end
-        end
+#            else
+#            target.build_configurations.each do |config|
+#                config.build_settings['SWIFT_VERSION'] = '3.2'
+#            end
+#        end
       end
   end
 

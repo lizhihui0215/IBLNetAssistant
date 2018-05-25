@@ -77,24 +77,18 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
     }
     
     private func portalSigin(account: String, password: String) -> Driver<Bool> {
-        
-        
-        let q = self.domain.register(account: account, school: self.school).flatMapLatest { result in
+        let register = self.domain.register(account: account, school: self.school).flatMapLatest { result in
             (self.action?.alert(result: result))!
         }
-        let b =   q.flatMapLatest { result -> Driver<Result<PortalAuth, MoyaError>> in
-            
-            //                return self.domain.portal(url: "http://115.28.0.62:8080/ibillingportal/ac.do")
+        let portal =   register.flatMapLatest { result -> Driver<Result<PortalAuth, MoyaError>> in
+            // return self.domain.portal(url: "http://115.28.0.62:8080/ibillingportal/ac.do")
             return self.domain.portal(url: "http://www.baidu.com/")
         }
-        let c = b.flatMapLatest { result  -> Driver<Result<IBLUser, MoyaError>> in
-            
+        let auth = portal.flatMapLatest { result  -> Driver<Result<IBLUser, MoyaError>> in
             guard let value = try? result.dematerialize() else {
                 return self.domain.auth(account: account, password: password)
             }
-            
             value.account = account
-            
             if let auth: PortalAuth = PFSRealm.shared.object("account == '\(account)'")  {
                 PFSRealm.shared.update(obj: auth, {
                     $0.account = value.account
@@ -105,17 +99,12 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
             }else {
                 self.auth = value
             }
-            
             let auth = Dictionary<String, Any>.toJSON(JSONObject: value.JSON!)
-            
             let portalAuth: Driver<Result<IBLUser, MoyaError>> = self.domain.portalAuth(account: account, password: password, auth: auth ?? [:])
             return portalAuth
         }
         
-    
-        
-        let d = c.flatMapLatest { (user: Result<IBLUser, MoyaError>) -> Driver<Result<IBLUser, MoyaError>> in
-
+        let reAuth = auth.flatMapLatest { (user: Result<IBLUser, MoyaError>) -> Driver<Result<IBLUser, MoyaError>> in
             do {
                 let _ = try user.dematerialize()
             } catch MoyaError.underlying(let aError) {
@@ -167,20 +156,18 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
                         return self.domain.auth(account: account, password: password)
                     }
                 }
-
             } catch {
                 return self.domain.auth(account: account, password: password)
             }
             return Driver.just(user)
         }
-        let e = d.flatMapLatest {
-            return (self.action?.alert(result: $0))!
-        }
-        let f = e.flatMapLatest {
+        
+        let result = reAuth.flatMapLatest {
+                return (self.action?.alert(result: $0))!
+            }.flatMapLatest {
             return self.save(account: account, password: password, user: $0)
         }
-        
-        return f
+        return result
     }
     
     public func selfSigin(account: String, password: String) -> Driver<Bool> {

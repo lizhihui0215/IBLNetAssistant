@@ -48,8 +48,13 @@ class IBLRegisterViewController: PFSViewController, WKUIDelegate, WKNavigationDe
         
         let frame = CGRect(x: 0,
                            y: 20,
+<<<<<<< HEAD
                            width: UIScreen.bounds.width,
                            height: UIScreen.main.applicationFrame.height - 20)
+=======
+                           width: UIScreen.main.bounds.width,
+                           height: UIScreen.main.bounds.height - 20)
+>>>>>>> cc74fd2793b7a312881d0a6ded9ab3293e16f48c
 
         webView.frame = frame
         view = webView
