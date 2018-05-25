@@ -119,7 +119,7 @@ enum IBLAPITarget: PFSTargetType {
             parameters = ["account" : username, "password" : password]
             parameters = sign(parameters: parameters)
         case let .register(account,school):
-            parameters = ["account" : account, "sid" : school.sid , "sname" : school.sname ?? ""]
+            parameters = ["account" : account, "sid" : school.sid , "sname" : school.sname ?? "", "type" : "4"]
             parameters = sign(parameters: parameters)
         case let .portalAuth(account, password, auth):
             var param = ["loginName" : account, "loginPwd" : password] as [String : Any]
@@ -215,7 +215,7 @@ enum IBLAPITarget: PFSTargetType {
         case .auth(_,_):
             path = "ibillingportal/userservice/auth.do"
         case .register(_,_):
-            path = "nodeibilling/httpservices/user/appRegister.do"
+            path = "nodeibilling/httpservices/user/register.do"
         case .sms:
             path = "nodeibilling/httpservices/user/getSmsCode.do"
         case .exchangePassword:
