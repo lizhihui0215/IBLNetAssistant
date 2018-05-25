@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment version="2304" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="h8P-aI-5IF">
             <objects>
                 <viewController id="Pcp-iS-gLD" customClass="IBLTabBarController" customModule="IBLNetAssistant" customModuleProvider="target" sceneMemberID="viewController">
@@ -16,7 +19,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wVF-62-QBS"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OZl-h2-Tho">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.63533997539999998" green="0.86157733199999997" blue="0.96629744770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -47,11 +50,11 @@
                         <viewControllerLayoutGuide type="bottom" id="PAd-Fe-U4c"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="AnS-hH-Vr6">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="60" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nRE-4o-osd">
-                                <rect key="frame" x="0.0" y="124" width="240" height="344"/>
+                                <rect key="frame" x="0.0" y="144" width="240" height="423"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="ty8-qi-7lK"/>
@@ -85,6 +88,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="USn-cZ-Xre" secondAttribute="trailing" constant="20" id="Q3R-QO-CbT"/>
                                                 <constraint firstItem="XgQ-V8-nyq" firstAttribute="centerY" secondItem="TZF-3w-XPg" secondAttribute="centerY" id="StW-0d-f9k"/>
                                                 <constraint firstItem="IPX-2b-Jyh" firstAttribute="leading" secondItem="XgQ-V8-nyq" secondAttribute="trailing" constant="20" id="Xxi-l5-nOS"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="IPX-2b-Jyh" secondAttribute="trailing" constant="20" symbolic="YES" id="gAt-zR-R9K"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -96,7 +100,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z5J-4A-otL">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="64"/>
+                                <rect key="frame" x="0.0" y="20" width="240" height="64"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超级管理员" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0S2-Mk-gNh">
                                         <rect key="frame" x="87" y="43" width="67" height="16"/>
@@ -120,7 +124,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A6w-sS-cfV">
-                                <rect key="frame" x="0.0" y="468" width="240" height="40"/>
+                                <rect key="frame" x="0.0" y="567" width="240" height="40"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="close" translatesAutoresizingMaskIntoConstraints="NO" id="WfJ-3s-KLk">
                                         <rect key="frame" x="10" y="12.5" width="16" height="16"/>
@@ -140,6 +144,7 @@
                                     <constraint firstItem="WfJ-3s-KLk" firstAttribute="centerY" secondItem="A6w-sS-cfV" secondAttribute="centerY" id="c24-an-4lI"/>
                                     <constraint firstItem="9ge-qx-exs" firstAttribute="leading" secondItem="WfJ-3s-KLk" secondAttribute="trailing" constant="20" id="e0N-Vh-LUd"/>
                                     <constraint firstItem="WfJ-3s-KLk" firstAttribute="leading" secondItem="A6w-sS-cfV" secondAttribute="leading" constant="10" id="oUE-Mp-wM0"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9ge-qx-exs" secondAttribute="trailing" constant="20" symbolic="YES" id="zGu-eu-kr2"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="9bn-Iu-mcy" appends="YES" id="2IW-kx-qQD"/>
@@ -166,7 +171,6 @@
                             <constraint firstItem="A6w-sS-cfV" firstAttribute="width" secondItem="nRE-4o-osd" secondAttribute="width" id="xK3-eg-DDR"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4_0.fullscreen"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t4R-PI-7kt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="9bn-Iu-mcy"/>
@@ -179,7 +183,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sbV-OJ-fdz" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="3Yu-vg-zzu">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

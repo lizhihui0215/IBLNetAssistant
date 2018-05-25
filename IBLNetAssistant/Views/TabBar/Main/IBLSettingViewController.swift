@@ -40,7 +40,7 @@ class IBLSettingViewController: PFSViewController, IBLSettingAction {
                 delegate.switch(aotoLogin: isOn)
             }
             
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
