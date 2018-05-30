@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment version="2304" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -237,7 +237,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Dwj-1x-jgd">
-                                <rect key="frame" x="10" y="40" width="300" height="117"/>
+                                <rect key="frame" x="10" y="84" width="300" height="117"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="通过手机号码找回密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhJ-3X-BKk">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="17"/>
@@ -268,7 +268,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F55-qS-vTK">
-                                <rect key="frame" x="10" y="177" width="300" height="35"/>
+                                <rect key="frame" x="10" y="221" width="300" height="35"/>
                                 <color key="backgroundColor" red="0.28306889533996582" green="0.56570243835449219" blue="0.88538080453872681" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="v1l-pE-DSi"/>
@@ -321,7 +321,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="EDp-ow-bnD">
-                                <rect key="frame" x="10" y="40" width="300" height="140"/>
+                                <rect key="frame" x="10" y="84" width="300" height="140"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7k0-n1-kCs">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="40"/>
@@ -389,7 +389,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WkP-r7-lpa">
-                                <rect key="frame" x="10" y="200" width="300" height="35"/>
+                                <rect key="frame" x="10" y="244" width="300" height="35"/>
                                 <color key="backgroundColor" red="0.28306889530000001" green="0.56570243840000001" blue="0.88538080450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="9ha-7F-OR5"/>
@@ -498,7 +498,7 @@
         <!--设置-->
         <scene sceneID="TKq-Za-FYy">
             <objects>
-                <viewController id="eo9-Jg-eLn" customClass="IBLSettingViewController" customModule="IBLNetAssistant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="eo9-Jg-eLn" customClass="IBLSettingViewController" customModule="IBLNetAssistant" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WvA-6m-pdf"/>
                         <viewControllerLayoutGuide type="bottom" id="Oiy-6j-3oe"/>
@@ -592,14 +592,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vnR-Ec-Atc">
                                         <rect key="frame" x="0.0" y="40" width="320" height="40"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QM4-y0-nB4">
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QM4-y0-nB4">
                                                 <rect key="frame" x="0.0" y="39.5" width="320" height="0.5"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="0.5" id="1eS-s9-WkM"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="检查更新" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nO8-iT-NYW">
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="检查更新" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nO8-iT-NYW">
                                                 <rect key="frame" x="10" y="10.5" width="69.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -622,8 +622,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="gmM-Nm-huT" firstAttribute="leading" secondItem="veF-ZO-lSB" secondAttribute="leading" id="Cyd-aF-1nl"/>
-                            <constraint firstItem="gmM-Nm-huT" firstAttribute="top" secondItem="WvA-6m-pdf" secondAttribute="bottom" id="OBe-Ln-fyn"/>
                             <constraint firstAttribute="trailing" secondItem="gmM-Nm-huT" secondAttribute="trailing" id="VT5-yy-5pN"/>
+                            <constraint firstItem="gmM-Nm-huT" firstAttribute="top" secondItem="WvA-6m-pdf" secondAttribute="bottom" id="iMy-kv-9LJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="设置" id="qB2-oM-6d8"/>
@@ -884,8 +884,7 @@
         <image name="setting-normal" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KhB-OV-xaL"/>
-        <segue reference="CiB-7j-8pI"/>
+        <segue reference="LOE-Rn-00K"/>
         <segue reference="zeH-gN-0Pf"/>
     </inferredMetricsTieBreakers>
 </document>
