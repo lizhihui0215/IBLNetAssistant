@@ -81,7 +81,7 @@ class IBLLoginViewModel: PFSViewModel<IBLLoginViewController, IBLLoginDomain> {
             (self.action?.alert(result: result))!
         }
         let portal =   register.flatMapLatest { result -> Driver<Result<PortalAuth, MoyaError>> in
-            // return self.domain.portal(url: "http://115.28.0.62:8080/ibillingportal/ac.do")
+            // return self.domain.portal(url: " 115.28.0.62:8080/ibillingportal/ac.do")
             return self.domain.portal(url: "http://www.baidu.com/")
         }
         let auth = portal.flatMapLatest { result  -> Driver<Result<IBLUser, MoyaError>> in
