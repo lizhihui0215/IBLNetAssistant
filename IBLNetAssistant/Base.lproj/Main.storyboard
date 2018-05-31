@@ -237,7 +237,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Dwj-1x-jgd">
-                                <rect key="frame" x="10" y="84" width="300" height="117"/>
+                                <rect key="frame" x="10" y="40" width="300" height="117"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="通过手机号码找回密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhJ-3X-BKk">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="17"/>
@@ -268,7 +268,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F55-qS-vTK">
-                                <rect key="frame" x="10" y="221" width="300" height="35"/>
+                                <rect key="frame" x="10" y="177" width="300" height="35"/>
                                 <color key="backgroundColor" red="0.28306889533996582" green="0.56570243835449219" blue="0.88538080453872681" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="v1l-pE-DSi"/>
@@ -321,7 +321,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="EDp-ow-bnD">
-                                <rect key="frame" x="10" y="84" width="300" height="140"/>
+                                <rect key="frame" x="10" y="40" width="300" height="140"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7k0-n1-kCs">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="40"/>
@@ -389,7 +389,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WkP-r7-lpa">
-                                <rect key="frame" x="10" y="244" width="300" height="35"/>
+                                <rect key="frame" x="10" y="200" width="300" height="35"/>
                                 <color key="backgroundColor" red="0.28306889530000001" green="0.56570243840000001" blue="0.88538080450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="9ha-7F-OR5"/>
@@ -508,7 +508,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gmM-Nm-huT">
-                                <rect key="frame" x="0.0" y="64" width="320" height="80"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="80"/>
                                 <subviews>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qhn-rx-FRg">
                                         <rect key="frame" x="0.0" y="-40" width="320" height="40"/>
@@ -535,6 +535,7 @@
                                             <constraint firstItem="TPY-Ew-vKp" firstAttribute="leading" secondItem="qhn-rx-FRg" secondAttribute="leading" id="3yc-nO-NtQ"/>
                                             <constraint firstAttribute="trailing" secondItem="TPY-Ew-vKp" secondAttribute="trailing" id="Al6-0u-egz"/>
                                             <constraint firstAttribute="trailing" secondItem="faF-8Z-iPc" secondAttribute="trailing" constant="10" id="IX2-a5-QLx"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Uuo-78-qrb" secondAttribute="trailing" constant="20" symbolic="YES" id="VOB-vO-zhD"/>
                                             <constraint firstAttribute="height" constant="40" id="blI-hk-6oA"/>
                                             <constraint firstAttribute="bottom" secondItem="TPY-Ew-vKp" secondAttribute="bottom" id="gH6-LE-SP9"/>
                                             <constraint firstItem="Uuo-78-qrb" firstAttribute="centerY" secondItem="qhn-rx-FRg" secondAttribute="centerY" id="ghS-WN-TzI"/>
@@ -574,6 +575,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="609-nj-kRu" secondAttribute="trailing" constant="20" symbolic="YES" id="13o-Tq-CH7"/>
                                             <constraint firstItem="Z5q-lM-Xo1" firstAttribute="centerY" secondItem="2Et-BJ-mfr" secondAttribute="centerY" id="1k0-ai-vAC"/>
                                             <constraint firstAttribute="bottom" secondItem="9tL-Zh-miZ" secondAttribute="bottom" id="7yg-Su-W13"/>
                                             <constraint firstItem="vlD-0c-Msc" firstAttribute="centerY" secondItem="2Et-BJ-mfr" secondAttribute="centerY" id="8df-bZ-u11"/>
@@ -608,6 +610,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nO8-iT-NYW" secondAttribute="trailing" constant="20" symbolic="YES" id="0ZO-Uq-dge"/>
                                             <constraint firstAttribute="height" constant="40" id="4vI-vc-Wnw"/>
                                             <constraint firstItem="QM4-y0-nB4" firstAttribute="leading" secondItem="vnR-Ec-Atc" secondAttribute="leading" id="B7f-L5-yRX"/>
                                             <constraint firstItem="nO8-iT-NYW" firstAttribute="leading" secondItem="vnR-Ec-Atc" secondAttribute="leading" constant="10" id="LtZ-Sf-geB"/>
