@@ -59,7 +59,7 @@ class IBLWebViewController: PFSWebViewController, WKScriptMessageHandler {
             var model = "SELF"
             let networkReachabilityManager = NetworkReachabilityManager()!
 
-            if !networkReachabilityManager.isReachableOnEthernetOrWiFi {
+            if networkReachabilityManager.isReachableOnEthernetOrWiFi {
                 netMode = 1
             }else if networkReachabilityManager.isReachableOnWWAN {
                 netMode = 2

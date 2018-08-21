@@ -90,7 +90,7 @@ DEPENDENCIES:
   - PopupDialog (~> 0.7)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Alamofire
     - AMap3DMap
     - AMapFoundation
@@ -164,4 +164,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: ccde27f89c11f14f710a49164e70f3061ed06f6c
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.2
